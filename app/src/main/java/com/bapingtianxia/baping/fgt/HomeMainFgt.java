@@ -3,8 +3,16 @@ package com.bapingtianxia.baping.fgt;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TimePicker;
 
 import com.bapingtianxia.baping.R;
+import com.bapingtianxia.baping.aty.home.ContactCustomerAty;
+import com.bapingtianxia.baping.aty.home.FreeLeadAty;
+import com.bapingtianxia.baping.aty.home.InviteFriendsAty;
+import com.bapingtianxia.baping.aty.home.MakeMoneyAty;
+import com.bapingtianxia.baping.aty.home.OpenMemberAty;
+import com.bapingtianxia.baping.aty.home.PutInAty;
 import com.bapingtianxia.baping.base.BaseFragment;
 import com.bapingtianxia.baping.utils.DisplayHelper;
 import com.bapingtianxia.baping.utils.GlideImageLoader;
@@ -18,12 +26,13 @@ import java.util.List;
 /**
  * 创建者：zhangyunfei
  * 创建时间：2018/9/25 11:15
- * 功能描述：
+ * 功能描述：首页
  */
-public class HomeMainFgt extends BaseFragment {
+public class HomeMainFgt extends BaseFragment implements View.OnClickListener{
 
     private Banner mBanner;
     private List<String> images;
+    private RelativeLayout re_zhuangyong,re_lingyong,re_huiyuan,re_toufang,re_haoyou,re_kefu;
 
     @Override
     protected int getLayoutResId() {
@@ -33,6 +42,22 @@ public class HomeMainFgt extends BaseFragment {
     @Override
     protected void initialized(View view) {
         initBanner(view);
+        initView(view);
+    }
+
+    private void initView(View view) {
+        re_zhuangyong=view.findViewById(R.id.re_zhuangyong);
+        re_lingyong=view.findViewById(R.id.re_lingyong);
+        re_huiyuan=view.findViewById(R.id.re_huiyuan);
+        re_toufang=view.findViewById(R.id.re_toufang);
+        re_haoyou=view.findViewById(R.id.re_haoyou);
+        re_kefu=view.findViewById(R.id.re_kefu);
+        re_zhuangyong.setOnClickListener(this);
+        re_lingyong.setOnClickListener(this);
+        re_huiyuan.setOnClickListener(this);
+        re_toufang.setOnClickListener(this);
+        re_haoyou.setOnClickListener(this);
+        re_kefu.setOnClickListener(this);
     }
 
     private void initBanner(View view) {
@@ -77,20 +102,27 @@ public class HomeMainFgt extends BaseFragment {
         mBanner.stopAutoPlay();
     }
 
-    public void onTabClicked(View view) {
-        int viewId = view.getId();
+    @Override
+    public void onClick(View v) {
+        int viewId = v.getId();
         switch (viewId){
             case R.id.re_zhuangyong:
+                startActivity(MakeMoneyAty.class);
                 break;
             case R.id.re_lingyong:
+                startActivity(FreeLeadAty.class);
                 break;
             case R.id.re_huiyuan:
+                startActivity(OpenMemberAty.class);
                 break;
             case R.id.re_toufang:
+                startActivity(PutInAty.class);
                 break;
             case R.id.re_haoyou:
+                startActivity(InviteFriendsAty.class);
                 break;
             case R.id.re_kefu:
+                startActivity(ContactCustomerAty.class);
                 break;
         }
     }

@@ -11,7 +11,7 @@ import android.content.SharedPreferences;
  */
 public class SharedPreferencesUtils {
 
-    private static final String PREFERENCE_NAME="wujie";
+    private static final String PREFERENCE_NAME="baping";
 
     private volatile static SharedPreferencesUtils mPreferencesUtils=null;
 

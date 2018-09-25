@@ -9,4 +9,6 @@
     <color name="bar_color">#D90108</color>
     <color name="bg_color">#E9E9EB</color>
     <color name="txt_color">#3C3C3C</color>
+    <color name="gray">#FFF0F0F0</color>
+    <color name="gray_deep">#c9000000</color>
 </resources>

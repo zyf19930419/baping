@@ -3,11 +3,13 @@ package com.bapingtianxia.baping.base;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -69,7 +71,7 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
         isConfigChange = false;
         ActivityStack.getInstance().addActivity(this);
         if (changeStatusBar){
-            StatusBarHelper.translucent(this,getResources().getColor(R.color.bar_color));
+            StatusBarHelper.translucent(this,ContextCompat.getColor(this,R.color.bar_color));
             StatusBarHelper.setStatusBarDarkMode(this);
         }
         setContentView(R.layout.activity_base);
@@ -83,7 +85,7 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
         content =  findViewById(R.id.content);
         rootText=new TextView(this);
         rootText.setTextSize(20);
-        rootText.setTextColor(getResources().getColor(R.color.colorPrimary));
+        rootText.setTextColor(ContextCompat.getColor(this,R.color.white));
         content.addView(rootText);
         View view=View.inflate(this,getLayoutId(),null);
         content.addView(view);
@@ -262,4 +264,7 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
     }
 
 
+    public void onBeBack(View view) {
+        finish();
+    }
 }

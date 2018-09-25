@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="15dp"
-    android:layout_marginTop="5dp"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
-    android:paddingBottom="15dp">
-
+    android:background="@color/white">
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
         android:orientation="horizontal" >
 
         <RelativeLayout
-            android:id="@+id/re_zhuangyong"
+            android:id="@+id/re_dating"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -27,7 +29,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/ib_zhuangyong"
+                    android:id="@+id/ib_dating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -37,20 +39,20 @@
                     android:src="@mipmap/ic_launcher_round" />
 
                 <TextView
-                    android:id="@+id/tv_zhuangyong"
+                    android:id="@+id/tv_dating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ib_zhuangyong"
+                    android:layout_below="@id/ib_dating"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="3dp"
-                    android:text="@string/woyaozhuangyong"
+                    android:text="@string/renwudating"
                     android:textColor="@color/txt_color"
                     android:textSize="12sp" />
             </RelativeLayout>
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/re_lingyong"
+            android:id="@+id/re_guize"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -58,7 +60,7 @@
             android:padding="3dp" >
 
             <ImageView
-                android:id="@+id/ib_lingyong"
+                android:id="@+id/ib_guize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -68,19 +70,19 @@
                 android:src="@mipmap/ic_launcher_round" />
 
             <TextView
-                android:id="@+id/tv_lingyong"
+                android:id="@+id/tv_guize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ib_lingyong"
+                android:layout_below="@id/ib_guize"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
-                android:text="@string/mianfeilingyong"
+                android:text="@string/renwuguize"
                 android:textColor="@color/txt_color"
                 android:textSize="12sp" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/re_huiyuan"
+            android:id="@+id/re_paihang"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -92,7 +94,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/ib_huiyuan"
+                    android:id="@+id/ib_paihang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -102,124 +104,50 @@
                     android:src="@mipmap/ic_launcher_round" />
 
                 <TextView
-                    android:id="@+id/tv_huiyuan"
+                    android:id="@+id/tv_paihang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ib_huiyuan"
+                    android:layout_below="@id/ib_paihang"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="3dp"
-                    android:text="@string/kaitonghuiyuan"
+                    android:text="@string/paihangbang"
+                    android:textColor="@color/txt_color"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/re_renwu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onTabClicked"
+            android:padding="3dp" >
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/ib_renwu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="#ffffff"
+                    android:focusable="false"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/ic_launcher_round" />
+
+                <TextView
+                    android:id="@+id/tv_renwu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ib_renwu"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/woderenwu"
                     android:textColor="@color/txt_color"
                     android:textSize="12sp" />
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
-
-        <RelativeLayout
-            android:id="@+id/re_toufang"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onTabClicked"
-            android:padding="3dp" >
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/ib_toufang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:background="#ffffff"
-                    android:focusable="false"
-                    android:scaleType="centerInside"
-                    android:src="@mipmap/ic_launcher_round" />
-
-                <TextView
-                    android:id="@+id/tv_toufang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/ib_toufang"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="3dp"
-                    android:text="@string/woyaotoufang"
-                    android:textColor="@color/txt_color"
-                    android:textSize="12sp" />
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/re_haoyou"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onTabClicked"
-            android:padding="3dp" >
-
-            <ImageView
-                android:id="@+id/ib_haoyou"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="#ffffff"
-                android:focusable="false"
-                android:scaleType="centerInside"
-                android:src="@mipmap/ic_launcher_round" />
-
-            <TextView
-                android:id="@+id/tv_haoyou"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ib_haoyou"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="3dp"
-                android:text="@string/yaoqinghaoyou"
-                android:textColor="@color/txt_color"
-                android:textSize="12sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/re_kefu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="onTabClicked"
-            android:padding="3dp" >
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/ib_kefu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:background="#ffffff"
-                    android:focusable="false"
-                    android:scaleType="centerInside"
-                    android:src="@mipmap/ic_launcher_round" />
-
-                <TextView
-                    android:id="@+id/tv_kefu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/ib_kefu"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="3dp"
-                    android:text="@string/lianxikefu"
-                    android:textColor="@color/txt_color"
-                    android:textSize="12sp" />
-            </RelativeLayout>
-        </RelativeLayout>
-    </LinearLayout>
-
 </LinearLayout>

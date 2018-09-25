@@ -14,13 +14,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".aty.MainActivity">
+
+        <activity android:name=".aty.SplashActivity"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".aty.MainActivity">
+        </activity>
+        <activity android:name=".aty.home.MakeMoneyAty" />
+        <activity android:name=".aty.home.OpenMemberAty" />
+        <activity android:name=".aty.home.FreeLeadAty" />
+        <activity android:name=".aty.home.PutInAty" />
+        <activity android:name=".aty.home.InviteFriendsAty" />
+        <activity android:name=".aty.home.ContactCustomerAty" />
+        <activity android:name=".aty.member.TaskHallAty" />
+        <activity android:name=".aty.member.TaskRulesAty" />
+        <activity android:name=".aty.member.MyTaskAty" />
+
     </application>
 
 </manifest>

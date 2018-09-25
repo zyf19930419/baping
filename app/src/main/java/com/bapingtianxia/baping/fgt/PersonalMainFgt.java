@@ -8,12 +8,12 @@ import com.bapingtianxia.baping.base.BaseFragment;
 /**
  * 创建者：zhangyunfei
  * 创建时间：2018/9/25 11:16
- * 功能描述：
+ * 功能描述：个人中心
  */
 public class PersonalMainFgt extends BaseFragment {
     @Override
     protected int getLayoutResId() {
-        return R.layout.personal_fgt;
+        return R.layout.fgt_personal;
     }
 
     @Override

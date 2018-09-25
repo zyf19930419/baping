@@ -1,8 +1,11 @@
 package com.bapingtianxia.baping.aty;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,6 +18,7 @@ import com.bapingtianxia.baping.common.ActivityStack;
 import com.bapingtianxia.baping.fgt.HomeMainFgt;
 import com.bapingtianxia.baping.fgt.MemberMainFgt;
 import com.bapingtianxia.baping.fgt.PersonalMainFgt;
+import com.bapingtianxia.baping.utils.LogUtils;
 
 public class MainActivity extends BaseActivity {
     private long firstTime=0;
@@ -29,6 +33,16 @@ public class MainActivity extends BaseActivity {
     private int currentTabIndex;// 当前fragment的index
     private int redColor,txtColor;
 
+    /**
+     * 入口
+     * @param activity
+     */
+    public static void startAction(Activity activity){
+        Intent intent = new Intent(activity, MainActivity.class);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.fade_in,
+                R.anim.fade_out);
+    }
 
     @Override
     public int getLayoutId() {
@@ -37,8 +51,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        redColor=getResources().getColor(R.color.bar_color);
-        txtColor=getResources().getColor(R.color.txt_color);
+        redColor= ContextCompat.getColor(this,R.color.bar_color);
+        txtColor=ContextCompat.getColor(this,R.color.txt_color);
         txt_title = findViewById(R.id.txt_title);
         mHomeMainFgt=new HomeMainFgt();
         mMemberMainFgt=new MemberMainFgt();

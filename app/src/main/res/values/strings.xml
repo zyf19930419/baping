@@ -10,4 +10,8 @@
     <string name="woyaotoufang">我要投放</string>
     <string name="yaoqinghaoyou">邀请好友</string>
     <string name="lianxikefu">联系客服</string>
+    <string name="woderenwu">我的任务</string>
+    <string name="paihangbang">排行榜</string>
+    <string name="renwuguize">任务规则</string>
+    <string name="renwudating">任务大厅</string>
 </resources>
