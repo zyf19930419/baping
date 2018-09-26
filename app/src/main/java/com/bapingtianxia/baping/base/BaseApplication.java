@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.bapingtianxia.baping.utils.LogUtils;
+import com.mob.MobSDK;
 
 /**
  * 创建者：zhangyunfei
@@ -18,7 +19,7 @@ public class BaseApplication extends Application {
         super.onCreate();
         mApplication=this;
         LogUtils.isDebug=true;
-
+        MobSDK.init(this);
     }
 
     public static Context getAppContext() {
