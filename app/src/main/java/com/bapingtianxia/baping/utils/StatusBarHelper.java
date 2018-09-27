@@ -73,8 +73,7 @@ public class StatusBarHelper {
                 // ZUK Z1是个另类，自家应用可以实现字体颜色变色，但没开放接口
                 window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//                window.setStatusBarColor(Color.TRANSPARENT);
-                window.setStatusBarColor(colorOn5x);
+                window.setStatusBarColor(Color.TRANSPARENT);
             } else {
                 // android 5不能修改状态栏字体颜色，因此直接用FLAG_TRANSLUCENT_STATUS，nexus表现为半透明
                 // 魅族和小米的表现如何？

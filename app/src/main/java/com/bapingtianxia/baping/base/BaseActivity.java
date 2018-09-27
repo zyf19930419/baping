@@ -71,8 +71,8 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
         isConfigChange = false;
         ActivityStack.getInstance().addActivity(this);
         if (changeStatusBar){
-            StatusBarHelper.translucent(this,ContextCompat.getColor(this,R.color.bar_color));
-            StatusBarHelper.setStatusBarDarkMode(this);
+            StatusBarHelper.translucent(this);
+            StatusBarHelper.setStatusBarLightMode(this);
         }
         setContentView(R.layout.activity_base);
         //初始化控件
