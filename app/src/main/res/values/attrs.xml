@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EditLayout">
+        <attr name="bg_resource" format="integer|reference"/>
+        <attr name="et_inputType" format="integer"/>
+        <attr name="et_hint" format="string"/>
+        <attr name="et_text" format="string"/>
+    </declare-styleable>
+</resources>

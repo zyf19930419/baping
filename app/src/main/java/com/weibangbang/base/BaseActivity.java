@@ -11,6 +11,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.weibangbang.R;
@@ -24,6 +27,8 @@ import com.weibangbang.utils.PermissionHelper;
 import com.weibangbang.utils.StatusBarHelper;
 import com.weibangbang.utils.ToastUtils;
 import com.weibangbang.view.CommonDialog;
+
+import java.util.zip.Inflater;
 
 /**
  * 创建者：zhangyunfei
@@ -62,13 +67,13 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mApplication=BaseApplication.getApplication();
-        DenisityUtils.setCustomDensity(this,mApplication);
+        mApplication = BaseApplication.getApplication();
+        DenisityUtils.setCustomDensity(this, mApplication);
         inspectNet();
-        mEvent=this;
+        mEvent = this;
         isConfigChange = false;
         ActivityStack.getInstance().addActivity(this);
-        if (changeStatusBar){
+        if (changeStatusBar) {
             StatusBarHelper.translucent(this);
             StatusBarHelper.setStatusBarLightMode(this);
         }
@@ -80,13 +85,13 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
 
 
     private void initControls() {
-        content =  findViewById(R.id.content);
-        rootText=new TextView(this);
+        content = findViewById(R.id.content);
+        rootText = new TextView(this);
         rootText.setTextSize(20);
-        rootText.setTextColor(ContextCompat.getColor(this,R.color.white));
-        content.addView(rootText);
-        View view=View.inflate(this,getLayoutId(),null);
+        rootText.setTextColor(ContextCompat.getColor(this, R.color.txt_black));
+        View view = View.inflate(this, getLayoutId(), null);
         content.addView(view);
+        content.addView(rootText);
         if (LogUtils.isDebug) {
             rootText.setText(getClass().getName());
         } else {
@@ -127,13 +132,13 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        PermissionHelper.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        PermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        isConfigChange=true;
+        isConfigChange = true;
 
     }
 
@@ -182,7 +187,7 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
 
     @Override
     public void onNetChange(int netMobile) {
-        this.netMobile=netMobile;
+        this.netMobile = netMobile;
     }
 
 
@@ -246,23 +251,32 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
     /**
      * 短暂显示Toast提示(来自String)
      **/
-    public void showShortToast(String text,int gravity) {
-        ToastUtils.showShort(text,gravity);
+    public void showShortToast(String text, int gravity) {
+        ToastUtils.showShort(text, gravity);
     }
 
     /**
      * 短暂显示Toast提示(id)
      **/
-    public void showShortToast(int resId,int gravity) {
-        ToastUtils.showShort(resId,gravity);
+    public void showShortToast(int resId, int gravity) {
+        ToastUtils.showShort(resId, gravity);
     }
 
-    public void showToastWithImg(String text,int res) {
-        ToastUtils.showToastWithImg(text,res);
+    public void showToastWithImg(String text, int res) {
+        ToastUtils.showToastWithImg(text, res);
     }
 
 
     public void onBeBack(View view) {
         finish();
+    }
+
+    public void setTitleBar(String title, boolean isShowBack) {
+        TextView txt_title = findViewById(R.id.txt_title);
+        txt_title.setText(title);
+        if (isShowBack) {
+            ImageView back_img = findViewById(R.id.back_img);
+            back_img.setVisibility(View.VISIBLE);
+        }
     }
 }

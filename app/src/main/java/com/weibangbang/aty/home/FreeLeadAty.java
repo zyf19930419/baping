@@ -1,6 +1,8 @@
 package com.weibangbang.aty.home;
 
+import com.weibangbang.R;
 import com.weibangbang.base.BaseActivity;
+import com.weibangbang.view.EditLayout;
 
 /**
  * 创建者：zhangyunfei
@@ -8,14 +10,19 @@ import com.weibangbang.base.BaseActivity;
  * 功能描述：免费领佣
  */
 public class FreeLeadAty extends BaseActivity{
+
+    private EditLayout mEditLayout;
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.activity_free_lead;
     }
 
     @Override
     public void initView() {
+        setTitleBar(getResources().getString(R.string.mianfeilingyong),true);
 
+        mEditLayout=findViewById(R.id.edit_layout);
+//        mEditLayout.setEditTextHint("666666666");
     }
 
     @Override

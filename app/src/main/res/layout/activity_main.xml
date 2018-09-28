@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context=".aty.MainActivity">
 
-    <include android:id="@+id/layout_bar" layout="@layout/layout_title"/>
+    <include layout="@layout/layout_title"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"

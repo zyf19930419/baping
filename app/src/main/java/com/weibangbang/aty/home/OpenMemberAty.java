@@ -1,5 +1,6 @@
 package com.weibangbang.aty.home;
 
+import com.weibangbang.R;
 import com.weibangbang.base.BaseActivity;
 
 /**
@@ -10,12 +11,12 @@ import com.weibangbang.base.BaseActivity;
 public class OpenMemberAty extends BaseActivity{
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.open_member;
     }
 
     @Override
     public void initView() {
-
+        setTitleBar(getResources().getString(R.string.kaitonghuiyuan),true);
     }
 
     @Override
