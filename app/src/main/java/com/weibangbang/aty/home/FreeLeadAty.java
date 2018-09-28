@@ -1,5 +1,7 @@
 package com.weibangbang.aty.home;
 
+import android.widget.TextView;
+
 import com.weibangbang.R;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.view.EditLayout;
@@ -11,7 +13,7 @@ import com.weibangbang.view.EditLayout;
  */
 public class FreeLeadAty extends BaseActivity{
 
-    private EditLayout mEditLayout;
+    private TextView commit_tv;
     @Override
     public int getLayoutId() {
         return R.layout.activity_free_lead;
@@ -21,8 +23,8 @@ public class FreeLeadAty extends BaseActivity{
     public void initView() {
         setTitleBar(getResources().getString(R.string.mianfeilingyong),true);
 
-        mEditLayout=findViewById(R.id.edit_layout);
-//        mEditLayout.setEditTextHint("666666666");
+        commit_tv=findViewById(R.id.commit_tv);
+        commit_tv.setText(R.string.querenlingqu);
     }
 
     @Override

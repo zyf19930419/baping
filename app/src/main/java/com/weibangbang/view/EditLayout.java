@@ -26,6 +26,8 @@ public class EditLayout extends FrameLayout {
 
     private int edit_inputType;
 
+    private int mLines;
+
     public EditLayout(@NonNull Context context) {
         this(context, null);
     }
@@ -38,14 +40,14 @@ public class EditLayout extends FrameLayout {
     public EditLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         LayoutInflater.from(context).inflate(R.layout.edit_layout,this,true);
-
         TypedArray array = context.obtainStyledAttributes(attrs,R.styleable.EditLayout);
         if (array!=null){
             int anInt = array.getInt(R.styleable.EditLayout_bg_resource, R.drawable.edit_shape);
             setBackgroundResource(anInt);
-            edit_inputType=array.getInt(R.styleable.EditLayout_et_inputType,InputType.TYPE_NULL);
+            edit_inputType=array.getInt(R.styleable.EditLayout_et_inputType,InputType.TYPE_CLASS_TEXT);
             hint = array.getString(R.styleable.EditLayout_et_hint);
             text = array.getString(R.styleable.EditLayout_et_text);
+            mLines = array.getInt(R.styleable.EditLayout_et_lines, 1);
             array.recycle();
         }
     }
@@ -55,6 +57,8 @@ public class EditLayout extends FrameLayout {
         super.onFinishInflate();
         mEditText = findViewById(R.id.content_et);
         mEditText.setBackground(null);
+        mEditText.setTextSize(12);
+        mEditText.setLines(mLines);
         mEditText.setInputType(edit_inputType);
         if (!TextUtils.isEmpty(hint)){
             mEditText.setHint(hint);

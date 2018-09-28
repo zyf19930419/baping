@@ -26,4 +26,25 @@
 
     <string name="make_money_tips">仔细阅读 ~ 教你足不出户赚佣金 ~</string>
     <string name="lijizhuanyong">立即赚佣</string>
+    
+    <string name="free_lead_tips">请填写正确的收获地址方可领取~</string>
+    <string name="name">姓名</string>
+    <string name="phone">手机号</string>
+    <string name="address">收货地址</string>
+    <string name="name_hint">请填写我的真实姓名~</string>
+    <string name="phone_hint">请填写我的手机号码~</string>
+    <string name="address_hint">请填写我的现居住地址~</string>
+    <string name="querenlingqu">确认领取</string>
+
+
+    <string name="xuanzezhifub">选择支付方式</string>
+    <string name="zhifubao">支付宝支付</string>
+    <string name="weixin">微信支付</string>
+    <string name="lijizhifu">立即支付</string>
+
+
+    <string name="tijiao">提交</string>
+    <string name="text_lenth_500">500字之内</string>
+    <string name="guanggaoneirong">广告内容描述</string>
+    <string name="guanggaoneirong_hint">请描述一下您的广告内容~</string>
 </resources>
