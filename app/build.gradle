@@ -3,19 +3,38 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.bapingtianxia.baping"
+        applicationId "com.weibangbang"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a','x86'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
     }
+
+    signingConfigs{
+        releaseConfig{
+            keyAlias 'weibangbang'
+            keyPassword 'wbb20180928'
+            storeFile file('../webang_sign.jks')
+            storePassword 'wbb20180928'
+            v2SigningEnabled false
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
         }
     }
+
+
 }
 
 dependencies {

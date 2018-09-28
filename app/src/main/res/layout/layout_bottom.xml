@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
     android:orientation="vertical" >
 
     <!-- 普通底部导航 -->
@@ -11,7 +10,7 @@
         android:id="@+id/main_bottom"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="#ffffff"
+        android:background="#F0F0F0"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
@@ -32,10 +31,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="28dp"
                     android:layout_centerHorizontal="true"
-                    android:background="#ffffff"
                     android:focusable="false"
                     android:scaleType="centerInside"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/home_drawable" />
 
                 <TextView
                     android:id="@+id/tv_home"
@@ -63,10 +61,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
                 android:layout_centerHorizontal="true"
-                android:background="#ffffff"
                 android:focusable="false"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/member_drawable" />
 
             <TextView
                 android:id="@+id/tv_member"
@@ -97,10 +94,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="28dp"
                     android:layout_centerHorizontal="true"
-                    android:background="#ffffff"
                     android:focusable="false"
                     android:scaleType="centerInside"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/personal_drawable" />
 
                 <TextView
                     android:id="@+id/tv_personal"

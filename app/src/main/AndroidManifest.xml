@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.bapingtianxia.baping">
+    package="com.weibangbang">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".base.BaseApplication"
+        android:name="com.weibangbang.base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,7 +21,7 @@
         tools:replace="android:name">
 
         <activity
-            android:name=".aty.SplashActivity"
+            android:name="com.weibangbang.aty.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,16 +29,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".aty.MainActivity"></activity>
-        <activity android:name=".aty.home.MakeMoneyAty" />
-        <activity android:name=".aty.home.OpenMemberAty" />
-        <activity android:name=".aty.home.FreeLeadAty" />
-        <activity android:name=".aty.home.PutInAty" />
-        <activity android:name=".aty.home.InviteFriendsAty" />
-        <activity android:name=".aty.home.ContactCustomerAty" />
-        <activity android:name=".aty.member.TaskHallAty" />
-        <activity android:name=".aty.member.TaskRulesAty" />
-        <activity android:name=".aty.member.MyTaskAty" />
+        <activity android:name="com.weibangbang.aty.MainActivity"></activity>
+        <activity android:name="com.weibangbang.aty.home.MakeMoneyAty" />
+        <activity android:name="com.weibangbang.aty.home.OpenMemberAty" />
+        <activity android:name="com.weibangbang.aty.home.FreeLeadAty" />
+        <activity android:name="com.weibangbang.aty.home.PutInAty" />
+        <activity android:name="com.weibangbang.aty.home.InviteFriendsAty" />
+        <activity android:name="com.weibangbang.aty.member.TaskHallAty" />
+        <activity android:name="com.weibangbang.aty.member.TaskRulesAty" />
+        <activity android:name="com.weibangbang.aty.member.MyTaskAty" />
 
         <!--支付宝支付 START-->
         <activity
@@ -58,13 +57,13 @@
 
         <!-- 微信分享回调 -->
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name="com.weibangbang.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!--微信支付-->
         <activity
-            android:name=".wxapi.WXPayEntryActivity"
+            android:name="com.weibangbang.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"/>
 

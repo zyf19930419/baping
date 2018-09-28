@@ -5,7 +5,6 @@
     android:paddingTop="15dp"
     android:layout_marginTop="5dp"
     android:orientation="vertical"
-    android:background="@color/white"
     android:paddingBottom="15dp">
 
     <LinearLayout
@@ -31,10 +30,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:background="#ffffff"
                     android:focusable="false"
                     android:scaleType="centerInside"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@mipmap/make_money" />
 
                 <TextView
                     android:id="@+id/tv_zhuangyong"
@@ -62,10 +60,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:background="#ffffff"
                 android:focusable="false"
                 android:scaleType="centerInside"
-                android:src="@mipmap/ic_launcher_round" />
+                android:src="@mipmap/free_use" />
 
             <TextView
                 android:id="@+id/tv_lingyong"
@@ -96,10 +93,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:background="#ffffff"
                     android:focusable="false"
                     android:scaleType="centerInside"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@mipmap/open_member" />
 
                 <TextView
                     android:id="@+id/tv_huiyuan"
@@ -119,6 +115,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal" >
 
         <RelativeLayout
@@ -138,10 +135,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:background="#ffffff"
                     android:focusable="false"
                     android:scaleType="centerInside"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@mipmap/launch_adv" />
 
                 <TextView
                     android:id="@+id/tv_toufang"
@@ -150,7 +146,7 @@
                     android:layout_below="@id/ib_toufang"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="3dp"
-                    android:text="@string/woyaotoufang"
+                    android:text="@string/toufangguanggao"
                     android:textColor="@color/txt_color"
                     android:textSize="12sp" />
             </RelativeLayout>
@@ -169,10 +165,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:background="#ffffff"
                 android:focusable="false"
                 android:scaleType="centerInside"
-                android:src="@mipmap/ic_launcher_round" />
+                android:src="@mipmap/share_make_money" />
 
             <TextView
                 android:id="@+id/tv_haoyou"
@@ -181,7 +176,7 @@
                 android:layout_below="@id/ib_haoyou"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
-                android:text="@string/yaoqinghaoyou"
+                android:text="@string/fenxiangzhuanqian"
                 android:textColor="@color/txt_color"
                 android:textSize="12sp" />
         </RelativeLayout>
@@ -203,10 +198,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:background="#ffffff"
                     android:focusable="false"
                     android:scaleType="centerInside"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@mipmap/contact_custom" />
 
                 <TextView
                     android:id="@+id/tv_kefu"
