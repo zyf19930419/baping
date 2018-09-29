@@ -2,6 +2,7 @@
     <string name="app_name">微帮帮</string>
     <string name="no_net">网络不可用,请检查你的网络</string>
 
+    <!--首页-->
     <string name="home_page">首页</string>
     <string name="member_center">会员中心</string>
     <string name="personal_center">个人中心</string>
@@ -14,19 +15,21 @@
     <string name="fenxiangzhuanqian">分享赚钱</string>
     <string name="lianxikefu">联系客服</string>
 
+    <string name="notice_1">微帮帮APP正式上架</string>
+    <string name="notice_2">微帮帮APP正式上架微帮帮APP...</string>
 
+    <!--会员中心-->
     <string name="woderenwu">我的任务</string>
     <string name="paihangbang">排行榜</string>
     <string name="renwuguize">任务规则</string>
     <string name="renwudating">任务大厅</string>
 
 
-    <string name="notice_1">微帮帮APP正式上架</string>
-    <string name="notice_2">微帮帮APP正式上架微帮帮APP...</string>
-
+    <!--我要赚佣-->
     <string name="make_money_tips">仔细阅读 ~ 教你足不出户赚佣金 ~</string>
     <string name="lijizhuanyong">立即赚佣</string>
-    
+
+    <!--免费领用-->
     <string name="free_lead_tips">请填写正确的收获地址方可领取~</string>
     <string name="name">姓名</string>
     <string name="phone">手机号</string>
@@ -36,23 +39,52 @@
     <string name="address_hint">请填写我的现居住地址~</string>
     <string name="querenlingqu">确认领取</string>
 
-
+    <!--开通会员-->
     <string name="xuanzezhifub">选择支付方式</string>
     <string name="zhifubao">支付宝支付</string>
     <string name="weixin">微信支付</string>
     <string name="lijizhifu">立即支付</string>
 
-
+    <!--投放广告-->
     <string name="tijiao">提交</string>
     <string name="text_lenth_500">500字之内</string>
     <string name="guanggaoneirong">广告内容描述</string>
     <string name="guanggaoneirong_hint">请描述一下您的广告内容~</string>
 
+    <!--分享赚钱-->
+    <string name="share_money_tips">扫码注册免费礼品拿到手软</string>
+    <string name="invitation_code">邀请码 :</string>
+    <string name="copy">复制</string>
+    <string name="share_money_button">点击分享</string>
 
+    <!--个人中心-->
     <string name="personal_info">个人资料</string>
     <string name="mine_team">我的团队</string>
     <string name="wallet">钱包</string>
     <string name="put_forward">提现</string>
     <string name="change_password">修改密码</string>
     <string name="login_out">退出登录</string>
+
+    <!--修改密码-->
+    <string name="old_password">原密码</string>
+    <string name="new_password">新密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="querenxiugai">确认修改</string>
+
+    <!--个人资料-->
+    <string name="nick_name">昵称</string>
+    <string name="nick_name_hint">请填写我的昵称</string>
+    <string name="sex">性别</string>
+    <string name="man">男性</string>
+    <string name="woman">女性</string>
+    <string name="owned_city">所属城市</string>
+    <string name="owned_city_hint">请填写我所在的城市</string>
+    <string name="urban_area">所属市区</string>
+    <string name="urban_area_hint">请填写我所在的市区</string>
+    <string name="detailed_address">详细地址</string>
+    <string name="detailed_address_hint">请填写我的详细地址</string>
+    
+    <!--我的团队-->
+    <string name="first_class_members">一级会员</string>
+    <string name="two_level_members">二级会员</string>
 </resources>

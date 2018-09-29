@@ -7,7 +7,7 @@ import android.widget.Toast;
 ;
 import com.weibangbang.R;
 import com.weibangbang.aty.home.FreeLeadAty;
-import com.weibangbang.aty.home.InviteFriendsAty;
+import com.weibangbang.aty.home.ShareMoneyAty;
 import com.weibangbang.aty.home.MakeMoneyAty;
 import com.weibangbang.aty.home.OpenMemberAty;
 import com.weibangbang.aty.home.PutInAty;
@@ -117,13 +117,13 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
                 startActivity(PutInAty.class);
                 break;
             case R.id.re_haoyou:
-                startActivity(InviteFriendsAty.class);
+                startActivity(ShareMoneyAty.class);
                 break;
             case R.id.re_kefu:
-                if (DisplayHelper.hasApplication(mContext, "com.tencent.mm")) {
-                    DisplayHelper.getWechatApi(mContext,"com.tencent.mm");
+                if (DisplayHelper.hasApplication(getContext(), "com.tencent.mm")) {
+                    DisplayHelper.getWechatApi(getContext(),"com.tencent.mm");
                 } else {
-                    Toast.makeText(mContext, "请安装微信", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "请安装微信", Toast.LENGTH_LONG).show();
                 }
                 break;
         }

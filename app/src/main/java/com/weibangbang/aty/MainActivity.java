@@ -1,5 +1,6 @@
 package com.weibangbang.aty;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -18,6 +19,7 @@ import com.weibangbang.common.ActivityStack;
 import com.weibangbang.fgt.HomeMainFgt;
 import com.weibangbang.fgt.MemberMainFgt;
 import com.weibangbang.fgt.PersonalMainFgt;
+import com.weibangbang.utils.PermissionHelper;
 
 public class MainActivity extends BaseActivity {
     private long firstTime=0;
@@ -50,6 +52,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        //申请权限
+        requestSomePermission();
         redColor= ContextCompat.getColor(this,R.color.bar_color);
         txtColor=ContextCompat.getColor(this,R.color.txt_color);
         txt_title = findViewById(R.id.txt_title);
@@ -76,6 +80,22 @@ public class MainActivity extends BaseActivity {
                 .hide(mMemberMainFgt)
                 .hide(mPersonalMainFgt).show(mHomeMainFgt).commit();
 
+    }
+
+    private void requestSomePermission() {
+        if (!PermissionHelper.hasSelfPermissions(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+            PermissionHelper.requestPermissions(this, 100, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionHelper.OnPermissionListener() {
+                @Override
+                public void onPermissionGranted() {
+
+                }
+
+                @Override
+                public void onPermissionDenied() {
+                    PermissionHelper.showTipsDialog(MainActivity.this);
+                }
+            });
+        }
     }
 
     @Override
@@ -117,12 +137,6 @@ public class MainActivity extends BaseActivity {
         currentTabIndex = index;
 
     }
-
-
-
-
-
-
 
 
     @Override

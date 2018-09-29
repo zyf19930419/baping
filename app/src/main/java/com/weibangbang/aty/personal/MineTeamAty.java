@@ -1,5 +1,6 @@
 package com.weibangbang.aty.personal;
 
+import com.weibangbang.R;
 import com.weibangbang.base.BaseActivity;
 
 /**
@@ -10,12 +11,12 @@ import com.weibangbang.base.BaseActivity;
 public class MineTeamAty extends BaseActivity {
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.activity_mine_team;
     }
 
     @Override
     public void initView() {
-
+        setTitleBar(R.string.mine_team,true);
     }
 
     @Override

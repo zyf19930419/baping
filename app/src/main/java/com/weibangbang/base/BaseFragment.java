@@ -18,7 +18,7 @@ import com.weibangbang.utils.ToastUtils;
  */
 public abstract class BaseFragment extends Fragment {
 
-    protected Context mContext;
+    private Context mContext;
 
     /**
      * 用于设置页面布局
@@ -31,6 +31,7 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initialized(View view);
 
     protected abstract void requestData();
+
 
     @Override
     public void onAttach(Context context) {
@@ -108,6 +109,13 @@ public abstract class BaseFragment extends Fragment {
 
     public void showToastWithImg(String text,int res) {
         ToastUtils.showToastWithImg(text,res);
+    }
+
+    public Context getContext(){
+        if (mContext==null){
+            mContext=BaseApplication.getAppContext();
+        }
+       return mContext;
     }
 
 }

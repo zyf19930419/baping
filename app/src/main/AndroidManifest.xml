@@ -34,7 +34,7 @@
         <activity android:name=".aty.home.OpenMemberAty" />
         <activity android:name=".aty.home.FreeLeadAty" />
         <activity android:name=".aty.home.PutInAty" />
-        <activity android:name=".aty.home.InviteFriendsAty" />
+        <activity android:name=".aty.home.ShareMoneyAty" />
         <activity android:name=".aty.member.TaskHallAty" />
         <activity android:name=".aty.member.TaskRulesAty" />
         <activity android:name=".aty.member.MyTaskAty" />

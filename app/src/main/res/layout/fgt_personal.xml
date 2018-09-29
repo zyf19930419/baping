@@ -11,6 +11,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp" />
     <TextView
+        android:id="@+id/personal_info_tv"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
         android:paddingTop="5dp"
@@ -25,6 +26,7 @@
         android:textSize="12sp"
         android:textColor="@color/txt_black" />
     <TextView
+        android:id="@+id/mine_team_tv"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:paddingTop="5dp"
@@ -39,6 +41,7 @@
         android:textSize="12sp"
         android:textColor="@color/txt_black" />
     <TextView
+        android:id="@+id/wallet_tv"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:paddingTop="5dp"
@@ -53,6 +56,7 @@
         android:textSize="12sp"
         android:textColor="@color/txt_black" />
     <TextView
+        android:id="@+id/put_forward_tv"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:paddingTop="5dp"
@@ -67,6 +71,7 @@
         android:textSize="12sp"
         android:textColor="@color/txt_black" />
     <TextView
+        android:id="@+id/change_password_tv"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:paddingTop="5dp"

@@ -12,8 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.weibangbang.R;
@@ -27,8 +25,6 @@ import com.weibangbang.utils.PermissionHelper;
 import com.weibangbang.utils.StatusBarHelper;
 import com.weibangbang.utils.ToastUtils;
 import com.weibangbang.view.CommonDialog;
-
-import java.util.zip.Inflater;
 
 /**
  * 创建者：zhangyunfei
@@ -274,6 +270,15 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
     public void setTitleBar(String title, boolean isShowBack) {
         TextView txt_title = findViewById(R.id.txt_title);
         txt_title.setText(title);
+        if (isShowBack) {
+            ImageView back_img = findViewById(R.id.back_img);
+            back_img.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void setTitleBar(int resourceId, boolean isShowBack) {
+        TextView txt_title = findViewById(R.id.txt_title);
+        txt_title.setText(getResources().getString(resourceId));
         if (isShowBack) {
             ImageView back_img = findViewById(R.id.back_img);
             back_img.setVisibility(View.VISIBLE);
