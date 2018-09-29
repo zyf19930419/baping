@@ -47,4 +47,12 @@
     <string name="text_lenth_500">500字之内</string>
     <string name="guanggaoneirong">广告内容描述</string>
     <string name="guanggaoneirong_hint">请描述一下您的广告内容~</string>
+
+
+    <string name="personal_info">个人资料</string>
+    <string name="mine_team">我的团队</string>
+    <string name="wallet">钱包</string>
+    <string name="put_forward">提现</string>
+    <string name="change_password">修改密码</string>
+    <string name="login_out">退出登录</string>
 </resources>

@@ -4,7 +4,6 @@ import android.widget.TextView;
 
 import com.weibangbang.R;
 import com.weibangbang.base.BaseActivity;
-import com.weibangbang.view.EditLayout;
 
 /**
  * 创建者：zhangyunfei

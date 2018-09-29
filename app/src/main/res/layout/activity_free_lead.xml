@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginTop="10dp"
+        android:textSize="12sp"
         android:text="@string/free_lead_tips"
         android:textColor="@color/txt_black" />
 
@@ -25,8 +26,8 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:text="@string/name"
-        android:textColor="@color/txt_black"
-        android:textStyle="bold" />
+        android:textSize="12sp"
+        android:textColor="@color/txt_black" />
 
     <EditText
         android:id="@+id/name_edit"
@@ -50,8 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:text="@string/phone"
-        android:textColor="@color/txt_black"
-        android:textStyle="bold" />
+        android:textSize="12sp"
+        android:textColor="@color/txt_black"/>
 
     <EditText
         android:id="@+id/phone_edit"
@@ -74,8 +75,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:text="@string/address"
-        android:textColor="@color/txt_black"
-        android:textStyle="bold" />
+        android:textSize="12sp"
+        android:textColor="@color/txt_black" />
     <EditText
         android:id="@+id/address_edit"
         android:layout_marginTop="10dp"

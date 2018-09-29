@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.weibangbang.base.BaseApplication"
+        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,7 +21,7 @@
         tools:replace="android:name">
 
         <activity
-            android:name="com.weibangbang.aty.SplashActivity"
+            android:name=".aty.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,15 +29,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.weibangbang.aty.MainActivity"></activity>
-        <activity android:name="com.weibangbang.aty.home.MakeMoneyAty" />
-        <activity android:name="com.weibangbang.aty.home.OpenMemberAty" />
-        <activity android:name="com.weibangbang.aty.home.FreeLeadAty" />
-        <activity android:name="com.weibangbang.aty.home.PutInAty" />
-        <activity android:name="com.weibangbang.aty.home.InviteFriendsAty" />
-        <activity android:name="com.weibangbang.aty.member.TaskHallAty" />
-        <activity android:name="com.weibangbang.aty.member.TaskRulesAty" />
-        <activity android:name="com.weibangbang.aty.member.MyTaskAty" />
+        <activity android:name=".aty.MainActivity"></activity>
+        <activity android:name=".aty.home.MakeMoneyAty" />
+        <activity android:name=".aty.home.OpenMemberAty" />
+        <activity android:name=".aty.home.FreeLeadAty" />
+        <activity android:name=".aty.home.PutInAty" />
+        <activity android:name=".aty.home.InviteFriendsAty" />
+        <activity android:name=".aty.member.TaskHallAty" />
+        <activity android:name=".aty.member.TaskRulesAty" />
+        <activity android:name=".aty.member.MyTaskAty" />
+        <activity android:name=".aty.LoginAty" />
+        <activity android:name=".aty.personal.PersonaInfoAty" />
+        <activity android:name=".aty.personal.ChangePasswordAty" />
+        <activity android:name=".aty.personal.MineTeamAty" />
+        <activity android:name=".aty.personal.MineWalletAty" />
 
         <!--支付宝支付 START-->
         <activity
@@ -57,15 +62,17 @@
 
         <!-- 微信分享回调 -->
         <activity
-            android:name="com.weibangbang.wxapi.WXEntryActivity"
+            android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!--微信支付-->
         <activity
-            android:name="com.weibangbang.wxapi.WXPayEntryActivity"
+            android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"/>
+
+
 
     </application>
 
