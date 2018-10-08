@@ -14,13 +14,14 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:text="@string/make_money_tips"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textColor="@color/red_bg" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         tools:listitem="@layout/make_money_item"
         tools:itemCount="5"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

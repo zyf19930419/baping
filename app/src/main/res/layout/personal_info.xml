@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/layout_title"/>
     <TextView
@@ -10,7 +12,7 @@
     android:layout_marginTop="10dp"
     android:text="@string/nick_name"
     android:textSize="12sp"
-    android:textColor="@color/txt_black" />
+    />
 
     <EditText
         android:layout_marginTop="5dp"
@@ -19,9 +21,10 @@
         android:layout_marginEnd="15dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:textSize="12sp"
+        android:elevation="3dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="10sp"
         android:hint="@string/nick_name_hint"
         android:lines="1"
         android:background="@drawable/edit_shape"
@@ -33,7 +36,7 @@
         android:layout_marginStart="15dp"
         android:text="@string/sex"
         android:textSize="12sp"
-        android:textColor="@color/txt_black" />
+        />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -51,6 +54,7 @@
             android:paddingEnd="15dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
+            android:elevation="3dp"
             android:background="@drawable/edit_shape" />
         <TextView
             android:layout_width="wrap_content"
@@ -62,6 +66,7 @@
             android:paddingEnd="15dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
+            android:elevation="3dp"
             android:background="@drawable/edit_shape" />
 
     </LinearLayout>
@@ -73,7 +78,7 @@
         android:layout_marginStart="15dp"
         android:text="@string/phone"
         android:textSize="12sp"
-        android:textColor="@color/txt_black" />
+        />
 
     <EditText
         android:layout_marginTop="5dp"
@@ -82,9 +87,10 @@
         android:layout_marginEnd="15dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:textSize="12sp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="10sp"
+        android:elevation="3dp"
         android:hint="@string/phone_hint"
         android:lines="1"
         android:background="@drawable/edit_shape"
@@ -96,7 +102,7 @@
         android:layout_marginStart="15dp"
         android:text="@string/owned_city"
         android:textSize="12sp"
-        android:textColor="@color/txt_black" />
+        />
 
     <EditText
         android:layout_marginTop="5dp"
@@ -105,9 +111,10 @@
         android:layout_marginEnd="15dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:textSize="12sp"
+        android:paddingTop="10dp"
+        android:elevation="3dp"
+        android:paddingBottom="10dp"
+        android:textSize="10sp"
         android:hint="@string/owned_city_hint"
         android:lines="1"
         android:background="@drawable/edit_shape"
@@ -119,7 +126,7 @@
         android:layout_marginStart="15dp"
         android:text="@string/urban_area"
         android:textSize="12sp"
-        android:textColor="@color/txt_black" />
+        />
 
     <EditText
         android:layout_marginTop="5dp"
@@ -128,9 +135,10 @@
         android:layout_marginEnd="15dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:textSize="12sp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="10sp"
+        android:elevation="3dp"
         android:hint="@string/urban_area_hint"
         android:lines="1"
         android:background="@drawable/edit_shape"
@@ -142,20 +150,22 @@
         android:layout_marginStart="15dp"
         android:text="@string/detailed_address"
         android:textSize="12sp"
-        android:textColor="@color/txt_black" />
+        />
 
     <EditText
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:textSize="12sp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="10sp"
         android:gravity="top|left"
         android:hint="@string/detailed_address_hint"
         android:lines="3"
+        android:elevation="3dp"
         android:background="@drawable/edit_shape"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

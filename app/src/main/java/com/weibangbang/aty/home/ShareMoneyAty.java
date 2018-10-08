@@ -1,13 +1,9 @@
 package com.weibangbang.aty.home;
 
-import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.weibangbang.R;
 import com.weibangbang.base.BaseActivity;
-import com.weibangbang.utils.DisplayHelper;
 
 /**
  * 创建者：zhangyunfei
@@ -25,10 +21,10 @@ public class ShareMoneyAty extends BaseActivity{
     public void initView() {
         setTitleBar(getResources().getString(R.string.fenxiangzhuanqian),true);
         commit_tv=findViewById(R.id.commit_tv);
-        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(DisplayHelper.dp2px(this,100), ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0,DisplayHelper.dp2px(this,20),0,0);
-        params.gravity= Gravity.CENTER_HORIZONTAL;
-        commit_tv.setLayoutParams(params);
+//        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(DisplayHelper.dp2px(this,100), ViewGroup.LayoutParams.WRAP_CONTENT);
+//        params.setMargins(0,DisplayHelper.dp2px(this,20),0,0);
+//        params.gravity= Gravity.CENTER_HORIZONTAL;
+//        commit_tv.setLayoutParams(params);
         commit_tv.setText(R.string.share_money_button);
     }
 

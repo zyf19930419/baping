@@ -27,17 +27,17 @@
 
     <!--我要赚佣-->
     <string name="make_money_tips">仔细阅读 ~ 教你足不出户赚佣金 ~</string>
-    <string name="lijizhuanyong">立即赚佣</string>
+    <string name="lijizhuanyong">立 即 赚 佣</string>
 
     <!--免费领用-->
-    <string name="free_lead_tips">请填写正确的收获地址方可领取~</string>
+    <string name="free_lead_tips">请填写您的基本信息领取奖品</string>
     <string name="name">姓名</string>
     <string name="phone">手机号</string>
-    <string name="address">收货地址</string>
-    <string name="name_hint">请填写我的真实姓名~</string>
-    <string name="phone_hint">请填写我的手机号码~</string>
-    <string name="address_hint">请填写我的现居住地址~</string>
-    <string name="querenlingqu">确认领取</string>
+    <string name="address">详细地址</string>
+    <string name="name_hint">请填写真实姓名</string>
+    <string name="phone_hint">请填写手机号码</string>
+    <string name="address_hint">请填写您的真实地址</string>
+    <string name="lijilingqu">立 即 领 取</string>
 
     <!--开通会员-->
     <string name="xuanzezhifub">选择支付方式</string>
@@ -46,8 +46,8 @@
     <string name="lijizhifu">立即支付</string>
 
     <!--投放广告-->
-    <string name="tijiao">提交</string>
-    <string name="text_lenth_500">500字之内</string>
+    <string name="tijiaotoufang">提 交 投 放</string>
+    <string name="text_lenth_500">500字以内</string>
     <string name="guanggaoneirong">广告内容描述</string>
     <string name="guanggaoneirong_hint">请描述一下您的广告内容~</string>
 
@@ -55,7 +55,7 @@
     <string name="share_money_tips">扫码注册免费礼品拿到手软</string>
     <string name="invitation_code">邀请码 :</string>
     <string name="copy">复制</string>
-    <string name="share_money_button">点击分享</string>
+    <string name="share_money_button">点 击 分 享</string>
 
     <!--个人中心-->
     <string name="personal_info">个人资料</string>
@@ -69,7 +69,10 @@
     <string name="old_password">原密码</string>
     <string name="new_password">新密码</string>
     <string name="confirm_password">确认密码</string>
-    <string name="querenxiugai">确认修改</string>
+    <string name="querenxiugai">确 认 修 改</string>
+    <string name="original_password_tips">请填写原始密码</string>
+    <string name="new_password_tips">请填写新密码</string>
+    <string name="confirm_new_password_tips">请确认新密码</string>
 
     <!--个人资料-->
     <string name="nick_name">昵称</string>
@@ -87,4 +90,6 @@
     <!--我的团队-->
     <string name="first_class_members">一级会员</string>
     <string name="two_level_members">二级会员</string>
+    
+
 </resources>

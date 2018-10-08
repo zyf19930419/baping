@@ -21,7 +21,7 @@ public class PutInAty extends BaseActivity{
     public void initView() {
         setTitleBar(getResources().getString(R.string.toufangguanggao),true);
         commit_tv=findViewById(R.id.commit_tv);
-        commit_tv.setText(R.string.tijiao);
+        commit_tv.setText(R.string.tijiaotoufang);
     }
 
     @Override

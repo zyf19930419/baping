@@ -32,7 +32,7 @@ public class FreeLeadAty extends BaseActivity{
         setTitleBar(getResources().getString(R.string.mianfeilingyong),true);
 
         commit_tv=findViewById(R.id.commit_tv);
-        commit_tv.setText(R.string.querenlingqu);
+        commit_tv.setText(R.string.lijilingqu);
         initBanner();
     }
 
