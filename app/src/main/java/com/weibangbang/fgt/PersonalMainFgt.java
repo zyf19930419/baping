@@ -37,7 +37,7 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
         personal_info_tv.setOnClickListener(this);
         mine_team_tv = view.findViewById(R.id.mine_team_tv);
         mine_team_tv.setOnClickListener(this);
-        wallet_tv = view.findViewById(R.id.wallet_tv);
+        wallet_tv = view.findViewById(R.id.mine_wallet_tv);
         wallet_tv.setOnClickListener(this);
         put_forward_tv = view.findViewById(R.id.put_forward_tv);
         put_forward_tv.setOnClickListener(this);
@@ -78,7 +78,7 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
             case R.id.mine_team_tv:
                 startActivity(MineTeamAty.class);
                 break;
-            case R.id.wallet_tv:
+            case R.id.mine_wallet_tv:
                 startActivity(MineWalletAty.class);
                 break;
             case R.id.put_forward_tv:

@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
+
     <com.youth.banner.Banner
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="150dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:background="@color/white"
-        android:orientation="horizontal" >
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:id="@+id/re_dating"
@@ -22,12 +24,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onTabClicked"
-            android:padding="3dp" >
+            android:padding="3dp">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
+                android:gravity="center">
+
                 <ImageView
                     android:id="@+id/ib_dating"
                     android:layout_width="wrap_content"
@@ -36,7 +40,7 @@
                     android:background="#ffffff"
                     android:focusable="false"
                     android:scaleType="centerInside"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@mipmap/icon_task_hall" />
 
                 <TextView
                     android:id="@+id/tv_dating"
@@ -57,7 +61,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onTabClicked"
-            android:padding="3dp" >
+            android:padding="3dp">
 
             <ImageView
                 android:id="@+id/ib_guize"
@@ -67,7 +71,7 @@
                 android:background="#ffffff"
                 android:focusable="false"
                 android:scaleType="centerInside"
-                android:src="@mipmap/ic_launcher_round" />
+                android:src="@mipmap/icon_task_rules" />
 
             <TextView
                 android:id="@+id/tv_guize"
@@ -87,12 +91,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onTabClicked"
-            android:padding="3dp" >
+            android:padding="3dp">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
+                android:gravity="center">
+
                 <ImageView
                     android:id="@+id/ib_paihang"
                     android:layout_width="wrap_content"
@@ -101,7 +107,7 @@
                     android:background="#ffffff"
                     android:focusable="false"
                     android:scaleType="centerInside"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@mipmap/icon_ranking_list" />
 
                 <TextView
                     android:id="@+id/tv_paihang"
@@ -115,18 +121,21 @@
                     android:textSize="12sp" />
             </RelativeLayout>
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/re_renwu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onTabClicked"
-            android:padding="3dp" >
+            android:padding="3dp">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
+                android:gravity="center">
+
                 <ImageView
                     android:id="@+id/ib_renwu"
                     android:layout_width="wrap_content"
@@ -135,7 +144,7 @@
                     android:background="#ffffff"
                     android:focusable="false"
                     android:scaleType="centerInside"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@mipmap/icon_mine_task" />
 
                 <TextView
                     android:id="@+id/tv_renwu"

@@ -40,11 +40,16 @@
     <string name="lijilingqu">立 即 领 取</string>
 
     <!--开通会员-->
+    <string name="regular_member">普通会员</string>
+    <string name="senior_member">高级会员</string>
     <string name="xuanzezhifub">选择支付方式</string>
     <string name="zhifubao">支付宝支付</string>
     <string name="weixin">微信支付</string>
-    <string name="lijizhifu">立即支付</string>
-
+    <string name="pay_member">支付会员</string>
+    <string name="amount_payable">应付金额:</string>
+    <string name="lijizhifu">立 即 支 付</string>
+    <string name="become_regular_member">成 为 普 通 会 员</string>
+    <string name="become_senior_member">成 为 高 级 会 员</string>
     <!--投放广告-->
     <string name="tijiaotoufang">提 交 投 放</string>
     <string name="text_lenth_500">500字以内</string>
@@ -60,7 +65,7 @@
     <!--个人中心-->
     <string name="personal_info">个人资料</string>
     <string name="mine_team">我的团队</string>
-    <string name="wallet">钱包</string>
+    <string name="mine_wallet">我的钱包</string>
     <string name="put_forward">提现</string>
     <string name="change_password">修改密码</string>
     <string name="login_out">退出登录</string>

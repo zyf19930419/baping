@@ -1,43 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:background="@drawable/edit_shape"
+    android:elevation="3dp">
 
-    <TextView
-        android:id="@+id/choice_zhifu_tv"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/alipay_layout"
+        android:onClick="onAlipay"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/xuanzezhifub"
-        android:textColor="@color/txt_black"
-        android:textSize="12sp" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-    <TextView
+        <ImageView
+            android:id="@+id/alipay_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pay_choice_drawable" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:drawableStart="@mipmap/icon_alipay"
+            android:gravity="center_vertical"
+            android:paddingEnd="15dp"
+            android:paddingStart="15dp"
+            android:text="@string/zhifubao"
+            android:textColor="@color/txt_black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/alipay_tip_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|right"
+            android:layout_marginEnd="15dp"
+            tools:text="支付￥99.00"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/wechat_layout"
+        android:onClick="onWechat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
-        android:drawableEnd="@mipmap/home_unselect"
-        android:drawablePadding="5dp"
-        android:drawableStart="@mipmap/home_select"
         android:gravity="center_vertical"
-        android:paddingEnd="15dp"
-        android:paddingStart="15dp"
-        android:text="@string/zhifubao"
-        android:textColor="@color/txt_black"
-        android:textSize="10sp" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:drawableEnd="@mipmap/home_unselect"
-        android:drawablePadding="5dp"
-        android:drawableStart="@mipmap/home_select"
-        android:gravity="center_vertical"
-        android:paddingEnd="15dp"
-        android:paddingStart="15dp"
-        android:text="@string/weixin"
-        android:textColor="@color/txt_black"
-        android:textSize="10sp" />
-</merge>
+        <ImageView
+            android:id="@+id/wechat_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pay_choice_drawable" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:drawableStart="@mipmap/icon_weixin"
+            android:gravity="center_vertical"
+            android:paddingEnd="15dp"
+            android:paddingStart="15dp"
+            android:text="@string/weixin"
+            android:textColor="@color/txt_black"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/wechat_tip_tv"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|right"
+            android:layout_marginEnd="15dp"
+            tools:text="支付￥99.00"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>
