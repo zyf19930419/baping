@@ -31,7 +31,7 @@ import com.weibangbang.view.CommonDialog;
  * 创建时间：2018/7/18 14:10
  * 功能描述：
  */
-public abstract class BaseActivity extends AppCompatActivity implements NetEvent, com.weibangbang.base.BaseView {
+public abstract class BaseActivity extends AppCompatActivity implements NetEvent, BaseView {
 
     private FrameLayout content;
     public TextView rootText;
@@ -196,12 +196,12 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
     }
 
     @Override
-    public void onComplete(String requestUrl, String jsonStr) {
+    public void onComplete(String requestUrl, Object object) {
 
     }
 
     @Override
-    public void showErrorTip(String msg) {
+    public void onFaile(String requestUrl, String msg) {
 
     }
 

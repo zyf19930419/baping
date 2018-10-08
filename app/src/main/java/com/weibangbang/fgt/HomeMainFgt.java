@@ -1,10 +1,12 @@
 package com.weibangbang.fgt;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 ;
+import com.google.gson.Gson;
 import com.weibangbang.R;
 import com.weibangbang.aty.home.FreeLeadAty;
 import com.weibangbang.aty.home.ShareMoneyAty;
@@ -12,8 +14,12 @@ import com.weibangbang.aty.home.MakeMoneyAty;
 import com.weibangbang.aty.home.OpenMemberAty;
 import com.weibangbang.aty.home.PutInAty;
 import com.weibangbang.base.BaseFragment;
+import com.weibangbang.bean.BannerBean;
+import com.weibangbang.presenter.WbbPresenter;
 import com.weibangbang.utils.DisplayHelper;
 import com.weibangbang.utils.GlideImageLoader;
+import com.weibangbang.utils.GsonUtils;
+import com.weibangbang.utils.RetrofitUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -31,6 +37,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
     private Banner mBanner;
     private List<String> images;
     private RelativeLayout re_zhuangyong, re_lingyong, re_huiyuan, re_toufang, re_haoyou, re_kefu;
+    private WbbPresenter mPresenter;
 
     @Override
     protected int getLayoutResId() {
@@ -85,7 +92,8 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void requestData() {
-
+        mPresenter=new WbbPresenter(this);
+        mPresenter.postBanner("1");
     }
 
     @Override
@@ -128,4 +136,18 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
                 break;
         }
     }
+
+    @Override
+    public void onComplete(String requestUrl, Object object) {
+        String jsonStr = GsonUtils.getGson().toJson(object);
+        BannerBean bannerBean = GsonUtils.gsonToBean(jsonStr, BannerBean.class);
+        List<BannerBean.DataBean> data = bannerBean.getData();
+        Log.e("TAG", "onComplete: "+data.toString() );
+    }
+
+    @Override
+    public void onFaile(String requestUrl, String msg) {
+
+    }
+
 }

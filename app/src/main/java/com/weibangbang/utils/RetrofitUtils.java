@@ -10,8 +10,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 功能描述：Retrofit工具类
  */
 public class RetrofitUtils {
-    RetrofitUtils mRetrofitUtils;
-    Retrofit mRetrofit;
+    private static RetrofitUtils mRetrofitUtils;
+    private Retrofit mRetrofit;
 
     private RetrofitUtils(String baseUrl) {
         mRetrofit=new Retrofit.Builder().baseUrl(baseUrl)
@@ -19,7 +19,7 @@ public class RetrofitUtils {
                 .build();
     }
 
-    public  RetrofitUtils getInstance(String baseUrl){
+    public  static RetrofitUtils getInstance(String baseUrl){
         if (mRetrofitUtils==null){
           synchronized (RetrofitUtils.class){
               if (mRetrofitUtils==null){

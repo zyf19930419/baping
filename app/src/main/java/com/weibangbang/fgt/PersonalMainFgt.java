@@ -93,4 +93,16 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
                 break;
         }
     }
+
+
+    @Override
+    public void onComplete(String requestUrl, Object object) {
+
+    }
+
+    @Override
+    public void onFaile(String requestUrl, String msg) {
+
+    }
+
 }

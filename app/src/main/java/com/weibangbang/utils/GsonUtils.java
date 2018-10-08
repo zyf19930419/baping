@@ -9,28 +9,16 @@ import com.google.gson.Gson;
  * 功能描述：gson工具类
  */
 public class GsonUtils {
-    private Gson mGson;
+    //线程安全的
+    private static final Gson GSON=new Gson();
 
-    private GsonUtils() {
-        mGson=new Gson();
+    //获取gson解析器
+    public static Gson getGson(){
+        return GSON;
     }
-
-    private <T> T gsonToBean(String jsonString,Class<T> tClass){
-        T t=mGson.fromJson(jsonString,tClass);
+    public static  <T> T gsonToBean(String jsonString,Class<T> tClass){
+        T t=GSON.fromJson(jsonString,tClass);
         return  t;
-    }
-
-    public static class Builder{
-
-        GsonUtils mGsonUtils;
-        public Builder() {
-            mGsonUtils=new GsonUtils();
-        }
-
-        public  <T> T gsonToBean(String jsonString,Class<T> tClass){
-            T t=mGsonUtils.gsonToBean(jsonString,tClass);
-            return  t;
-        }
     }
 
 }

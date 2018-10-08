@@ -100,4 +100,15 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener{
 
         }
     }
+
+
+    @Override
+    public void onComplete(String requestUrl, Object object) {
+
+    }
+
+    @Override
+    public void onFaile(String requestUrl, String msg) {
+
+    }
 }
