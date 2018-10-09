@@ -46,9 +46,8 @@
                     android:id="@+id/tv_dating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ib_dating"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="70dp"
                     android:text="@string/renwudating"
                     android:textColor="@color/txt_color"
                     android:textSize="12sp" />
@@ -77,9 +76,8 @@
                 android:id="@+id/tv_guize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ib_guize"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="70dp"
                 android:text="@string/renwuguize"
                 android:textColor="@color/txt_color"
                 android:textSize="12sp" />
@@ -113,9 +111,8 @@
                     android:id="@+id/tv_paihang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ib_paihang"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="70dp"
                     android:text="@string/paihangbang"
                     android:textColor="@color/txt_color"
                     android:textSize="12sp" />
@@ -150,9 +147,8 @@
                     android:id="@+id/tv_renwu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ib_renwu"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="70dp"
                     android:text="@string/woderenwu"
                     android:textColor="@color/txt_color"
                     android:textSize="12sp" />

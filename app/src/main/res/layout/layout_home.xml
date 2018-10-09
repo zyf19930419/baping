@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="10dp"
     android:orientation="vertical"
-    android:paddingBottom="15dp">
+    android:paddingBottom="15dp"
+    android:paddingTop="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:id="@+id/re_zhuangyong"
@@ -18,12 +18,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onTabClicked"
-            android:padding="3dp" >
+            android:padding="3dp">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
+                android:gravity="center">
+
                 <ImageView
                     android:id="@+id/ib_zhuangyong"
                     android:layout_width="wrap_content"
@@ -37,8 +39,8 @@
                     android:id="@+id/tv_zhuangyong"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ib_zhuangyong"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="70dp"
                     android:text="@string/woyaozhuangyong"
                     android:textColor="@color/txt_color"
                     android:textSize="12sp" />
@@ -51,7 +53,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onTabClicked"
-            android:padding="3dp" >
+            android:padding="3dp">
 
             <ImageView
                 android:id="@+id/ib_lingyong"
@@ -66,8 +68,8 @@
                 android:id="@+id/tv_lingyong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ib_lingyong"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
                 android:text="@string/mianfeilingyong"
                 android:textColor="@color/txt_color"
                 android:textSize="12sp" />
@@ -79,12 +81,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onTabClicked"
-            android:padding="3dp" >
+            android:padding="3dp">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
+                android:gravity="center">
+
                 <ImageView
                     android:id="@+id/ib_huiyuan"
                     android:layout_width="wrap_content"
@@ -98,8 +102,8 @@
                     android:id="@+id/tv_huiyuan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ib_huiyuan"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="70dp"
                     android:text="@string/kaitonghuiyuan"
                     android:textColor="@color/txt_color"
                     android:textSize="12sp" />
@@ -111,7 +115,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:id="@+id/re_toufang"
@@ -119,12 +123,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onTabClicked"
-            android:padding="3dp" >
+            android:padding="3dp">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
+                android:gravity="center">
+
                 <ImageView
                     android:id="@+id/ib_toufang"
                     android:layout_width="wrap_content"
@@ -138,8 +144,8 @@
                     android:id="@+id/tv_toufang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ib_toufang"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="70dp"
                     android:text="@string/toufangguanggao"
                     android:textColor="@color/txt_color"
                     android:textSize="12sp" />
@@ -152,7 +158,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onTabClicked"
-            android:padding="3dp" >
+            android:padding="3dp">
 
             <ImageView
                 android:id="@+id/ib_haoyou"
@@ -167,8 +173,8 @@
                 android:id="@+id/tv_haoyou"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ib_haoyou"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
                 android:text="@string/fenxiangzhuanqian"
                 android:textColor="@color/txt_color"
                 android:textSize="12sp" />
@@ -180,12 +186,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="onTabClicked"
-            android:padding="3dp" >
+            android:padding="3dp">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:gravity="center"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content">
+                android:gravity="center">
+
                 <ImageView
                     android:id="@+id/ib_kefu"
                     android:layout_width="wrap_content"
@@ -199,8 +207,8 @@
                     android:id="@+id/tv_kefu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/ib_kefu"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="70dp"
                     android:text="@string/lianxikefu"
                     android:textColor="@color/txt_color"
                     android:textSize="12sp" />
