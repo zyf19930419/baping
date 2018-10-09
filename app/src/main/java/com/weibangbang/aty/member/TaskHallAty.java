@@ -36,7 +36,7 @@ public class TaskHallAty extends BaseActivity{
         mRecyclerView=findViewById(R.id.recyclerView);
         LinearLayoutManager manager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         mRecyclerView.setLayoutManager(manager);
-        mTaskHallAdapter=new TaskHallAdapter();
+        mTaskHallAdapter=new TaskHallAdapter(getResources().getString(R.string.renwudating));
         mRecyclerView.setAdapter(mTaskHallAdapter);
     }
 
@@ -48,7 +48,7 @@ public class TaskHallAty extends BaseActivity{
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
-        mTaskHallAdapter=new TaskHallAdapter();
+        mTaskHallAdapter=new TaskHallAdapter(getResources().getString(R.string.renwudating));
         mRecyclerView.setAdapter(mTaskHallAdapter);
     }
 

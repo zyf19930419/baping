@@ -109,4 +109,7 @@
     <string name="general_task">普通任务</string>
     <string name="advanced_task">高级任务</string>
 
+    <!--我的任务-->
+    <string name="already_used">已领用</string>
+    <string name="completed">已完成</string>
 </resources>

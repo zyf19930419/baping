@@ -13,6 +13,7 @@
     android:paddingTop="10dp">
 
     <ImageView
+        android:id="@+id/left_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -26,12 +27,14 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="落砂机奶茶"
             android:textColor="@color/txt_black" />
 
         <TextView
+            android:id="@+id/status_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -43,6 +46,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/button_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
@@ -50,6 +54,9 @@
         android:background="@mipmap/icon_button_bg"
         android:gravity="center"
         android:text="查 看"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:textSize="14sp"
         android:textColor="@color/white" />
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.weibangbang.aty.member;
 
+import com.weibangbang.R;
 import com.weibangbang.base.BaseActivity;
 
 /**
@@ -10,12 +11,12 @@ import com.weibangbang.base.BaseActivity;
 public class TaskRulesAty extends BaseActivity{
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.activity_task_rules;
     }
 
     @Override
     public void initView() {
-
+        setTitleBar(getResources().getString(R.string.renwuguize),true);
     }
 
     @Override
