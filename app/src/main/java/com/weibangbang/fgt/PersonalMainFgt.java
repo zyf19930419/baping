@@ -24,6 +24,7 @@ import com.weibangbang.utils.GlideApp;
 public class PersonalMainFgt extends BaseFragment implements View.OnClickListener {
     private ImageView head_img;
     private TextView personal_info_tv, mine_team_tv, wallet_tv, put_forward_tv, change_password_tv, commit_tv;
+    private TextView personal_totalRevenue_tv, personal_todayRevenue_tv, personal_withdraw_tv; // 总收入，今日收入，已提现
 
     @Override
     protected int getLayoutResId() {
@@ -33,6 +34,9 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
     @Override
     protected void initialized(View view) {
         head_img = view.findViewById(R.id.head_img);
+        personal_totalRevenue_tv = view.findViewById(R.id.personal_totalRevenue_tv); // 总收入
+        personal_todayRevenue_tv = view.findViewById(R.id.personal_todayRevenue_tv); // 今日收入
+        personal_withdraw_tv = view.findViewById(R.id.personal_withdraw_tv); // 已提现
         personal_info_tv = view.findViewById(R.id.personal_info_tv);
         personal_info_tv.setOnClickListener(this);
         mine_team_tv = view.findViewById(R.id.mine_team_tv);
@@ -46,7 +50,7 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
         commit_tv = view.findViewById(R.id.commit_tv);
         commit_tv.setOnClickListener(this);
         commit_tv.setText(R.string.login_out);
-        final String url="https://i8.mifile.cn/b2c-mimall-media/2a6cffab13db95ec8f3204ca0bef5d2a.png";
+        final String url = "https://i8.mifile.cn/b2c-mimall-media/2a6cffab13db95ec8f3204ca0bef5d2a.png";
         GlideApp.with(getContext()).load(url).circleCrop().into(head_img);
 
         head_img.setOnLongClickListener(new View.OnLongClickListener() {
@@ -66,7 +70,9 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
 
     @Override
     protected void requestData() {
-
+        personal_totalRevenue_tv.setText("650"); // 总收入
+        personal_todayRevenue_tv.setText("650"); // 今日收入
+        personal_withdraw_tv.setText("650"); // 已提现
     }
 
     @Override
