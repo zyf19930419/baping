@@ -109,6 +109,14 @@
     <string name="general_task">普通任务</string>
     <string name="advanced_task">高级任务</string>
 
+    <!--排行榜-->
+    <string name="daily_rankings">日排行榜</string>
+    <string name="universal_leaderboard">总排行榜</string>
+    <string name="rank_tips">排行数据每天更新一次</string>
+    <string name="ranking">排名</string>
+    <string name="ranking_name">名称</string>
+    <string name="total_income">总收益(元)</string>
+
     <!--我的任务-->
     <string name="already_used">已领用</string>
     <string name="completed">已完成</string>
