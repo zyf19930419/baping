@@ -201,7 +201,7 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
     }
 
     @Override
-    public void showErrorTip(String msg) {
+    public void onFailure(String msg) {
 
     }
 

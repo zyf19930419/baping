@@ -72,6 +72,7 @@
             android:exported="true"
             android:launchMode="singleTop"/>
         <activity android:name=".aty.home.PayMemberAty" />
+        <activity android:name=".aty.home.ContactCustomerAty" />
 
 
     </application>

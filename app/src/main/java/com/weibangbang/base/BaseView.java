@@ -14,5 +14,5 @@ public interface BaseView {
 
     void onComplete(String requestUrl, String jsonStr);
 
-    void showErrorTip(String msg);
+    void onFailure(String msg);
 }

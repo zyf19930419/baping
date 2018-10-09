@@ -62,6 +62,15 @@
     <string name="copy">复制</string>
     <string name="share_money_button">点 击 分 享</string>
 
+    <!--联系客服-->
+    <string name="contact_customer_tips">微帮帮客服服务中心</string>
+    <string name="contact_customer_1">客服服务微信 1:</string>
+    <string name="contact_customer_2">客服服务微信 2:</string>
+    <string name="service_time">服务时间</string>
+    <string name="service_am_time">AM 9:00 ~ 11:30</string>
+    <string name="service_pm_time">PM 12:30 ~ 20:00</string>
+    <string name="customer_service_hotline">客户服务热线 : 400-0499-995</string>
+
     <!--个人中心-->
     <string name="personal_info">个人资料</string>
     <string name="mine_team">我的团队</string>

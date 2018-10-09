@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.weibangbang.utils.ToastUtils;
 
@@ -16,7 +17,7 @@ import com.weibangbang.utils.ToastUtils;
  * 创建时间：2018/7/19 10:48
  * 功能描述：
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment implements BaseView{
 
     private Context mContext;
 
@@ -116,6 +117,24 @@ public abstract class BaseFragment extends Fragment {
             mContext=BaseApplication.getAppContext();
         }
        return mContext;
+    }
+
+    @Override
+    public void showLoading(String title) {
+    }
+
+    @Override
+    public void stopLoading() {
+    }
+
+    @Override
+    public void onComplete(String requestUrl, String jsonStr) {
+
+    }
+
+    @Override
+    public void onFailure(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
 }
