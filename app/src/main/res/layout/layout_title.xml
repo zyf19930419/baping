@@ -14,7 +14,7 @@
         android:scaleType="centerInside"
         android:padding="8dp"
         android:layout_centerVertical="true"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView

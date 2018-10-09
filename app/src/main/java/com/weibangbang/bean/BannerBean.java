@@ -4,8 +4,8 @@ import java.util.List;
 
 /**
  * 创建者：zhangyunfei
- * 时间：2018/10/8 0008
- * 联系方式：32457127@qq.com
+ * 创建时间：2018/10/9 9:23
+ * 功能描述：
  */
 public class BannerBean {
 

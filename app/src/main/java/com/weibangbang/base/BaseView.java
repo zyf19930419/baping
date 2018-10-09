@@ -12,7 +12,7 @@ public interface BaseView {
 
     void stopLoading();
 
-    void onComplete(String requestUrl, Object object);
+    void onComplete(String requestUrl, String jsonStr);
 
-    void onFaile(String requestUrl,String msg);
+    void onFailure(String msg);
 }

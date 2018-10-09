@@ -1,6 +1,6 @@
 package com.weibangbang.api;
 
-
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -12,10 +12,13 @@ import retrofit2.http.POST;
  * 功能描述：
  */
 public interface ApiService {
-    //http://weibangbang.dazhu-ltd.cn/index.php/index/index/banner.html
-    String BASE_URL = "http://weibangbang.dazhu-ltd.cn/index.php/index/index/";
+    String OFFICIAL_WEB = "http://weibangbang.dazhu-ltd.cn/";
+    String BASE_URL = OFFICIAL_WEB+"index.php/index/index/";
 
-    @POST("banner.html")
     @FormUrlEncoded
-   Call<Object> postBanner(@Field("banner_id") String banner_id);
+    @POST("banner.html")
+    Call<ResponseBody> postBanners(@Field("banner_id") String banner_id );
+
+    @POST("notice.html")
+    Call<ResponseBody> postNotice();
 }

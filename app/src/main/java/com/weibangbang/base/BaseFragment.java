@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.weibangbang.utils.ToastUtils;
 
@@ -127,13 +128,13 @@ public abstract class BaseFragment extends Fragment implements BaseView{
     }
 
     @Override
-    public void onComplete(String requestUrl, Object object) {
+    public void onComplete(String requestUrl, String jsonStr) {
 
     }
 
     @Override
-    public void onFaile(String requestUrl, String msg) {
-
+    public void onFailure(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
 }

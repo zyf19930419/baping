@@ -62,6 +62,15 @@
     <string name="copy">复制</string>
     <string name="share_money_button">点 击 分 享</string>
 
+    <!--联系客服-->
+    <string name="contact_customer_tips">微帮帮客服服务中心</string>
+    <string name="contact_customer_1">客服服务微信 1:</string>
+    <string name="contact_customer_2">客服服务微信 2:</string>
+    <string name="service_time">服务时间</string>
+    <string name="service_am_time">AM 9:00 ~ 11:30</string>
+    <string name="service_pm_time">PM 12:30 ~ 20:00</string>
+    <string name="customer_service_hotline">客户服务热线 : 400-0499-995</string>
+
     <!--个人中心-->
     <string name="personal_info">个人资料</string>
     <string name="mine_team">我的团队</string>
@@ -95,6 +104,20 @@
     <!--我的团队-->
     <string name="first_class_members">一级会员</string>
     <string name="two_level_members">二级会员</string>
-    
 
+    <!--任务大厅-->
+    <string name="general_task">普通任务</string>
+    <string name="advanced_task">高级任务</string>
+
+    <!--排行榜-->
+    <string name="daily_rankings">日排行榜</string>
+    <string name="universal_leaderboard">总排行榜</string>
+    <string name="rank_tips">排行数据每天更新一次</string>
+    <string name="ranking">排名</string>
+    <string name="ranking_name">名称</string>
+    <string name="total_income">总收益(元)</string>
+
+    <!--我的任务-->
+    <string name="already_used">已领用</string>
+    <string name="completed">已完成</string>
 </resources>
