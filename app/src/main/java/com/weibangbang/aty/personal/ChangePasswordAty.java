@@ -14,7 +14,7 @@ public class ChangePasswordAty extends BaseActivity {
     private TextView commit_tv;
     @Override
     public int getLayoutId() {
-        return R.layout.acitvity_change_password;
+        return R.layout.activity_change_password;
     }
 
     @Override

@@ -72,6 +72,7 @@
             android:layout_weight="1"
             android:background="@drawable/edit_shape"
             android:gravity="center"
+            android:elevation="3dp"
             android:orientation="vertical"
             android:paddingBottom="15dp"
             android:paddingTop="15dp">

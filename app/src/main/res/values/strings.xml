@@ -104,6 +104,9 @@
     <!--我的团队-->
     <string name="first_class_members">一级会员</string>
     <string name="two_level_members">二级会员</string>
-    
+
+    <!--任务大厅-->
+    <string name="general_task">普通任务</string>
+    <string name="advanced_task">高级任务</string>
 
 </resources>
