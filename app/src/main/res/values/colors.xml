@@ -14,4 +14,6 @@
     <color name="gray_deep">#c9000000</color>
     <color name="red_bg">#DE252B</color>
     <color name="purple">#A889D3</color>
+    <color name="orange">#ED6A4C</color>
+    <color name="login_btn_color">#F9B93D</color>
 </resources>

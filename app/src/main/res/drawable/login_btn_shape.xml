@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 放大圆角主要是实现两边半圆 -->
+    <corners android:radius="50dp" />
+    <stroke
+        android:width="1dp"
+        android:color="@color/login_btn_color" />
+    <solid android:color="@color/login_btn_color" />
+</shape>

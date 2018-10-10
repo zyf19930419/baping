@@ -14,8 +14,6 @@ import com.weibangbang.base.BaseFragment;
 import com.weibangbang.utils.BitmapUtils;
 import com.weibangbang.utils.GlideApp;
 
-;
-
 /**
  * 创建者：zhangyunfei
  * 创建时间：2018/9/25 11:16
