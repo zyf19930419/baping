@@ -10,6 +10,11 @@ import android.widget.TextView;
 import com.weibangbang.R;
 import com.weibangbang.adapter.RankingAndMemberAdapter;
 import com.weibangbang.base.BaseActivity;
+import com.weibangbang.bean.member.DailyRankingsBean;
+import com.weibangbang.presenter.WbbPresenter;
+import com.weibangbang.utils.GsonUtils;
+
+import java.util.List;
 
 /**
  * 创建者：zhangyunfei
@@ -20,6 +25,8 @@ public class RankingListAty extends BaseActivity{
     private TextView general_tv,advance_tv;
     private RecyclerView mRecyclerView;
     private RankingAndMemberAdapter mAdapter;
+
+    private WbbPresenter mWbbPresenter;
     @Override
     public int getLayoutId() {
         return R.layout.ranking_list;
@@ -37,13 +44,30 @@ public class RankingListAty extends BaseActivity{
         LinearLayoutManager manager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
-        mAdapter=new RankingAndMemberAdapter();
-        mRecyclerView.setAdapter(mAdapter);
+
     }
 
     @Override
     public void initData() {
+        mWbbPresenter=new WbbPresenter(this);
+        mWbbPresenter.postDailyRankings();
+    }
 
+    @Override
+    public void onComplete(String requestUrl, String jsonStr) {
+        super.onComplete(requestUrl, jsonStr);
+        if (requestUrl.endsWith("ranking_day.html")){
+            DailyRankingsBean dailyRankingsBean = GsonUtils.gsonToBean(jsonStr, DailyRankingsBean.class);
+            List<DailyRankingsBean.DataBean> data = dailyRankingsBean.getData();
+            if (data.size()>0){
+                mAdapter=new RankingAndMemberAdapter();
+                mRecyclerView.setAdapter(mAdapter);
+            }
+
+        }
+        if (requestUrl.endsWith("ranking_list.html")){
+
+        }
     }
 
     /**
@@ -53,6 +77,7 @@ public class RankingListAty extends BaseActivity{
         general_tv.setCompoundDrawablePadding(10);
         general_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this,R.mipmap.icon_white_point),null,null,null);
         advance_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
+        mWbbPresenter.postDailyRankings();
     }
     /**
      *总排行榜
@@ -61,5 +86,6 @@ public class RankingListAty extends BaseActivity{
         general_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
         advance_tv.setCompoundDrawablePadding(10);
         advance_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this,R.mipmap.icon_white_point),null,null,null);
+        mWbbPresenter.postUniversalLeaderboard();
     }
 }

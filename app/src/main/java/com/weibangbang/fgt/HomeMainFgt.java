@@ -12,8 +12,8 @@ import com.weibangbang.aty.home.OpenMemberAty;
 import com.weibangbang.aty.home.PutInAty;
 import com.weibangbang.aty.home.ShareMoneyAty;
 import com.weibangbang.base.BaseFragment;
-import com.weibangbang.bean.BannerBean;
-import com.weibangbang.bean.NoticeBean;
+import com.weibangbang.bean.home.BannerBean;
+import com.weibangbang.bean.home.NoticeBean;
 import com.weibangbang.presenter.WbbPresenter;
 import com.weibangbang.utils.GlideImageLoader;
 import com.weibangbang.utils.GsonUtils;
@@ -90,7 +90,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
             BannerBean bannerBean = GsonUtils.gsonToBean(jsonStr, BannerBean.class);
             List<BannerBean.DataBean> dataBeanList = bannerBean.getData();
             for (BannerBean.DataBean bean : dataBeanList) {
-                images.add(ApiService.OFFICIAL_WEB + bean.getBanner_content());
+                images.add(ApiService.BASE_URL + bean.getBanner_content());
             }
             //设置banner样式
             mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);

@@ -46,6 +46,22 @@ public class WbbModel {
         request(baseView);
     }
 
+    /**
+     * 日排行榜
+     */
+    public void postDailyRankings(BaseView baseView){
+        mCall = mApiService.postDailyRankings();
+        request(baseView);
+    }
+
+    /**
+     * 总排行榜
+     */
+    public void postUniversalLeaderboard(BaseView baseView){
+        mCall = mApiService.postUniversalLeaderboard();
+        request(baseView);
+    }
+
     private void request(final BaseView baseView) {
         mCall.enqueue(new Callback<ResponseBody>() {
             @Override

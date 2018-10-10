@@ -1,4 +1,4 @@
-package com.weibangbang.bean;
+package com.weibangbang.bean.home;
 
 import java.util.List;
 

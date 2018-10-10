@@ -30,4 +30,18 @@ public class WbbPresenter {
     public void postNotice(){
         mModel.postNotice(mBaseView);
     }
+
+    /**
+     * 日排行榜
+     */
+    public void postDailyRankings(){
+        mModel.postDailyRankings(mBaseView);
+    }
+
+    /**
+     * 总排行榜
+     */
+    public void postUniversalLeaderboard(){
+        mModel.postUniversalLeaderboard(mBaseView);
+    }
 }

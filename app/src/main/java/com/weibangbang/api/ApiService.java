@@ -12,13 +12,20 @@ import retrofit2.http.POST;
  * 功能描述：
  */
 public interface ApiService {
-    String OFFICIAL_WEB = "http://weibangbang.dazhu-ltd.cn/";
-    String BASE_URL = OFFICIAL_WEB+"index.php/index/index/";
+    String BASE_URL = "http://weibangbang.dazhu-ltd.cn/";
 
     @FormUrlEncoded
-    @POST("banner.html")
+    @POST("index.php/index/index/banner.html")
     Call<ResponseBody> postBanners(@Field("banner_id") String banner_id );
 
-    @POST("notice.html")
+    @POST("index.php/index/index/notice.html")
     Call<ResponseBody> postNotice();
+
+
+    @POST("index.php/index/Work/ranking_day.html")
+    Call<ResponseBody> postDailyRankings();
+
+    @POST("index.php/index/Work/ranking_list.html")
+    Call<ResponseBody> postUniversalLeaderboard();
+
 }
