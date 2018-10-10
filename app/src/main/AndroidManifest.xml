@@ -43,6 +43,7 @@
         <activity android:name=".aty.personal.ChangePasswordAty" />
         <activity android:name=".aty.personal.MineTeamAty" />
         <activity android:name=".aty.personal.MineWalletAty" />
+        <activity android:name=".aty.personal.WithdrawMoneyAty" /> <!-- 提现 -->
 
         <!--支付宝支付 START-->
         <activity
@@ -70,7 +71,7 @@
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity android:name=".aty.home.PayMemberAty" />
         <activity android:name=".aty.home.ContactCustomerAty" />
         <activity android:name=".aty.member.RankingListAty" />
