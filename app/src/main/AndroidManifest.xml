@@ -75,6 +75,8 @@
         <activity android:name=".aty.home.ContactCustomerAty" />
         <activity android:name=".aty.member.RankingListAty" />
         <activity android:name=".aty.personal.MembershipListAty" />
+        <activity android:name=".aty.home.NoticeAty" />
+        <activity android:name=".aty.home.NoticeDetailsAty" />
 
 
     </application>

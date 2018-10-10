@@ -18,6 +18,11 @@
     <string name="notice_1">微帮帮APP正式上架</string>
     <string name="notice_2">微帮帮APP正式上架微帮帮APP...</string>
 
+    <!--公告栏-->
+    <string name="notice_board">公告栏</string>
+    <!--公告详情-->
+    <string name="notice_details">公告栏</string>
+
     <!--会员中心-->
     <string name="woderenwu">我的任务</string>
     <string name="paihangbang">排行榜</string>
