@@ -1,7 +1,6 @@
 package com.weibangbang.aty;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.EditText;

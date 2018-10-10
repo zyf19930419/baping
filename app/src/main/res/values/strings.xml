@@ -146,4 +146,8 @@
     <string name="membership_tips1">我的一级会员列表</string>
     <string name="membership_tips2">我的二级会员列表</string>
     <string name="earns_commission">已赚佣金(元)</string>
+
+    <!--我的钱包-->
+    <string name="xiaofeimingxi">消费明细</string>
+    <string name="total">合计：</string>
 </resources>
