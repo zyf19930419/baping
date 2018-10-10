@@ -57,7 +57,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
-        tools:listitem="@layout/ranking_item"
+        tools:listitem="@layout/item_ranking"
         tools:itemCount="5"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -18,7 +18,7 @@ public class RankingAndMemberAdapter extends RecyclerView.Adapter<RankingAndMemb
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.ranking_item,parent,false);
+        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ranking,parent,false);
         return new MyViewHolder(itemView);
     }
 

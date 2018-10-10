@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -22,7 +24,7 @@ import com.weibangbang.fgt.PersonalMainFgt;
 import com.weibangbang.utils.PermissionHelper;
 
 public class MainActivity extends BaseActivity {
-    private long firstTime=0;
+    private long firstTime = 0;
     private TextView txt_title;
     private Fragment[] mFragments;
     private HomeMainFgt mHomeMainFgt;
@@ -31,14 +33,14 @@ public class MainActivity extends BaseActivity {
     private ImageView[] imagebuttons;
     private TextView[] textviews;
     private int index;
-    private int currentTabIndex;// 当前fragment的index
-    private int redColor,txtColor;
+    private int redColor, txtColor;
 
     /**
      * 入口
+     *
      * @param activity
      */
-    public static void startAction(Activity activity){
+    public static void startAction(Activity activity) {
         Intent intent = new Intent(activity, MainActivity.class);
         activity.startActivity(intent);
         activity.overridePendingTransition(R.anim.fade_in,
@@ -51,39 +53,92 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void initView() {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         //申请权限
         requestSomePermission();
-        redColor= ContextCompat.getColor(this,R.color.bar_color);
-        txtColor=ContextCompat.getColor(this,R.color.txt_color);
+        redColor = ContextCompat.getColor(this, R.color.bar_color);
+        txtColor = ContextCompat.getColor(this, R.color.txt_color);
         txt_title = findViewById(R.id.txt_title);
-        mHomeMainFgt=new HomeMainFgt();
-        mMemberMainFgt=new MemberMainFgt();
-        mPersonalMainFgt=new PersonalMainFgt();
-        mFragments=new Fragment[]{mHomeMainFgt,mMemberMainFgt,mPersonalMainFgt};
-        imagebuttons=new ImageView[3];
-        imagebuttons[0]=findViewById(R.id.ib_home);
-        imagebuttons[1]=findViewById(R.id.ib_member);
-        imagebuttons[2]=findViewById(R.id.ib_personal);
-        imagebuttons[0].setSelected(true);
-        textviews=new TextView[3];
-        textviews[0]=findViewById(R.id.tv_home);
-        textviews[1]=findViewById(R.id.tv_member);
-        textviews[2]=findViewById(R.id.tv_personal);
-        textviews[0].setTextColor(redColor);
 
-        // 添加显示第一个fragment
-        getFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, mHomeMainFgt)
-                .add(R.id.fragment_container, mMemberMainFgt)
-                .add(R.id.fragment_container, mPersonalMainFgt)
-                .hide(mMemberMainFgt)
-                .hide(mPersonalMainFgt).show(mHomeMainFgt).commit();
+        imagebuttons = new ImageView[3];
+        imagebuttons[0] = findViewById(R.id.ib_home);
+        imagebuttons[1] = findViewById(R.id.ib_member);
+        imagebuttons[2] = findViewById(R.id.ib_personal);
+        textviews = new TextView[3];
+        textviews[0] = findViewById(R.id.tv_home);
+        textviews[1] = findViewById(R.id.tv_member);
+        textviews[2] = findViewById(R.id.tv_personal);
 
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        index = 0;
+        if (savedInstanceState != null) {
+            index = savedInstanceState.getInt("index");
+        } else {
+            mHomeMainFgt = new HomeMainFgt();
+            mMemberMainFgt = new MemberMainFgt();
+            mPersonalMainFgt = new PersonalMainFgt();
+
+            mFragments = new Fragment[]{mHomeMainFgt, mMemberMainFgt, mPersonalMainFgt};
+
+            transaction.add(R.id.fragment_container, mHomeMainFgt, "mHomeMainFgt");
+            transaction.add(R.id.fragment_container, mMemberMainFgt, "mMemberMainFgt");
+            transaction.add(R.id.fragment_container, mPersonalMainFgt, "mPersonalMainFgt");
+        }
+        transaction.commit();
+        switchTo(index);
+    }
+
+    private void switchTo(int position) {
+        imagebuttons[0].setSelected(false);
+        imagebuttons[1].setSelected(false);
+        imagebuttons[2].setSelected(false);
+        textviews[0].setTextColor(txtColor);
+        textviews[1].setTextColor(txtColor);
+        textviews[2].setTextColor(txtColor);
+        imagebuttons[position].setSelected(true);
+        textviews[position].setTextColor(redColor);
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        switch (position) {
+            //首页
+            case 0:
+                transaction.hide(mMemberMainFgt);
+                transaction.hide(mPersonalMainFgt);
+                transaction.show(mHomeMainFgt);
+                transaction.commitAllowingStateLoss();
+                break;
+            //会员中心
+            case 1:
+                transaction.hide(mHomeMainFgt);
+                transaction.hide(mPersonalMainFgt);
+                transaction.show(mMemberMainFgt);
+                transaction.commitAllowingStateLoss();
+                break;
+            //个人中心
+            case 2:
+                transaction.hide(mHomeMainFgt);
+                transaction.hide(mMemberMainFgt);
+                transaction.show(mPersonalMainFgt);
+                transaction.commitAllowingStateLoss();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("index", index);
+    }
+
+    @Override
+    public void initView() {
     }
 
     private void requestSomePermission() {
-        if (!PermissionHelper.hasSelfPermissions(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+        if (!PermissionHelper.hasSelfPermissions(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             PermissionHelper.requestPermissions(this, 100, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionHelper.OnPermissionListener() {
                 @Override
                 public void onPermissionGranted() {
@@ -105,43 +160,27 @@ public class MainActivity extends BaseActivity {
 
     public void onTabClicked(View view) {
         int viewId = view.getId();
-        switch (viewId){
+        switch (viewId) {
             case R.id.re_home:
-                index=0;
+                index = 0;
                 txt_title.setText(getResources().getString(R.string.app_name));
                 break;
             case R.id.re_member:
-                index=1;
+                index = 1;
                 txt_title.setText("会员中心");
                 break;
             case R.id.re_personal:
-                index=2;
+                index = 2;
                 txt_title.setText("个人中心");
                 break;
         }
-
-        if (currentTabIndex != index) {
-            FragmentTransaction trx = getFragmentManager()
-                    .beginTransaction();
-            trx.hide(mFragments[currentTabIndex]);
-            if (!mFragments[index].isAdded()) {
-                trx.add(R.id.fragment_container, mFragments[index]);
-            }
-            trx.show(mFragments[index]).commit();
-        }
-        imagebuttons[currentTabIndex].setSelected(false);
-        // 把当前tab设为选中状态
-        imagebuttons[index].setSelected(true);
-        textviews[currentTabIndex].setTextColor(txtColor);
-        textviews[index].setTextColor(redColor);
-        currentTabIndex = index;
-
+        switchTo(index);
     }
 
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode==KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             exit();
             return false;
         }
