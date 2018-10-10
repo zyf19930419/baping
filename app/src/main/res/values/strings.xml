@@ -57,9 +57,10 @@
     <string name="guanggaoneirong_hint">请描述一下您的广告内容~</string>
 
     <!--分享赚钱-->
-    <string name="share_money_tips">扫码注册免费礼品拿到手软</string>
+    <string name="share_money_tips"> - 扫码注册免费礼品拿到手软</string>
     <string name="invitation_code">邀请码 :</string>
     <string name="copy">复制</string>
+    <string name="join_tip">一起加入微帮帮赚佣金</string>
     <string name="share_money_button">点 击 分 享</string>
 
     <!--联系客服-->

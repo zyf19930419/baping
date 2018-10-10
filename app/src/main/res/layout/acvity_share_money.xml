@@ -1,65 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <include layout="@layout/layout_title" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:gravity="center"
-        android:text="@string/share_money_tips"
-        android:textColor="@color/txt_black" />
-
-    <ImageView
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <LinearLayout
-        android:layout_marginTop="15dp"
-        android:background="#FEF7F7"
-        android:elevation="3dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:background="@mipmap/icon_share_bg"
+        android:orientation="vertical">
 
-        <TextView
-            android:textColor="#EE888A"
-            android:text="@string/invitation_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_marginStart="5dp"
-            android:textColor="#EE888A"
-            android:text="askjkjg78"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/copy_tv"
-            android:text="@string/copy"
-            android:textSize="10sp"
-            android:textColor="@color/white"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
             android:gravity="center"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
-            android:layout_marginStart="10dp"
-            android:elevation="3dp"
-            android:background="@drawable/commit_shape"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:paddingBottom="30dp"
+            android:paddingTop="10dp">
 
-    <include layout="@layout/button_layout"
-        />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/txt_black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/share_money_tips" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/icon_share_line" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            tools:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/joinTip_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="@string/join_tip"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/commit_shape"
+            android:elevation="3dp"
+            android:gravity="center"
+            android:onClick="onCommit"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/share_money_button"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/invitation_code_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/login_btn_color"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:text="askjkjg78" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/commit_shape"
+                    android:elevation="3dp"
+                    android:gravity="center"
+                    android:onClick="onCopy"
+                    android:paddingBottom="3dp"
+                    android:paddingEnd="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingTop="3dp"
+                    android:text="@string/copy"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </LinearLayout>
 </LinearLayout>
