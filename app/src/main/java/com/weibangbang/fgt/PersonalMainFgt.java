@@ -10,6 +10,7 @@ import com.weibangbang.aty.personal.ChangePasswordAty;
 import com.weibangbang.aty.personal.MineTeamAty;
 import com.weibangbang.aty.personal.MineWalletAty;
 import com.weibangbang.aty.personal.PersonaInfoAty;
+import com.weibangbang.aty.personal.WithdrawMoneyAty;
 import com.weibangbang.base.BaseFragment;
 import com.weibangbang.utils.BitmapUtils;
 import com.weibangbang.utils.GlideApp;
@@ -86,7 +87,7 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
                 startActivity(MineWalletAty.class);
                 break;
             case R.id.put_forward_tv:
-                startActivity(MineWalletAty.class);
+                startActivity(WithdrawMoneyAty.class);
                 break;
             case R.id.change_password_tv:
                 startActivity(ChangePasswordAty.class);
