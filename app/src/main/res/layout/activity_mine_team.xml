@@ -1,42 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <include layout="@layout/layout_title"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:src="@mipmap/ic_launcher" />
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <include layout="@layout/layout_title" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@mipmap/icon_mine_team_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onFirstMember"
+            android:orientation="vertical">
+
             <TextView
-                android:drawablePadding="5dp"
-                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:textColor="@color/red_bg"
-                android:textStyle="bold"
-                android:drawableLeft="@mipmap/home_select"
+                android:layout_height="wrap_content"
                 android:text="@string/first_class_members"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_marginStart="30dp"
+                android:textColor="@color/txt_black"
+                android:textSize="12sp" />
+
+            <ImageView
                 android:layout_width="wrap_content"
-                android:gravity="center_vertical"
-                android:drawablePadding="5dp"
-                android:textStyle="bold"
-                android:textColor="@color/red_bg"
-                android:drawableLeft="@mipmap/home_select"
-                android:text="@string/two_level_members"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/icon_mine_team1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/black_shape"
+                android:paddingBottom="3dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="3dp"
+                android:text="查看"
+                android:textColor="@color/txt_black"
+                android:textSize="12sp" />
         </LinearLayout>
 
-    </RelativeLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_mine_team_line" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onSecondMember"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/two_level_members"
+                android:textColor="@color/txt_black"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/icon_mine_team2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/black_shape"
+                android:paddingBottom="3dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="3dp"
+                android:text="查看"
+                android:textColor="@color/txt_black"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/first_class_members_tip"
+        android:textColor="@color/txt_black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/two_level_members_tip"
+        android:textColor="@color/txt_black"
+        android:textSize="12sp" />
+
+    <include layout="@layout/button_layout" />
 </LinearLayout>

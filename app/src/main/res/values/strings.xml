@@ -102,8 +102,11 @@
     <string name="detailed_address_hint">请填写我的详细地址</string>
     
     <!--我的团队-->
-    <string name="first_class_members">一级会员</string>
-    <string name="two_level_members">二级会员</string>
+    <string name="first_class_members">我的一级会员</string>
+    <string name="two_level_members">我的二级会员</string>
+    <string name="first_class_members_tip">一级会员可提供自己10%的收益</string>
+    <string name="two_level_members_tip">二级会员可提供自己5%的收益</string>
+    <string name="inviting_friends">邀 请 好 友</string>
 
     <!--任务大厅-->
     <string name="general_task">普通任务</string>
@@ -120,4 +123,11 @@
     <!--我的任务-->
     <string name="already_used">已领用</string>
     <string name="completed">已完成</string>
+
+
+    <!--会员列表-->
+    <string name="huiyuanliebiao">会员列表</string>
+    <string name="membership_tips1">我的一级会员列表</string>
+    <string name="membership_tips2">我的二级会员列表</string>
+    <string name="earns_commission">已赚佣金(元)</string>
 </resources>

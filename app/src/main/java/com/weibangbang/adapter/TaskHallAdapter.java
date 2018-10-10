@@ -13,7 +13,7 @@ import com.weibangbang.R;
 /**
  * 创建者：zhangyunfei
  * 创建时间：2018/10/9 13:53
- * 功能描述：
+ * 功能描述：任务大厅和我的任务适配器
  */
 public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyViewHolder> {
     private String mTitle;

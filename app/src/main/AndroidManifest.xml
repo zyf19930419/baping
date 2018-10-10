@@ -74,6 +74,7 @@
         <activity android:name=".aty.home.PayMemberAty" />
         <activity android:name=".aty.home.ContactCustomerAty" />
         <activity android:name=".aty.member.RankingListAty" />
+        <activity android:name=".aty.personal.MembershipListAty" />
 
 
     </application>
