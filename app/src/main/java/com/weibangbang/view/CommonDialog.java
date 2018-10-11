@@ -9,9 +9,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-;
 import com.weibangbang.R;
 import com.weibangbang.utils.DisplayHelper;
+
+;
 
 /**
  * 创建者：zhangyunfei

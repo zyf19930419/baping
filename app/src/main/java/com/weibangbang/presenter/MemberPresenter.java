@@ -15,6 +15,14 @@ public class MemberPresenter extends BasePresenter{
         super(baseView);
         mModel=new MemberModel();
     }
+
+    /**
+     * 任务规则
+     */
+    public void postTaskRules(){
+        mModel.postTaskRules(mBaseView);
+    }
+
     /**
      * 日排行榜
      */
@@ -28,4 +36,6 @@ public class MemberPresenter extends BasePresenter{
     public void postUniversalLeaderboard(){
         mModel.postUniversalLeaderboard(mBaseView);
     }
+
+
 }

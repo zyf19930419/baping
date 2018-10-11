@@ -34,4 +34,13 @@ public interface ApiService {
     @POST("Index/notice_details.html")
     Call<ResponseBody> postNoticeDetails(@Field("notice_id") String notice_id);
 
+    @FormUrlEncoded
+    @POST("/Work/lobby.html")
+    Call<ResponseBody> postMakeMoney(@Field("token") String token);
+
+    @POST("Service/service_list.html")
+    Call<ResponseBody> postContactCustomerService();
+
+    @POST("Work/task_rules.html")
+    Call<ResponseBody> postTaskRules();
 }

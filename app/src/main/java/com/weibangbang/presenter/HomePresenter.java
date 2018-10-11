@@ -38,6 +38,18 @@ public class HomePresenter extends BasePresenter{
         mModel.postNoticeDetails(notice_id,mBaseView);
     }
 
+    /**
+     * 我要赚佣接口
+     */
+    public void postMakeMoney(String token){
+        mModel.postMakeMoney(token,mBaseView);
+    }
 
 
+    /**
+     * 联系客服接口
+     */
+    public void postContactCustomerService(){
+        mModel.postContactCustomerService(mBaseView);
+    }
 }

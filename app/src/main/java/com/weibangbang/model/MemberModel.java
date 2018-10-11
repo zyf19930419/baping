@@ -8,6 +8,15 @@ import com.weibangbang.base.BaseView;
  * 功能描述：
  */
 public class MemberModel extends BaseModel{
+
+    /**
+     * 任务规则
+     */
+    public void postTaskRules(BaseView baseView) {
+        mCall = mApiService.postTaskRules();
+        request(baseView);
+    }
+
     /**
      * 日排行榜
      */
@@ -23,4 +32,6 @@ public class MemberModel extends BaseModel{
         mCall = mApiService.postUniversalLeaderboard();
         request(baseView);
     }
+
+
 }

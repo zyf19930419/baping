@@ -36,4 +36,21 @@ public class HomeModel extends BaseModel{
         mCall = mApiService.postNoticeDetails(notice_id);
         request(baseView);
     }
+
+    /**
+     * 我要赚佣接口
+     * @param token
+     */
+    public void postMakeMoney(String token, BaseView baseView) {
+        mCall = mApiService.postMakeMoney(token);
+        request(baseView);
+    }
+
+    /**
+     * 联系客服接口
+     */
+    public void postContactCustomerService(BaseView baseView) {
+        mCall = mApiService.postContactCustomerService();
+        request(baseView);
+    }
 }
