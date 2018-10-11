@@ -18,6 +18,8 @@ import com.weibangbang.R;
 public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyViewHolder> {
     private String mTitle;
 
+    private onButtonClickListener mOnButtonClickListener;
+
     public TaskHallAdapter(String title) {
         mTitle = title;
     }
@@ -30,13 +32,22 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
         if ("任务大厅".equals(mTitle)){
             holder.button_tv.setVisibility(View.VISIBLE);
             holder.date_tv.setVisibility(View.GONE);
             holder.button_tv.setText("查 看");
             holder.left_img.setImageResource(R.mipmap.icon_task);
+            holder.button_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (null != mOnButtonClickListener){
+                        mOnButtonClickListener.onButtonClick(position);
+                    }
+                }
+            });
+
         }
 
         if ("我的任务".equals(mTitle)){
@@ -69,5 +80,14 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
             button_tv=itemView.findViewById(R.id.button_tv);
             date_tv=itemView.findViewById(R.id.date_tv);
         }
+    }
+
+
+    public interface onButtonClickListener{
+        void onButtonClick(int position);
+    }
+
+    public void setOnButtonClickListener(onButtonClickListener onButtonClickListener){
+        mOnButtonClickListener=onButtonClickListener;
     }
 }

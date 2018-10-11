@@ -134,6 +134,14 @@
     <string name="general_task">普通任务</string>
     <string name="advanced_task">高级任务</string>
 
+    <!--任务详情-->
+    <string name="task_details">任务详情</string>
+    <string name="copywriting">文案</string>
+    <string name="copywriting_tip">复制文案转发朋友圈</string>
+    <string name="pic_info">图片信息</string>
+    <string name="pic_tip">长按图片保存到相册</string>
+
+    <string name="querenlingqu">确 认 领 取</string>
     <!--排行榜-->
     <string name="daily_rankings">日排行榜</string>
     <string name="universal_leaderboard">总排行榜</string>

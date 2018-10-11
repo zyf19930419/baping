@@ -58,7 +58,12 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
                 BitmapUtils.gainInstance().savePic(getContext(), url, System.currentTimeMillis() + "", new BitmapUtils.Listener() {
                     @Override
                     public void saveSuccess() {
-                        Toast.makeText(getContext(), "onLongClick", Toast.LENGTH_SHORT).show();
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getContext(), "图片保存成功", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 });
                 return false;

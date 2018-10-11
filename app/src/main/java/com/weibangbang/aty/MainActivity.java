@@ -1,12 +1,12 @@
 package com.weibangbang.aty;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-;
 import com.weibangbang.R;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.common.ActivityStack;
@@ -22,6 +21,8 @@ import com.weibangbang.fgt.HomeMainFgt;
 import com.weibangbang.fgt.MemberMainFgt;
 import com.weibangbang.fgt.PersonalMainFgt;
 import com.weibangbang.utils.PermissionHelper;
+
+;
 
 public class MainActivity extends BaseActivity {
     private long firstTime = 0;
@@ -32,8 +33,9 @@ public class MainActivity extends BaseActivity {
     private PersonalMainFgt mPersonalMainFgt;
     private ImageView[] imagebuttons;
     private TextView[] textviews;
-    private int index;
+    private int index=0;
     private int redColor, txtColor;
+    private int currentTabIndex=0;
 
     /**
      * 入口
@@ -52,9 +54,14 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void initView() {
         //申请权限
         requestSomePermission();
         redColor = ContextCompat.getColor(this, R.color.bar_color);
@@ -71,70 +78,37 @@ public class MainActivity extends BaseActivity {
         textviews[2] = findViewById(R.id.tv_personal);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        index = 0;
-        if (savedInstanceState != null) {
-            index = savedInstanceState.getInt("index");
-        } else {
-            mHomeMainFgt = new HomeMainFgt();
-            mMemberMainFgt = new MemberMainFgt();
-            mPersonalMainFgt = new PersonalMainFgt();
+        mHomeMainFgt = new HomeMainFgt();
+        mMemberMainFgt = new MemberMainFgt();
+        mPersonalMainFgt = new PersonalMainFgt();
 
-            mFragments = new Fragment[]{mHomeMainFgt, mMemberMainFgt, mPersonalMainFgt};
+        mFragments = new Fragment[]{mHomeMainFgt, mMemberMainFgt, mPersonalMainFgt};
 
-            transaction.add(R.id.fragment_container, mHomeMainFgt, "mHomeMainFgt");
-            transaction.add(R.id.fragment_container, mMemberMainFgt, "mMemberMainFgt");
-            transaction.add(R.id.fragment_container, mPersonalMainFgt, "mPersonalMainFgt");
-        }
+        transaction.add(R.id.fragment_container, mHomeMainFgt, "mHomeMainFgt");
+        transaction.add(R.id.fragment_container, mMemberMainFgt, "mMemberMainFgt");
+        transaction.add(R.id.fragment_container, mPersonalMainFgt, "mPersonalMainFgt");
+        transaction.hide(mMemberMainFgt);
+        transaction.hide(mPersonalMainFgt);
+        transaction.show(mHomeMainFgt);
         transaction.commit();
         switchTo(index);
     }
 
     private void switchTo(int position) {
-        imagebuttons[0].setSelected(false);
-        imagebuttons[1].setSelected(false);
-        imagebuttons[2].setSelected(false);
-        textviews[0].setTextColor(txtColor);
-        textviews[1].setTextColor(txtColor);
-        textviews[2].setTextColor(txtColor);
+        if (currentTabIndex != position) {
+            FragmentTransaction trx = getFragmentManager()
+                    .beginTransaction();
+            trx.hide(mFragments[currentTabIndex]);
+            if (!mFragments[position].isAdded()) {
+                trx.add(R.id.fragment_container, mFragments[position]);
+            }
+            trx.show(mFragments[position]).commit();
+            imagebuttons[currentTabIndex].setSelected(false);
+            textviews[currentTabIndex].setTextColor(txtColor);
+            currentTabIndex = position;
+        }
         imagebuttons[position].setSelected(true);
         textviews[position].setTextColor(redColor);
-
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        switch (position) {
-            //首页
-            case 0:
-                transaction.hide(mMemberMainFgt);
-                transaction.hide(mPersonalMainFgt);
-                transaction.show(mHomeMainFgt);
-                transaction.commitAllowingStateLoss();
-                break;
-            //会员中心
-            case 1:
-                transaction.hide(mHomeMainFgt);
-                transaction.hide(mPersonalMainFgt);
-                transaction.show(mMemberMainFgt);
-                transaction.commitAllowingStateLoss();
-                break;
-            //个人中心
-            case 2:
-                transaction.hide(mHomeMainFgt);
-                transaction.hide(mMemberMainFgt);
-                transaction.show(mPersonalMainFgt);
-                transaction.commitAllowingStateLoss();
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("index", index);
-    }
-
-    @Override
-    public void initView() {
     }
 
     private void requestSomePermission() {
