@@ -15,54 +15,21 @@ import retrofit2.Retrofit;
 
 /**
  * 创建者：zhangyunfei
- * 创建时间：2018/10/9 9:08
+ * 创建时间：2018/10/11 9:11
  * 功能描述：
  */
-public class WbbModel {
+public abstract  class BaseModel {
 
-    private Call<ResponseBody> mCall;
-    private final ApiService mApiService;
+    public Call<ResponseBody> mCall;
+    public final ApiService mApiService;
 
-    public WbbModel() {
+    public BaseModel() {
         RetrofitUtils retrofitUtils = RetrofitUtils.getInstance(ApiService.BASE_URL);
         Retrofit retrofit = retrofitUtils.getRetrofit();
         mApiService = retrofit.create(ApiService.class);
     }
 
-    /**
-     * 首页轮播图接口
-     * @param banner_id
-     */
-    public void postBanners(String banner_id, BaseView baseView) {
-        mCall = mApiService.postBanners(banner_id);
-        request(baseView);
-    }
-
-    /**
-     * 首页公告列表接口
-     */
-    public void postNotice(BaseView baseView){
-        mCall = mApiService.postNotice();
-        request(baseView);
-    }
-
-    /**
-     * 日排行榜
-     */
-    public void postDailyRankings(BaseView baseView){
-        mCall = mApiService.postDailyRankings();
-        request(baseView);
-    }
-
-    /**
-     * 总排行榜
-     */
-    public void postUniversalLeaderboard(BaseView baseView){
-        mCall = mApiService.postUniversalLeaderboard();
-        request(baseView);
-    }
-
-    private void request(final BaseView baseView) {
+    public void request(final BaseView baseView) {
         mCall.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

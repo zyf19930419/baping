@@ -3,6 +3,7 @@ package com.weibangbang.fgt;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.api.ApiService;
 import com.weibangbang.aty.home.ContactCustomerAty;
@@ -14,9 +15,8 @@ import com.weibangbang.aty.home.ShareMoneyAty;
 import com.weibangbang.base.BaseFragment;
 import com.weibangbang.bean.home.BannerBean;
 import com.weibangbang.bean.home.NoticeBean;
-import com.weibangbang.presenter.WbbPresenter;
+import com.weibangbang.presenter.HomePresenter;
 import com.weibangbang.utils.GlideImageLoader;
-import com.weibangbang.utils.GsonUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -66,7 +66,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void requestData() {
-        WbbPresenter presenter = new WbbPresenter(this);
+        HomePresenter presenter = new HomePresenter(this);
         presenter.postBanner("1");
         presenter.postNotice();
     }
@@ -87,31 +87,33 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
         if (requestUrl.endsWith("banner.html")) {
-            BannerBean bannerBean = GsonUtils.gsonToBean(jsonStr, BannerBean.class);
+            BannerBean bannerBean = JSON.parseObject(jsonStr, BannerBean.class);
             List<BannerBean.DataBean> dataBeanList = bannerBean.getData();
-            for (BannerBean.DataBean bean : dataBeanList) {
-                images.add(ApiService.BASE_URL + bean.getBanner_content());
+            if (dataBeanList!=null && dataBeanList.size()>0){
+                for (BannerBean.DataBean bean : dataBeanList) {
+                    images.add(ApiService.BASE_URL + bean.getBanner_content());
+                }
+                //设置banner样式
+                mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+                //设置图片加载器
+                mBanner.setImageLoader(new GlideImageLoader());
+                //设置图片集合
+                mBanner.setImages(images);
+                //设置banner动画效果
+                mBanner.setBannerAnimation(Transformer.DepthPage);
+                //设置自动轮播，默认为true
+                mBanner.isAutoPlay(true);
+                //设置轮播时间
+                mBanner.setDelayTime(1500);
+                //设置指示器位置（当banner模式中有指示器时）
+                mBanner.setIndicatorGravity(BannerConfig.CENTER);
+                //banner设置方法全部调用完毕时最后调用
+                mBanner.start();
             }
-            //设置banner样式
-            mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
-            //设置图片加载器
-            mBanner.setImageLoader(new GlideImageLoader());
-            //设置图片集合
-            mBanner.setImages(images);
-            //设置banner动画效果
-            mBanner.setBannerAnimation(Transformer.DepthPage);
-            //设置自动轮播，默认为true
-            mBanner.isAutoPlay(true);
-            //设置轮播时间
-            mBanner.setDelayTime(1500);
-            //设置指示器位置（当banner模式中有指示器时）
-            mBanner.setIndicatorGravity(BannerConfig.CENTER);
-            //banner设置方法全部调用完毕时最后调用
-            mBanner.start();
         }
 
         if (requestUrl.endsWith("notice.html")) {
-            NoticeBean noticeBean = GsonUtils.gsonToBean(jsonStr, NoticeBean.class);
+            NoticeBean noticeBean =JSON.parseObject(jsonStr, NoticeBean.class);
         }
 
     }
