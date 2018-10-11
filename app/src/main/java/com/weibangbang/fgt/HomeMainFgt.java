@@ -91,7 +91,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
             List<BannerBean.DataBean> dataBeanList = bannerBean.getData();
             if (dataBeanList!=null && dataBeanList.size()>0){
                 for (BannerBean.DataBean bean : dataBeanList) {
-                    images.add(ApiService.BASE_URL + bean.getBanner_content());
+                    images.add(ApiService.OFFICIAL_WEB + bean.getBanner_content());
                 }
                 //设置banner样式
                 mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);

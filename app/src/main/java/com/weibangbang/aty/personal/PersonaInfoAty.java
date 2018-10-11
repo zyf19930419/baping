@@ -14,7 +14,7 @@ public class PersonaInfoAty extends BaseActivity {
     private TextView commit_tv;
     @Override
     public int getLayoutId() {
-        return R.layout.personal_info;
+        return R.layout.activity_personal_info;
     }
 
     @Override

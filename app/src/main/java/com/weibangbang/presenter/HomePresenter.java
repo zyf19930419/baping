@@ -31,5 +31,13 @@ public class HomePresenter extends BasePresenter{
         mModel.postNotice(mBaseView);
     }
 
+    /**
+     * 首页公告详情接口
+     */
+    public void postNoticeDetails(String notice_id){
+        mModel.postNoticeDetails(notice_id,mBaseView);
+    }
+
+
 
 }

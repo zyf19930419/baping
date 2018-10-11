@@ -73,8 +73,8 @@
     <string name="contact_customer_1">客服服务微信 1:</string>
     <string name="contact_customer_2">客服服务微信 2:</string>
     <string name="service_time">服务时间</string>
-    <string name="service_am_time">AM 9:00 ~ 11:30</string>
-    <string name="service_pm_time">PM 12:30 ~ 20:00</string>
+    <string name="service_am_time">AM\u30009:00 ~ 11:30</string>
+    <string name="service_pm_time">PM\u300012:30 ~ 20:00</string>
     <string name="customer_service_hotline">客户服务热线 : 400-0499-995</string>
 
     <!--个人中心-->
@@ -96,16 +96,16 @@
 
     <!--个人资料-->
     <string name="nick_name">昵称</string>
-    <string name="nick_name_hint">请填写我的昵称</string>
+    <string name="nick_name_hint">请填写真实姓名</string>
     <string name="sex">性别</string>
-    <string name="man">男性</string>
-    <string name="woman">女性</string>
+    <string name="man">男生</string>
+    <string name="woman">女生</string>
     <string name="owned_city">所属城市</string>
     <string name="owned_city_hint">请填写我所在的城市</string>
     <string name="urban_area">所属市区</string>
     <string name="urban_area_hint">请填写我所在的市区</string>
     <string name="detailed_address">详细地址</string>
-    <string name="detailed_address_hint">请填写我的详细地址</string>
+    <string name="detailed_address_hint">请填写您的详细地址</string>
 
     <!--我的团队-->
     <string name="first_class_members">我的一级会员</string>

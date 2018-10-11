@@ -22,8 +22,8 @@
         android:elevation="3dp"
         android:background="@drawable/edit_shape"
         android:layout_width="match_parent"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
         android:layout_height="wrap_content">
 
         <TextView

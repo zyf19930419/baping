@@ -35,6 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textSize="12sp"
                 android:text="@string/share_money_tips" />
         </LinearLayout>
 
@@ -95,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:textColor="@color/login_btn_color"
-                    android:textSize="25sp"
+                    android:textSize="30sp"
                     android:textStyle="bold"
                     tools:text="askjkjg78" />
 
