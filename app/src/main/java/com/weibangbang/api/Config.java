@@ -11,12 +11,12 @@ import com.weibangbang.utils.SharedPreferencesUtils;
  */
 public class Config {
     public static  boolean isLogin(Context context){
-        boolean isLogin= SharedPreferencesUtils.getInstance(context).getBoolean("isLogin",false);
+        boolean isLogin= SharedPreferencesUtils.getInstance(context).getBoolean(Constant.ISLOGIN,false);
         return isLogin;
     }
 
     public static String getToken(Context context){
-        String token=SharedPreferencesUtils.getInstance(context).getString("token","");
+        String token=SharedPreferencesUtils.getInstance(context).getString(Constant.TOKEN,"");
         return token;
     }
 }

@@ -63,10 +63,10 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initData() {
-        Intent intent = getIntent();
-        if (intent != null) {
-            loginType = intent.getIntExtra("loginType", 0);
-        }
+//        Intent intent = getIntent();
+//        if (intent != null) {
+//            loginType = intent.getIntExtra("loginType", 0);
+//        }
         changeViewVisibility(loginType);
     }
 

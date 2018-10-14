@@ -3,6 +3,8 @@ package com.weibangbang.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.weibangbang.api.Constant;
+
 /**
  * 创建者：zhangyunfei
  * 创建时间：2018/7/3 15:30
@@ -10,14 +12,11 @@ import android.content.SharedPreferences;
  * 联系方式：
  */
 public class SharedPreferencesUtils {
-
-    private static final String PREFERENCE_NAME="baping";
-
     private volatile static SharedPreferencesUtils mPreferencesUtils=null;
 
     private SharedPreferences mSharedPreferences;
     private SharedPreferencesUtils(Context context){
-        mSharedPreferences=context.getSharedPreferences(PREFERENCE_NAME,Context.MODE_PRIVATE);
+        mSharedPreferences=context.getSharedPreferences(Constant.PREFERENCE_NAME,Context.MODE_PRIVATE);
     }
 
     public static SharedPreferencesUtils getInstance(Context context){
