@@ -35,7 +35,7 @@ public interface ApiService {
     Call<ResponseBody> postNoticeDetails(@Field("notice_id") String notice_id);
 
     @FormUrlEncoded
-    @POST("/Work/lobby.html")
+    @POST("Work/lobby.html")
     Call<ResponseBody> postMakeMoney(@Field("token") String token);
 
     @POST("Service/service_list.html")
@@ -43,4 +43,23 @@ public interface ApiService {
 
     @POST("Work/task_rules.html")
     Call<ResponseBody> postTaskRules();
+
+
+    @FormUrlEncoded
+    @POST("Account/send_message.html")
+    Call<ResponseBody> postSendmessage(@Field("phone") String phone,@Field("type") String type);
+
+
+    @FormUrlEncoded
+    @POST("Account/register.html")
+    Call<ResponseBody> postRegister(@Field("phone") String phone,@Field("code") String code,@Field("password") String password,@Field("nvitation") String nvitation);
+
+
+    @FormUrlEncoded
+    @POST("Account/forget.html")
+    Call<ResponseBody> postForget(@Field("phone") String phone,@Field("code") String code,@Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("Account/login.html")
+    Call<ResponseBody> postLogin(@Field("phone") String phone,@Field("password") String password);
 }

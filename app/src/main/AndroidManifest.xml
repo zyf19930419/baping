@@ -23,13 +23,19 @@
         <activity
             android:name=".aty.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".aty.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".aty.MainActivity"></activity>
         <activity android:name=".aty.home.MakeMoneyAty" />
         <activity android:name=".aty.home.OpenMemberAty" />
         <activity android:name=".aty.home.FreeLeadAty" />

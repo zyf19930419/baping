@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.weibangbang.R;
+import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.common.ActivityStack;
 import com.weibangbang.fgt.HomeMainFgt;
@@ -138,17 +139,24 @@ public class MainActivity extends BaseActivity {
             case R.id.re_home:
                 index = 0;
                 txt_title.setText(getResources().getString(R.string.app_name));
+                switchTo(index);
                 break;
             case R.id.re_member:
                 index = 1;
                 txt_title.setText("会员中心");
+                switchTo(index);
                 break;
             case R.id.re_personal:
-                index = 2;
-                txt_title.setText("个人中心");
+                if (Config.isLogin(MainActivity.this)){
+                    index = 2;
+                    txt_title.setText("个人中心");
+                    switchTo(index);
+                }else {
+                    startActivity(LoginAty.class);
+                }
                 break;
         }
-        switchTo(index);
+
     }
 
 
