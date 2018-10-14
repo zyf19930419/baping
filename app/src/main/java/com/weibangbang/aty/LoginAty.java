@@ -2,14 +2,21 @@ package com.weibangbang.aty;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
+import com.weibangbang.api.Constant;
 import com.weibangbang.base.BaseActivity;
+import com.weibangbang.bean.login.LoginBean;
+import com.weibangbang.presenter.LoginPresenter;
+import com.weibangbang.utils.SharedPreferencesUtils;
+import com.weibangbang.utils.StringUtils;
 
 /**
  * 创建者：zhangyunfei
@@ -34,6 +41,8 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
 
     private int loginType = 0; // 登录类型：0登录；1注册；2修改密码
 
+
+    private LoginPresenter mLoginPresenter;
     @Override
     public int getLayoutId() {
         return R.layout.activity_login;
@@ -59,15 +68,16 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
         login_submit_tv.setOnClickListener(this);
         login_register_tv.setOnClickListener(this);
         login_forget_tv.setOnClickListener(this);
-    }
-
-    @Override
-    public void initData() {
-//        Intent intent = getIntent();
+        //        Intent intent = getIntent();
 //        if (intent != null) {
 //            loginType = intent.getIntExtra("loginType", 0);
 //        }
         changeViewVisibility(loginType);
+    }
+
+    @Override
+    public void initData() {
+        mLoginPresenter=new LoginPresenter(this);
     }
 
     /**
@@ -127,6 +137,19 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
                 showShortToast(R.string.verification_code_sending, Toast.LENGTH_SHORT);
                 break;
             case R.id.login_submit_tv: // 登录、注册、修改密码
+                if (0==loginType){
+                    String phone = login_phone_et.getText().toString();
+                    String password = login_pwd_et.getText().toString();
+//                    if (TextUtils.isEmpty(phone) || StringUtils.isPhoneNumber(phone)){
+//                        Toast.makeText(this, "手机号码输入错误", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    if (TextUtils.isEmpty(password)){
+//                        Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+                    mLoginPresenter.postLogin(phone,password);
+                }
                 break;
             case R.id.login_register_tv: // 立即注册、立即登录
                 if (loginType == 0) { // 登录状态的时候
@@ -143,6 +166,19 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
             case R.id.login_forget_tv: // 忘记密码
                 changeViewVisibility(2);
                 break;
+        }
+    }
+
+    @Override
+    public void onComplete(String requestUrl, String jsonStr) {
+        super.onComplete(requestUrl, jsonStr);
+        if (requestUrl.endsWith("Account/login.html")){
+            LoginBean loginBean = JSON.parseObject(jsonStr, LoginBean.class);
+            LoginBean.DataBean data = loginBean.getData();
+            SharedPreferencesUtils.getInstance(LoginAty.this).putBoolean(Constant.ISLOGIN,true);
+            SharedPreferencesUtils.getInstance(LoginAty.this).putString(Constant.TOKEN,data.getUser_token());
+            Toast.makeText(this, loginBean.getMsg(), Toast.LENGTH_SHORT).show();
+            startActivity(MainActivity.class);
         }
     }
 }

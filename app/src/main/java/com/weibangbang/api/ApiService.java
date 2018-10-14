@@ -1,7 +1,10 @@
 package com.weibangbang.api;
 
+import com.weibangbang.api.body.LoginBody;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -59,7 +62,6 @@ public interface ApiService {
     @POST("Account/forget.html")
     Call<ResponseBody> postForget(@Field("phone") String phone,@Field("code") String code,@Field("password") String password);
 
-    @FormUrlEncoded
     @POST("Account/login.html")
-    Call<ResponseBody> postLogin(@Field("phone") String phone,@Field("password") String password);
+    Call<ResponseBody> postLogin(@Body LoginBody loginBody);
 }

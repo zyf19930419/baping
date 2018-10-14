@@ -1,5 +1,6 @@
 package com.weibangbang.model;
 
+import com.weibangbang.api.body.LoginBody;
 import com.weibangbang.base.BaseView;
 
 /**
@@ -47,7 +48,10 @@ public class LoginModel extends BaseModel {
      * @param password
      */
     public void postLogin(String phone, String password,BaseView baseView) {
-        mCall = mApiService.postLogin(phone, password);
+        LoginBody loginBody=new LoginBody();
+        loginBody.setPhone(phone);
+        loginBody.setPassword(password);
+        mCall = mApiService.postLogin(loginBody);
         request(baseView);
     }
 }
