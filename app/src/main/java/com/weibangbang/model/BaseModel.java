@@ -1,8 +1,11 @@
 package com.weibangbang.model;
 
+import android.widget.Toast;
+
 import com.weibangbang.api.ApiService;
 import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseView;
+import com.weibangbang.common.ActivityStack;
 import com.weibangbang.utils.LogUtils;
 import com.weibangbang.utils.RetrofitUtils;
 
@@ -48,6 +51,7 @@ public abstract  class BaseModel {
                             if (msg.contains("token")){
                                 Config.setToken("");
                             }else {
+                                Toast.makeText(ActivityStack.getInstance().topActivity(), msg, Toast.LENGTH_SHORT).show();
                                 baseView.onFailure(msg);
                             }
                         }

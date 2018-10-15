@@ -120,8 +120,4 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
         }
     }
 
-    @Override
-    public void onFailure(String msg) {
-        super.onFailure(msg);
-    }
 }

@@ -267,9 +267,4 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    @Override
-    public void onFailure(String msg) {
-        super.onFailure(msg);
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
 }
