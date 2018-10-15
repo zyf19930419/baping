@@ -63,4 +63,7 @@ public interface ApiService {
 
     @POST("Account/login.html")
     Call<ResponseBody> postLogin(@Body LoginBody loginBody);
+
+    @POST("User/Personal_page.html")
+    Call<ResponseBody> postPersonalPage(@Body TokenBody tokenBody);
 }

@@ -1,6 +1,7 @@
 package com.weibangbang.model;
 
 import com.weibangbang.api.ApiService;
+import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseView;
 import com.weibangbang.utils.LogUtils;
 import com.weibangbang.utils.RetrofitUtils;
@@ -43,7 +44,12 @@ public abstract  class BaseModel {
                         if (1==code){
                             baseView.onComplete(requestUrl, jsonStr);
                         }else {
-                            baseView.onFailure(jsonObject.optString("msg"));
+                            String msg = jsonObject.optString("msg");
+                            if (msg.contains("token")){
+                                Config.setToken("");
+                            }else {
+                                baseView.onFailure(msg);
+                            }
                         }
 
                     } catch (Exception e) {

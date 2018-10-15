@@ -5,13 +5,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
+import com.weibangbang.api.Config;
 import com.weibangbang.aty.personal.ChangePasswordAty;
 import com.weibangbang.aty.personal.MineTeamAty;
 import com.weibangbang.aty.personal.MineWalletAty;
 import com.weibangbang.aty.personal.PersonaInfoAty;
 import com.weibangbang.aty.personal.WithdrawMoneyAty;
 import com.weibangbang.base.BaseFragment;
+import com.weibangbang.bean.personal.PersonalPageBean;
+import com.weibangbang.presenter.PersonalPresenter;
 import com.weibangbang.utils.BitmapUtils;
 import com.weibangbang.utils.GlideApp;
 
@@ -24,6 +28,7 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
     private ImageView head_img;
     private TextView personal_info_tv, mine_team_tv, wallet_tv, put_forward_tv, change_password_tv, commit_tv;
     private TextView personal_totalRevenue_tv, personal_todayRevenue_tv, personal_withdraw_tv; // 总收入，今日收入，已提现
+    private PersonalPresenter mPersonalPresenter;
 
     @Override
     protected int getLayoutResId() {
@@ -74,9 +79,8 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
 
     @Override
     protected void requestData() {
-        personal_totalRevenue_tv.setText("650"); // 总收入
-        personal_todayRevenue_tv.setText("650"); // 今日收入
-        personal_withdraw_tv.setText("650"); // 已提现
+        mPersonalPresenter=new PersonalPresenter(this);
+        mPersonalPresenter.postPersonalPage(Config.getToken());
     }
 
     @Override
@@ -104,4 +108,20 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
         }
     }
 
+    @Override
+    public void onComplete(String requestUrl, String jsonStr) {
+        super.onComplete(requestUrl, jsonStr);
+        if (requestUrl.endsWith("User/Personal_page.html")){
+            PersonalPageBean personalPageBean = JSON.parseObject(jsonStr, PersonalPageBean.class);
+            PersonalPageBean.DataBean data = personalPageBean.getData();
+            personal_totalRevenue_tv.setText(data.getSum_brokerage()); // 总收入
+            personal_todayRevenue_tv.setText(data.getToday_brokerage()); // 今日收入
+            personal_withdraw_tv.setText(data.getSum_extract()); // 已提现
+        }
+    }
+
+    @Override
+    public void onFailure(String msg) {
+        super.onFailure(msg);
+    }
 }

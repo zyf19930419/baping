@@ -10,11 +10,10 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
-import com.weibangbang.api.Constant;
+import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.login.LoginBean;
 import com.weibangbang.presenter.LoginPresenter;
-import com.weibangbang.utils.SharedPreferencesUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -227,8 +226,7 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
         if (requestUrl.endsWith("Account/login.html")) { // 登录
             LoginBean loginBean = JSON.parseObject(jsonStr, LoginBean.class);
             LoginBean.DataBean data = loginBean.getData();
-            SharedPreferencesUtils.getInstance(LoginAty.this).putBoolean(Constant.ISLOGIN, true);
-            SharedPreferencesUtils.getInstance(LoginAty.this).putString(Constant.TOKEN, data.getUser_token());
+            Config.setToken(data.getUser_token());
             Toast.makeText(this, loginBean.getMsg(), Toast.LENGTH_SHORT).show();
             startActivity(MainActivity.class);
         }
@@ -267,5 +265,11 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
                 showShortToast("回传数据异常", Toast.LENGTH_SHORT);
             }
         }
+    }
+
+    @Override
+    public void onFailure(String msg) {
+        super.onFailure(msg);
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }

@@ -14,4 +14,11 @@ public class PersonalPresenter extends BasePresenter{
         super(baseView);
         mModel=new PersonalModel();
     }
+
+    /**
+     * 个人中心-总收入，今日收入，已提现接口(新2)
+     */
+    public void postPersonalPage(String token){
+        mModel.postPersonalPage(token,mBaseView);
+    }
 }

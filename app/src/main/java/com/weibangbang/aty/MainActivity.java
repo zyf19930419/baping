@@ -147,7 +147,7 @@ public class MainActivity extends BaseActivity {
                 switchTo(index);
                 break;
             case R.id.re_personal:
-                if (Config.isLogin(MainActivity.this)){
+                if (Config.isLogin()){
                     index = 2;
                     txt_title.setText("个人中心");
                     switchTo(index);
