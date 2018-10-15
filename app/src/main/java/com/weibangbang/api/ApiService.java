@@ -1,6 +1,7 @@
 package com.weibangbang.api;
 
 import com.weibangbang.api.body.ForgetBody;
+import com.weibangbang.api.body.LaunchCommitBody;
 import com.weibangbang.api.body.LoginBody;
 import com.weibangbang.api.body.RegisterBody;
 import com.weibangbang.api.body.SendmessageBody;
@@ -21,11 +22,11 @@ import retrofit2.http.POST;
 public interface ApiService {
     String OFFICIAL_WEB = "http://weibangbang.dazhu-ltd.cn/";
 
-    String BASE_URL=OFFICIAL_WEB+"index.php/index/";
+    String BASE_URL = OFFICIAL_WEB + "index.php/index/";
 
     @FormUrlEncoded
     @POST("index/banner.html")
-    Call<ResponseBody> postBanners(@Field("banner_id") String banner_id );
+    Call<ResponseBody> postBanners(@Field("banner_id") String banner_id);
 
     @POST("index/notice.html")
     Call<ResponseBody> postNotice();
@@ -57,7 +58,6 @@ public interface ApiService {
     @POST("Account/register.html")
     Call<ResponseBody> postRegister(@Body RegisterBody registerBody);
 
-
     @POST("Account/forget.html")
     Call<ResponseBody> postForget(@Body ForgetBody forgetBody);
 
@@ -66,4 +66,7 @@ public interface ApiService {
 
     @POST("User/Personal_page.html")
     Call<ResponseBody> postPersonalPage(@Body TokenBody tokenBody);
+
+    @POST("Launch/launch_commit.html")
+    Call<ResponseBody> postLaunchCommit(@Body LaunchCommitBody launchCommitBody);
 }
