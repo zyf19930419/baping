@@ -1,6 +1,5 @@
 package com.weibangbang.aty;
 
-import android.content.Intent;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,7 +15,9 @@ import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.login.LoginBean;
 import com.weibangbang.presenter.LoginPresenter;
 import com.weibangbang.utils.SharedPreferencesUtils;
-import com.weibangbang.utils.StringUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * 创建者：zhangyunfei
@@ -43,6 +44,7 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
 
 
     private LoginPresenter mLoginPresenter;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_login;
@@ -77,7 +79,7 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void initData() {
-        mLoginPresenter=new LoginPresenter(this);
+        mLoginPresenter = new LoginPresenter(this);
     }
 
     /**
@@ -86,6 +88,9 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
      * @param loginType
      */
     private void changeViewVisibility(int loginType) {
+        login_pwd_et.setText("");
+        login_pwdAgain_et.setText("");
+        login_verificationCode_et.setText("");
         switch (loginType) {
             case 0: // 登录：只显示手机号和密码
                 login_phone_layout.setVisibility(View.VISIBLE);
@@ -119,36 +124,83 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_getVerification_tv: // 获取验证码
-                login_getVerification_tv.setClickable(false);
-                login_getVerification_tv.setTextColor(getResources().getColor(R.color.txt_color));
-                new CountDownTimer(60 * 1000, 1000) {
-                    @Override
-                    public void onTick(long l) {
-                        login_getVerification_tv.setText((l / 1000) + "秒");
+                String phoneStr = login_phone_et.getText().toString();
+                if (!TextUtils.isEmpty(phoneStr)) {
+                    if (loginType == 1) { // 注册验证码获取
+                        mLoginPresenter.postSendmessage(phoneStr, "1");
+                    } else if (loginType == 2) { // 忘记密码验证码获取
+                        mLoginPresenter.postSendmessage(phoneStr, "2");
                     }
+                    login_getVerification_tv.setClickable(false);
+                    login_getVerification_tv.setTextColor(getResources().getColor(R.color.txt_color));
+                    new CountDownTimer(60 * 1000, 1000) {
+                        @Override
+                        public void onTick(long l) {
+                            login_getVerification_tv.setText((l / 1000) + "秒");
+                        }
 
-                    @Override
-                    public void onFinish() {
-                        login_getVerification_tv.setText(R.string.get);
-                        login_getVerification_tv.setTextColor(getResources().getColor(R.color.colorPrimary));
-                        login_getVerification_tv.setClickable(true);
-                    }
-                }.start();
-                showShortToast(R.string.verification_code_sending, Toast.LENGTH_SHORT);
+                        @Override
+                        public void onFinish() {
+                            login_getVerification_tv.setText(R.string.get);
+                            login_getVerification_tv.setTextColor(getResources().getColor(R.color.colorPrimary));
+                            login_getVerification_tv.setClickable(true);
+                        }
+                    }.start();
+                } else {
+                    showShortToast(R.string.phone_hint, Toast.LENGTH_SHORT);
+                }
                 break;
             case R.id.login_submit_tv: // 登录、注册、修改密码
-                if (0==loginType){
-                    String phone = login_phone_et.getText().toString();
-                    String password = login_pwd_et.getText().toString();
-//                    if (TextUtils.isEmpty(phone) || StringUtils.isPhoneNumber(phone)){
-//                        Toast.makeText(this, "手机号码输入错误", Toast.LENGTH_SHORT).show();
-//                        return;
-//                    }
-//                    if (TextUtils.isEmpty(password)){
-//                        Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
-//                        return;
-//                    }
-                    mLoginPresenter.postLogin(phone,password);
+                String phone = login_phone_et.getText().toString();
+                if (TextUtils.isEmpty(phone)
+//                        || StringUtils.isPhoneNumber(phone)
+                        ) {
+                    Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                switch (loginType) {
+                    case 0: // 登录
+                        String password = login_pwd_et.getText().toString();
+                        if (TextUtils.isEmpty(password)) {
+                            Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        mLoginPresenter.postLogin(phone, password);
+                        break;
+                    case 1: // 注册
+                        String registerPwdStr = login_pwd_et.getText().toString().trim(); // 注册密码
+                        String pwdAgainStr = login_pwdAgain_et.getText().toString().trim(); // 确认密码输入框
+                        String verificationCodeStr = login_verificationCode_et.getText().toString().trim(); // 验证码
+                        if (TextUtils.isEmpty(registerPwdStr)) {
+                            showShortToast("请输入密码", Toast.LENGTH_SHORT);
+                            return;
+                        } else if (!registerPwdStr.equals(pwdAgainStr)) {
+                            showShortToast("两次密码输入不一致", Toast.LENGTH_SHORT);
+                            return;
+                        }
+                        if (TextUtils.isEmpty(verificationCodeStr)) {
+                            showShortToast("请输入验证码", Toast.LENGTH_SHORT);
+                        } else {
+                            mLoginPresenter.postRegister(phone, verificationCodeStr, registerPwdStr, "");
+                        }
+                        break;
+                    case 2: // 忘记密码
+                        String newPwdStr = login_pwd_et.getText().toString().trim(); // 新密码
+                        String newPwdAgainStr = login_pwdAgain_et.getText().toString().trim(); // 确认密码输入框
+                        String verificationCode = login_verificationCode_et.getText().toString().trim(); // 验证码
+                        if (TextUtils.isEmpty(newPwdStr)) {
+                            showShortToast("请输入密码", Toast.LENGTH_SHORT);
+                            return;
+                        } else if (!newPwdStr.equals(newPwdAgainStr)) {
+                            showShortToast("两次密码输入不一致", Toast.LENGTH_SHORT);
+                            return;
+                        }
+                        if (TextUtils.isEmpty(verificationCode)) {
+                            showShortToast("请输入验证码", Toast.LENGTH_SHORT);
+                        } else {
+                            mLoginPresenter.postForget(phone, verificationCode, newPwdStr);
+                        }
+                        break;
                 }
                 break;
             case R.id.login_register_tv: // 立即注册、立即登录
@@ -172,13 +224,48 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
-        if (requestUrl.endsWith("Account/login.html")){
+        if (requestUrl.endsWith("Account/login.html")) { // 登录
             LoginBean loginBean = JSON.parseObject(jsonStr, LoginBean.class);
             LoginBean.DataBean data = loginBean.getData();
-            SharedPreferencesUtils.getInstance(LoginAty.this).putBoolean(Constant.ISLOGIN,true);
-            SharedPreferencesUtils.getInstance(LoginAty.this).putString(Constant.TOKEN,data.getUser_token());
+            SharedPreferencesUtils.getInstance(LoginAty.this).putBoolean(Constant.ISLOGIN, true);
+            SharedPreferencesUtils.getInstance(LoginAty.this).putString(Constant.TOKEN, data.getUser_token());
             Toast.makeText(this, loginBean.getMsg(), Toast.LENGTH_SHORT).show();
             startActivity(MainActivity.class);
+        }
+
+        // 获取验证码
+        if (requestUrl.endsWith("Account/send_message.html")) { // 获取验证码
+            try {
+                JSONObject jsonObject = new JSONObject(jsonStr);
+                if (jsonObject.has("msg")) {
+                    String requestMsg = jsonObject.getString("msg");
+                    showShortToast(requestMsg, Toast.LENGTH_SHORT);
+                }
+            } catch (JSONException e) {
+                showShortToast("回传数据异常", Toast.LENGTH_SHORT);
+            }
+        }
+
+        // 注册或忘记密码
+        if (requestUrl.endsWith("Account/register.html") || requestUrl.endsWith("Account/forget.html")) {
+            try {
+                JSONObject jsonObject = new JSONObject(jsonStr);
+                if (jsonObject.has("code")) {
+                    String code = jsonObject.getString("code");
+                    if ("1".equals(code)) {
+                        loginType = 0;
+                        changeViewVisibility(loginType);
+                        showShortToast(requestUrl.endsWith("Account/register.html") ? "注册成功，请登录" : "密码修改成功，请登录", Toast.LENGTH_SHORT);
+                    } else {
+                        if (jsonObject.has("msg")) {
+                            String requestMsg = jsonObject.getString("msg");
+                            showShortToast(requestMsg, Toast.LENGTH_SHORT);
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+                showShortToast("回传数据异常", Toast.LENGTH_SHORT);
+            }
         }
     }
 }
