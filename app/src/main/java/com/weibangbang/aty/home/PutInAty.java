@@ -66,6 +66,13 @@ public class PutInAty extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    /**
+     * 提交投放广告的信息
+     *
+     * @param name     姓名
+     * @param phone    电话
+     * @param guanggao 内容
+     */
     private void submit(String name, String phone, String guanggao) {
         HomePresenter homePresenter = new HomePresenter(this);
         homePresenter.postLaunchCommit(Config.getToken(), guanggao, name, phone);
@@ -74,6 +81,7 @@ public class PutInAty extends BaseActivity implements View.OnClickListener {
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
-        LogUtils.e(jsonStr);
+        showShortToast("提交成功", Toast.LENGTH_SHORT);
+        finish();
     }
 }
