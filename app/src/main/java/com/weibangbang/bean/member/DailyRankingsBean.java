@@ -9,10 +9,11 @@ import java.util.List;
  */
 public class DailyRankingsBean {
 
+
     /**
      * code : 1
      * msg :
-     * data : [{"user_id":13,"user_name":"肖毅","money":"45643.00"}]
+     * data : [{"user_name":"明溪","user_portrait":"","user_history_brokerage":"999.00"},{"user_name":"尘","user_portrait":"","user_history_brokerage":"100.00"},{"user_name":"","user_portrait":"","user_history_brokerage":"0.00"}]
      */
 
     private int code;
@@ -45,22 +46,14 @@ public class DailyRankingsBean {
 
     public static class DataBean {
         /**
-         * user_id : 13
-         * user_name : 肖毅
-         * money : 45643.00
+         * user_name : 明溪
+         * user_portrait :
+         * user_history_brokerage : 999.00
          */
 
-        private int user_id;
         private String user_name;
-        private String money;
-
-        public int getUser_id() {
-            return user_id;
-        }
-
-        public void setUser_id(int user_id) {
-            this.user_id = user_id;
-        }
+        private String user_portrait;
+        private String user_history_brokerage;
 
         public String getUser_name() {
             return user_name;
@@ -70,12 +63,20 @@ public class DailyRankingsBean {
             this.user_name = user_name;
         }
 
-        public String getMoney() {
-            return money;
+        public String getUser_portrait() {
+            return user_portrait;
         }
 
-        public void setMoney(String money) {
-            this.money = money;
+        public void setUser_portrait(String user_portrait) {
+            this.user_portrait = user_portrait;
+        }
+
+        public String getUser_history_brokerage() {
+            return user_history_brokerage;
+        }
+
+        public void setUser_history_brokerage(String user_history_brokerage) {
+            this.user_history_brokerage = user_history_brokerage;
         }
     }
 }
