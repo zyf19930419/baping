@@ -1,5 +1,6 @@
 package com.weibangbang.model;
 
+import com.weibangbang.api.body.LobbyBody;
 import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.base.BaseView;
 
@@ -9,6 +10,19 @@ import com.weibangbang.base.BaseView;
  * 功能描述：
  */
 public class MemberModel extends BaseModel{
+
+    /**
+     *任务大厅接口
+     * @param token
+     * @param vip 1.普通任务2.高级任务 可以不传默认普通
+     */
+    public void postlobby(String token,String vip,BaseView baseView){
+        LobbyBody lobbyBody=new LobbyBody();
+        lobbyBody.setToken(token);
+        lobbyBody.setVip(vip);
+        mCall = mApiService.postlobby(lobbyBody);
+        request(baseView);
+    }
 
     /**
      * 任务规则

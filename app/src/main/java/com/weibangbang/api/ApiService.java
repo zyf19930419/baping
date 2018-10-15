@@ -2,7 +2,9 @@ package com.weibangbang.api;
 
 import com.weibangbang.api.body.ForgetBody;
 import com.weibangbang.api.body.LaunchCommitBody;
+import com.weibangbang.api.body.LobbyBody;
 import com.weibangbang.api.body.LoginBody;
+import com.weibangbang.api.body.ReceiveCommitBody;
 import com.weibangbang.api.body.RegisterBody;
 import com.weibangbang.api.body.SendmessageBody;
 import com.weibangbang.api.body.TokenBody;
@@ -69,4 +71,19 @@ public interface ApiService {
 
     @POST("Launch/launch_commit.html")
     Call<ResponseBody> postLaunchCommit(@Body LaunchCommitBody launchCommitBody);
+
+    @POST("User/login_out.html")
+    Call<ResponseBody> postLoginOut(@Body TokenBody tokenBody);
+
+    @POST("Work/lobby.html")
+    Call<ResponseBody> postlobby(@Body LobbyBody lobbyBody);
+
+    @POST("Receive/receive_commit.html")
+    Call<ResponseBody> postReceiveCommit(@Body ReceiveCommitBody receiveCommitBody);
+
+    @POST("User/team11J.html")
+    Call<ResponseBody> postTeam11J(@Body TokenBody tokenBody);
+
+    @POST("User/team22J.html")
+    Call<ResponseBody> postTeam22J(@Body TokenBody tokenBody);
 }

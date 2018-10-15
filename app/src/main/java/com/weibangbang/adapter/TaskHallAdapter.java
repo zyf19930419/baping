@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.weibangbang.R;
+import com.weibangbang.bean.member.LobbyBean;
+
+import java.util.List;
 
 /**
  * 创建者：zhangyunfei
@@ -20,8 +23,11 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
 
     private onButtonClickListener mOnButtonClickListener;
 
-    public TaskHallAdapter(String title) {
+    private List<LobbyBean.DataBean> taskHallData;
+
+    public TaskHallAdapter(String title,List<LobbyBean.DataBean> taskHallData) {
         mTitle = title;
+        this.taskHallData=taskHallData;
     }
 
     @NonNull
@@ -33,8 +39,8 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-
         if ("任务大厅".equals(mTitle)){
+            LobbyBean.DataBean dataBean = taskHallData.get(position);
             holder.button_tv.setVisibility(View.VISIBLE);
             holder.date_tv.setVisibility(View.GONE);
             holder.button_tv.setText("查 看");
@@ -47,6 +53,9 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
                     }
                 }
             });
+
+            holder.title_tv.setText(dataBean.getTask_name());
+            holder.status_tv.setText(dataBean.getTask_content());
 
         }
 
@@ -66,7 +75,7 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
 
     @Override
     public int getItemCount() {
-        return 5;
+        return taskHallData.size()>0?taskHallData.size():0;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{

@@ -5,6 +5,9 @@ import android.widget.RelativeLayout;
 
 ;
 import com.weibangbang.R;
+import com.weibangbang.api.Config;
+import com.weibangbang.aty.LoginAty;
+import com.weibangbang.aty.home.PutInAty;
 import com.weibangbang.aty.member.MyTaskAty;
 import com.weibangbang.aty.member.RankingListAty;
 import com.weibangbang.aty.member.TaskHallAty;
@@ -86,7 +89,11 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener{
         int viewId = v.getId();
         switch (viewId) {
             case R.id.re_dating:
-                startActivity(TaskHallAty.class);
+                if (Config.isLogin()){
+                    startActivity(TaskHallAty.class);
+                }else {
+                    startActivity(LoginAty.class);
+                }
                 break;
             case R.id.re_guize:
                 startActivity(TaskRulesAty.class);

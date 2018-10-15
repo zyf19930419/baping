@@ -5,9 +5,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.adapter.RankingAndMemberAdapter;
+import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
+import com.weibangbang.bean.personal.MemberShipBean;
+import com.weibangbang.presenter.PersonalPresenter;
+
+import java.util.List;
 
 /**
  * 创建者：zhangyunfei
@@ -19,6 +25,7 @@ public class MembershipListAty extends BaseActivity{
     private RecyclerView mRecyclerView;
     private RankingAndMemberAdapter mAdapter;
     private String mLevel;
+    private PersonalPresenter mPersonalPresenter;
 
     @Override
     public int getLayoutId() {
@@ -50,6 +57,24 @@ public class MembershipListAty extends BaseActivity{
 
     @Override
     public void initData() {
+        mPersonalPresenter = new PersonalPresenter(this);
+        if ("一".equals(mLevel)){
+            mPersonalPresenter.postTeam11J(Config.getToken());
+        }else if ("二".equals(mLevel)){
+            mPersonalPresenter.postTeam22J(Config.getToken());
+        }
+    }
 
+    @Override
+    public void onComplete(String requestUrl, String jsonStr) {
+        super.onComplete(requestUrl, jsonStr);
+        MemberShipBean memberShipBean = JSON.parseObject(jsonStr, MemberShipBean.class);
+        List<MemberShipBean.DataBean> data = memberShipBean.getData();
+        if (requestUrl.endsWith("User/team11J.html")){
+
+        }
+        if (requestUrl.endsWith("User/team22J.html")){
+
+        }
     }
 }

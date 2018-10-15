@@ -17,6 +17,12 @@ public class MemberPresenter extends BasePresenter{
     }
 
     /**
+     *任务大厅接口
+     */
+    public void postlobby(String token,String vip){
+        mModel.postlobby(token,vip,mBaseView);
+    }
+    /**
      * 任务规则
      */
     public void postTaskRules(){

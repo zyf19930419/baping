@@ -8,6 +8,8 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.api.Config;
+import com.weibangbang.aty.LoginAty;
+import com.weibangbang.aty.home.PutInAty;
 import com.weibangbang.aty.personal.ChangePasswordAty;
 import com.weibangbang.aty.personal.MineTeamAty;
 import com.weibangbang.aty.personal.MineWalletAty;
@@ -18,6 +20,10 @@ import com.weibangbang.bean.personal.PersonalPageBean;
 import com.weibangbang.presenter.PersonalPresenter;
 import com.weibangbang.utils.BitmapUtils;
 import com.weibangbang.utils.GlideApp;
+import com.weibangbang.utils.ToastUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * 创建者：zhangyunfei
@@ -34,6 +40,7 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
     protected int getLayoutResId() {
         return R.layout.fgt_personal;
     }
+
 
     @Override
     protected void initialized(View view) {
@@ -102,6 +109,7 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
                 startActivity(ChangePasswordAty.class);
                 break;
             case R.id.commit_tv:
+                mPersonalPresenter.postLoginOut(Config.getToken());
                 break;
             default:
                 break;
@@ -117,6 +125,21 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
             personal_totalRevenue_tv.setText(data.getSum_brokerage()); // 总收入
             personal_todayRevenue_tv.setText(data.getToday_brokerage()); // 今日收入
             personal_withdraw_tv.setText(data.getSum_extract()); // 已提现
+        }
+
+        if (requestUrl.endsWith("User/login_out.html")){
+            try {
+                JSONObject jsonObject = new JSONObject(jsonStr);
+                if (jsonObject.has("msg")) {
+                    String requestMsg = jsonObject.getString("msg");
+                    ToastUtils.showToast(requestMsg);
+                    Config.setToken("");
+                    startActivity(LoginAty.class);
+                    getActivity().finish();
+                }
+            } catch (JSONException e) {
+                ToastUtils.showToast("回传数据异常");
+            }
         }
     }
 

@@ -47,6 +47,13 @@ public class HomePresenter extends BasePresenter {
         mModel.postMakeMoney(token, mBaseView);
     }
 
+    /**
+     *免费领取提交接口
+     */
+    public void postReceiveCommit(String token,String name,String phone,String address) {
+        mModel.postReceiveCommit(token,name,phone,address,mBaseView);
+    }
+
 
     /**
      * 联系客服接口

@@ -18,4 +18,35 @@ public class PersonalModel extends BaseModel{
         mCall = mApiService.postPersonalPage(tokenBody);
         request(baseView);
     }
+
+    /**
+     *我的团队-我的一级会员接口
+     */
+    public void postTeam11J(String token,BaseView baseView) {
+        TokenBody tokenBody=new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postTeam11J(tokenBody);
+        request(baseView);
+    }
+
+    /**
+     *我的团队-我的二级会员接口
+     */
+    public void postTeam22J(String token,BaseView baseView) {
+        TokenBody tokenBody=new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postTeam22J(tokenBody);
+        request(baseView);
+    }
+
+
+    /**
+     * 退出登录接口
+     */
+    public void postLoginOut(String token, BaseView baseView) {
+        TokenBody tokenBody = new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postLoginOut(tokenBody);
+        request(baseView);
+    }
 }

@@ -36,7 +36,7 @@ public class MyTaskAty extends BaseActivity{
         mRecyclerView=findViewById(R.id.recyclerView);
         LinearLayoutManager manager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         mRecyclerView.setLayoutManager(manager);
-        mTaskHallAdapter=new TaskHallAdapter(getResources().getString(R.string.woderenwu));
+        mTaskHallAdapter=new TaskHallAdapter(getResources().getString(R.string.woderenwu),null);
         mRecyclerView.setAdapter(mTaskHallAdapter);
     }
 

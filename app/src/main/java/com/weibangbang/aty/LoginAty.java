@@ -2,6 +2,7 @@ package com.weibangbang.aty;
 
 import android.os.CountDownTimer;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -14,6 +15,7 @@ import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.login.LoginBean;
 import com.weibangbang.presenter.LoginPresenter;
+import com.weibangbang.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -146,7 +148,7 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
                         }
                     }.start();
                 } else {
-                    showShortToast(R.string.phone_hint, Toast.LENGTH_SHORT);
+                    ToastUtils.showToast(getResources().getString(R.string.phone_hint));
                 }
                 break;
             case R.id.login_submit_tv: // 登录、注册、修改密码
@@ -171,14 +173,14 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
                         String pwdAgainStr = login_pwdAgain_et.getText().toString().trim(); // 确认密码输入框
                         String verificationCodeStr = login_verificationCode_et.getText().toString().trim(); // 验证码
                         if (TextUtils.isEmpty(registerPwdStr)) {
-                            showShortToast("请输入密码", Toast.LENGTH_SHORT);
+                            ToastUtils.showToast("请输入密码");
                             return;
                         } else if (!registerPwdStr.equals(pwdAgainStr)) {
-                            showShortToast("两次密码输入不一致", Toast.LENGTH_SHORT);
+                            ToastUtils.showToast("两次密码输入不一致");
                             return;
                         }
                         if (TextUtils.isEmpty(verificationCodeStr)) {
-                            showShortToast("请输入验证码", Toast.LENGTH_SHORT);
+                            ToastUtils.showToast("请输入验证码");
                         } else {
                             mLoginPresenter.postRegister(phone, verificationCodeStr, registerPwdStr, "");
                         }
@@ -188,14 +190,14 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
                         String newPwdAgainStr = login_pwdAgain_et.getText().toString().trim(); // 确认密码输入框
                         String verificationCode = login_verificationCode_et.getText().toString().trim(); // 验证码
                         if (TextUtils.isEmpty(newPwdStr)) {
-                            showShortToast("请输入密码", Toast.LENGTH_SHORT);
+                            ToastUtils.showToast("请输入密码");
                             return;
                         } else if (!newPwdStr.equals(newPwdAgainStr)) {
-                            showShortToast("两次密码输入不一致", Toast.LENGTH_SHORT);
+                            ToastUtils.showToast("两次密码输入不一致");
                             return;
                         }
                         if (TextUtils.isEmpty(verificationCode)) {
-                            showShortToast("请输入验证码", Toast.LENGTH_SHORT);
+                            ToastUtils.showToast("请输入验证码");
                         } else {
                             mLoginPresenter.postForget(phone, verificationCode, newPwdStr);
                         }
@@ -227,7 +229,8 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
             LoginBean loginBean = JSON.parseObject(jsonStr, LoginBean.class);
             LoginBean.DataBean data = loginBean.getData();
             Config.setToken(data.getUser_token());
-            Toast.makeText(this, loginBean.getMsg(), Toast.LENGTH_SHORT).show();
+            Log.e("token", data.getUser_token());
+            ToastUtils.showToast(loginBean.getMsg());
             startActivity(MainActivity.class);
         }
 
@@ -237,10 +240,10 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
                 JSONObject jsonObject = new JSONObject(jsonStr);
                 if (jsonObject.has("msg")) {
                     String requestMsg = jsonObject.getString("msg");
-                    showShortToast(requestMsg, Toast.LENGTH_SHORT);
+                    ToastUtils.showToast(requestMsg);
                 }
             } catch (JSONException e) {
-                showShortToast("回传数据异常", Toast.LENGTH_SHORT);
+                ToastUtils.showToast("回传数据异常");
             }
         }
 
@@ -253,16 +256,16 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
                     if ("1".equals(code)) {
                         loginType = 0;
                         changeViewVisibility(loginType);
-                        showShortToast(requestUrl.endsWith("Account/register.html") ? "注册成功，请登录" : "密码修改成功，请登录", Toast.LENGTH_SHORT);
+                        ToastUtils.showToast(requestUrl.endsWith("Account/register.html") ? "注册成功，请登录" : "密码修改成功，请登录");
                     } else {
                         if (jsonObject.has("msg")) {
                             String requestMsg = jsonObject.getString("msg");
-                            showShortToast(requestMsg, Toast.LENGTH_SHORT);
+                            ToastUtils.showToast(requestMsg);
                         }
                     }
                 }
             } catch (JSONException e) {
-                showShortToast("回传数据异常", Toast.LENGTH_SHORT);
+                ToastUtils.showToast("回传数据异常");
             }
         }
     }

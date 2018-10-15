@@ -12,6 +12,7 @@ import android.widget.Toast;
 ;
 import com.weibangbang.R;
 import com.weibangbang.base.BaseApplication;
+import com.weibangbang.common.ActivityStack;
 
 /**
  * 创建者：zhangyunfei
@@ -118,5 +119,9 @@ public class ToastUtils {
         toast2.show();
         return toast2;
 
+    }
+
+    public static void showToast(String msg){
+        Toast.makeText(ActivityStack.getInstance().topActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 }

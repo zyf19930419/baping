@@ -28,7 +28,7 @@ public class NoticeAty  extends BaseActivity{
         mRecyclerView=findViewById(R.id.recyclerView);
         LinearLayoutManager manager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         mRecyclerView.setLayoutManager(manager);
-        mTaskHallAdapter=new TaskHallAdapter(getResources().getString(R.string.notice_board));
+        mTaskHallAdapter=new TaskHallAdapter(getResources().getString(R.string.notice_board),null);
         mRecyclerView.setAdapter(mTaskHallAdapter);
     }
 

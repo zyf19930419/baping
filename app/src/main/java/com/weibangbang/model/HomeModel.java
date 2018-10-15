@@ -1,6 +1,7 @@
 package com.weibangbang.model;
 
 import com.weibangbang.api.body.LaunchCommitBody;
+import com.weibangbang.api.body.ReceiveCommitBody;
 import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.base.BaseView;
 
@@ -54,6 +55,24 @@ public class HomeModel extends BaseModel {
         request(baseView);
     }
 
+    /**
+     * 免费领取提交接口
+     * @param token
+     * @param name 领用姓名
+     * @param phone 领用手机号
+     * @param address 领用地址
+     * @param createTime 领用时间
+     */
+    public void postReceiveCommit(String token,String name,String phone,String address, BaseView baseView) {
+        ReceiveCommitBody receiveCommitBody = new ReceiveCommitBody();
+        receiveCommitBody.setToken(token);
+        receiveCommitBody.setCompellation(name);
+        receiveCommitBody.setPhone(phone);
+        receiveCommitBody.setAddress(address);
+        receiveCommitBody.setCreatetime(String.valueOf(System.currentTimeMillis()));
+        mCall = mApiService.postReceiveCommit(receiveCommitBody);
+        request(baseView);
+    }
     /**
      * 联系客服接口
      */

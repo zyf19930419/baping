@@ -21,4 +21,27 @@ public class PersonalPresenter extends BasePresenter{
     public void postPersonalPage(String token){
         mModel.postPersonalPage(token,mBaseView);
     }
+
+    /**
+     * 我的团队-我的一级会员接口
+     */
+    public void postTeam11J(String token){
+        mModel.postTeam11J(token,mBaseView);
+    }
+
+
+    /**
+     * 我的团队-我的二级会员接口
+     */
+    public void postTeam22J(String token){
+        mModel.postTeam22J(token,mBaseView);
+    }
+
+    /**
+     * 退出登录接口
+     * @param token
+     */
+    public void postLoginOut(String token){
+        mModel.postLoginOut(token,mBaseView);
+    }
 }
