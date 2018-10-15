@@ -5,7 +5,7 @@ import com.weibangbang.base.BaseView;
 import com.weibangbang.utils.LogUtils;
 import com.weibangbang.utils.RetrofitUtils;
 
-import java.io.IOException;
+import org.json.JSONObject;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -38,8 +38,15 @@ public abstract  class BaseModel {
                 if (response.isSuccessful()) {
                     try {
                         String jsonStr = response.body().string();
-                        baseView.onComplete(requestUrl, jsonStr);
-                    } catch (IOException e) {
+                        JSONObject jsonObject=new JSONObject(jsonStr);
+                        int code = jsonObject.optInt("code");
+                        if (1==code){
+                            baseView.onComplete(requestUrl, jsonStr);
+                        }else {
+                            baseView.onFailure(jsonObject.optString("msg"));
+                        }
+
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }else {
