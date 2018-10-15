@@ -1,6 +1,10 @@
 package com.weibangbang.api;
 
+import com.weibangbang.api.body.ForgetBody;
 import com.weibangbang.api.body.LoginBody;
+import com.weibangbang.api.body.RegisterBody;
+import com.weibangbang.api.body.SendmessageBody;
+import com.weibangbang.api.body.TokenBody;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -28,18 +32,16 @@ public interface ApiService {
 
 
     @POST("Work/ranking_day.html")
-    Call<ResponseBody> postDailyRankings();
+    Call<ResponseBody> postDailyRankings(@Body TokenBody tokenBody);
 
     @POST("Work/ranking_list.html")
-    Call<ResponseBody> postUniversalLeaderboard();
+    Call<ResponseBody> postUniversalLeaderboard(@Body TokenBody tokenBody);
 
-    @FormUrlEncoded
     @POST("Index/notice_details.html")
     Call<ResponseBody> postNoticeDetails(@Field("notice_id") String notice_id);
 
-    @FormUrlEncoded
     @POST("Work/lobby.html")
-    Call<ResponseBody> postMakeMoney(@Field("token") String token);
+    Call<ResponseBody> postMakeMoney(@Body TokenBody tokenBody);
 
     @POST("Service/service_list.html")
     Call<ResponseBody> postContactCustomerService();
@@ -48,19 +50,16 @@ public interface ApiService {
     Call<ResponseBody> postTaskRules();
 
 
-    @FormUrlEncoded
     @POST("Account/send_message.html")
-    Call<ResponseBody> postSendmessage(@Field("phone") String phone,@Field("type") String type);
+    Call<ResponseBody> postSendmessage(@Body SendmessageBody sendmessageBody);
 
 
-    @FormUrlEncoded
     @POST("Account/register.html")
-    Call<ResponseBody> postRegister(@Field("phone") String phone,@Field("code") String code,@Field("password") String password,@Field("nvitation") String nvitation);
+    Call<ResponseBody> postRegister(@Body RegisterBody registerBody);
 
 
-    @FormUrlEncoded
     @POST("Account/forget.html")
-    Call<ResponseBody> postForget(@Field("phone") String phone,@Field("code") String code,@Field("password") String password);
+    Call<ResponseBody> postForget(@Body ForgetBody forgetBody);
 
     @POST("Account/login.html")
     Call<ResponseBody> postLogin(@Body LoginBody loginBody);

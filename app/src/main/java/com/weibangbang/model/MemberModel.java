@@ -1,5 +1,6 @@
 package com.weibangbang.model;
 
+import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.base.BaseView;
 
 /**
@@ -20,16 +21,20 @@ public class MemberModel extends BaseModel{
     /**
      * 日排行榜
      */
-    public void postDailyRankings(BaseView baseView){
-        mCall = mApiService.postDailyRankings();
+    public void postDailyRankings(String token,BaseView baseView){
+        TokenBody tokenBody=new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postDailyRankings(tokenBody);
         request(baseView);
     }
 
     /**
      * 总排行榜
      */
-    public void postUniversalLeaderboard(BaseView baseView){
-        mCall = mApiService.postUniversalLeaderboard();
+    public void postUniversalLeaderboard(String token,BaseView baseView){
+        TokenBody tokenBody=new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postUniversalLeaderboard(tokenBody);
         request(baseView);
     }
 

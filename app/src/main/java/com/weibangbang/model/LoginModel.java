@@ -1,6 +1,9 @@
 package com.weibangbang.model;
 
+import com.weibangbang.api.body.ForgetBody;
 import com.weibangbang.api.body.LoginBody;
+import com.weibangbang.api.body.RegisterBody;
+import com.weibangbang.api.body.SendmessageBody;
 import com.weibangbang.base.BaseView;
 
 /**
@@ -15,7 +18,10 @@ public class LoginModel extends BaseModel {
      * @param type 1.发送注册验证码 2.发送忘记密码验证码
      */
     public void postSendmessage(String phone, String type,BaseView baseView) {
-        mCall = mApiService.postSendmessage(phone,type);
+        SendmessageBody sendmessageBody=new SendmessageBody();
+        sendmessageBody.setPhone(phone);
+        sendmessageBody.setType(type);
+        mCall = mApiService.postSendmessage(sendmessageBody);
         request(baseView);
     }
 
@@ -27,7 +33,12 @@ public class LoginModel extends BaseModel {
      * @param nvitation 邀请码（非必填）
      */
     public void postRegister(String phone, String code,String password, String nvitation,BaseView baseView) {
-        mCall = mApiService.postRegister(phone, code, password, nvitation);
+        RegisterBody registerBody=new RegisterBody();
+        registerBody.setPhone(phone);
+        registerBody.setCode(code);
+        registerBody.setPassword(password);
+        registerBody.setNvitation(nvitation);
+        mCall = mApiService.postRegister(registerBody);
         request(baseView);
     }
 
@@ -38,7 +49,8 @@ public class LoginModel extends BaseModel {
      * @param password 	重置的密码
      */
     public void postForget(String phone, String code,String password,BaseView baseView) {
-        mCall = mApiService.postForget(phone, code, password);
+        ForgetBody forgetBody=new ForgetBody(phone,code,password);
+        mCall = mApiService.postForget(forgetBody);
         request(baseView);
     }
 

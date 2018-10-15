@@ -26,15 +26,15 @@ public class MemberPresenter extends BasePresenter{
     /**
      * 日排行榜
      */
-    public void postDailyRankings(){
-        mModel.postDailyRankings(mBaseView);
+    public void postDailyRankings(String token){
+        mModel.postDailyRankings(token,mBaseView);
     }
 
     /**
      * 总排行榜
      */
-    public void postUniversalLeaderboard(){
-        mModel.postUniversalLeaderboard(mBaseView);
+    public void postUniversalLeaderboard(String token){
+        mModel.postUniversalLeaderboard(token,mBaseView);
     }
 
 

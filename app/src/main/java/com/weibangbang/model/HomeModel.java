@@ -1,5 +1,6 @@
 package com.weibangbang.model;
 
+import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.base.BaseView;
 
 /**
@@ -42,7 +43,9 @@ public class HomeModel extends BaseModel{
      * @param token
      */
     public void postMakeMoney(String token, BaseView baseView) {
-        mCall = mApiService.postMakeMoney(token);
+        TokenBody tokenBody=new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postMakeMoney(tokenBody);
         request(baseView);
     }
 
