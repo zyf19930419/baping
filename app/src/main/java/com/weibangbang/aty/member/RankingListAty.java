@@ -57,16 +57,21 @@ public class RankingListAty extends BaseActivity{
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
+        mAdapter=new RankingAndMemberAdapter();
+        mRecyclerView.setAdapter(mAdapter);
         if (requestUrl.endsWith("ranking_day.html")){
             DailyRankingsBean dailyRankingsBean = JSON.parseObject(jsonStr, DailyRankingsBean.class);
             List<DailyRankingsBean.DataBean> data = dailyRankingsBean.getData();
-            if (data!=null && data.size()>0){
-                mAdapter=new RankingAndMemberAdapter();
-                mRecyclerView.setAdapter(mAdapter);
+            if (data!=null ){
+                mAdapter.setData(data);
             }
         }
         if (requestUrl.endsWith("ranking_list.html")){
-
+            DailyRankingsBean dailyRankingsBean = JSON.parseObject(jsonStr, DailyRankingsBean.class);
+            List<DailyRankingsBean.DataBean> data = dailyRankingsBean.getData();
+            if (data!=null ){
+                mAdapter.setData(data);
+            }
         }
     }
 
