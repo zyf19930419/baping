@@ -6,6 +6,8 @@ import android.widget.RelativeLayout;
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.api.ApiService;
+import com.weibangbang.api.Config;
+import com.weibangbang.aty.LoginAty;
 import com.weibangbang.aty.home.ContactCustomerAty;
 import com.weibangbang.aty.home.FreeLeadAty;
 import com.weibangbang.aty.home.MakeMoneyAty;
@@ -133,7 +135,11 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
                 startActivity(OpenMemberAty.class);
                 break;
             case R.id.re_toufang:
-                startActivity(PutInAty.class);
+                if (Config.isLogin()){
+                    startActivity(PutInAty.class);
+                }else {
+                    startActivity(LoginAty.class);
+                }
                 break;
             case R.id.re_haoyou:
                 startActivity(ShareMoneyAty.class);
