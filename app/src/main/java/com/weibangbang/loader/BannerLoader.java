@@ -1,4 +1,4 @@
-package com.weibangbang.utils;
+package com.weibangbang.loader;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -9,9 +9,9 @@ import com.youth.banner.loader.ImageLoader;
 /**
  * 创建者：zhangyunfei
  * 创建时间：2018/9/25 13:40
- * 功能描述：
+ * 功能描述：轮播图的图片加载器
  */
-public class GlideImageLoader extends ImageLoader {
+public class BannerLoader extends ImageLoader {
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
         /**

@@ -18,10 +18,9 @@ public class HomeModel extends BaseModel {
     /**
      * 首页轮播图接口
      *
-     * @param banner_id 轮播图id
      */
-    public void postBanners(String banner_id, BaseView baseView) {
-        mCall = mApiService.postBanners(banner_id);
+    public void postBanners(BaseView baseView) {
+        mCall = mApiService.postBanners();
         request(baseView);
     }
 

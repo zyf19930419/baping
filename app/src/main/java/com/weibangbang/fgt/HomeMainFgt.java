@@ -5,6 +5,7 @@ import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
+import com.weibangbang.api.ApiService;
 import com.weibangbang.api.Config;
 import com.weibangbang.aty.LoginAty;
 import com.weibangbang.aty.home.ContactCustomerAty;
@@ -16,7 +17,7 @@ import com.weibangbang.aty.home.ShareMoneyAty;
 import com.weibangbang.base.BaseFragment;
 import com.weibangbang.bean.home.BannerBean;
 import com.weibangbang.presenter.HomePresenter;
-import com.weibangbang.utils.GlideImageLoader;
+import com.weibangbang.loader.BannerLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -72,7 +73,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
     @Override
     protected void requestData() {
         mPresenter = new HomePresenter(this);
-        mPresenter.postBanner("1");
+        mPresenter.postBanner();
 //        mPresenter.postNotice();
     }
 
@@ -99,12 +100,12 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
             List<BannerBean.DataBean> dataBeanList = bannerBean.getData();
             if (dataBeanList != null && dataBeanList.size() > 0) {
                 for (BannerBean.DataBean bean : dataBeanList) {
-                    images.add("http://weibangbang.dazhu-ltd.cn/public/static/upload/" + bean.getBanner_content());
+                    images.add(ApiService.BASE_IMAGE + bean.getBanner_content());
                 }
                 //设置banner样式
                 mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
                 //设置图片加载器
-                mBanner.setImageLoader(new GlideImageLoader());
+                mBanner.setImageLoader(new BannerLoader());
                 //设置图片集合
                 mBanner.setImages(images);
                 //设置banner动画效果

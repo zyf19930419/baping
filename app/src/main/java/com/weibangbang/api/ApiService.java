@@ -26,13 +26,14 @@ import retrofit2.http.POST;
  * 功能描述：
  */
 public interface ApiService {
+    String BASE_IMAGE="http://weibangbang.dazhu-ltd.cn/public/static/upload/";
+
     String OFFICIAL_WEB = "http://weibangbang.dazhu-ltd.cn/";
 
     String BASE_URL = OFFICIAL_WEB + "index.php/index/";
 
-    @FormUrlEncoded
     @POST("index/banner.html")
-    Call<ResponseBody> postBanners(@Field("banner_id") String banner_id);
+    Call<ResponseBody> postBanners();
 
     @POST("index/notice.html")
     Call<ResponseBody> postNotice();
@@ -94,7 +95,6 @@ public interface ApiService {
 
     @POST("User/change_password.html")
     Call<ResponseBody> postChangePassword(@Body ChangePasswordBody changePasswordBody);
-
 
 
     @POST("Work/receive.html")

@@ -20,10 +20,9 @@ public class HomePresenter extends BasePresenter {
     /**
      * 首页轮播图接口
      *
-     * @param banner_id
      */
-    public void postBanner(String banner_id) {
-        mModel.postBanners(banner_id, mBaseView);
+    public void postBanner() {
+        mModel.postBanners(mBaseView);
     }
 
     /**

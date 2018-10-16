@@ -8,7 +8,7 @@ import com.weibangbang.R;
 import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.presenter.HomePresenter;
-import com.weibangbang.utils.GlideImageLoader;
+import com.weibangbang.loader.BannerLoader;
 import com.weibangbang.utils.ToastUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -61,7 +61,7 @@ public class FreeLeadAty extends BaseActivity{
         //设置banner样式
         mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         //设置图片加载器
-        mBanner.setImageLoader(new GlideImageLoader());
+        mBanner.setImageLoader(new BannerLoader());
         //设置图片集合
         mBanner.setImages(images);
         //设置banner动画效果
