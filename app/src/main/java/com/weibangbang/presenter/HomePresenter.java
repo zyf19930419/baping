@@ -64,8 +64,8 @@ public class HomePresenter extends BasePresenter {
     /**
      * 联系客服接口
      */
-    public void postContactCustomerService() {
-        mModel.postContactCustomerService(mBaseView);
+    public void postContactCustomerService(String token) {
+        mModel.postContactCustomerService(token,mBaseView);
     }
 
     /**

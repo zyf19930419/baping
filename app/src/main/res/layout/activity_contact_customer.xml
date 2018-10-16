@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -43,6 +44,7 @@
             android:paddingTop="15dp">
 
             <TextView
+                android:id="@+id/contacts1_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contact_customer_1"
@@ -55,7 +57,7 @@
                 android:layout_marginTop="5dp"
                 android:drawableEnd="@mipmap/icon_copy"
                 android:drawablePadding="5dp"
-                android:text="18338699733"
+                tools:text="18338699733"
                 android:textColor="@color/txt_black"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -78,6 +80,7 @@
             android:paddingTop="15dp">
 
             <TextView
+                android:id="@+id/contacts2_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contact_customer_2"
@@ -90,7 +93,7 @@
                 android:layout_marginTop="5dp"
                 android:drawableEnd="@mipmap/icon_copy"
                 android:drawablePadding="5dp"
-                android:text="18338699733"
+                tools:text="18338699733"
                 android:textColor="@color/txt_black"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -105,6 +108,7 @@
         android:textSize="12sp" />
 
     <TextView
+        android:id="@+id/service_am_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -113,6 +117,7 @@
         android:textSize="12sp" />
 
     <TextView
+        android:id="@+id/service_pm_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -125,12 +130,13 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/hot_line_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="15dp"
             android:gravity="center"
-            android:text="@string/customer_service_hotline"
+            tools:text="@string/customer_service_hotline"
             android:textSize="12sp" />
     </RelativeLayout>
 

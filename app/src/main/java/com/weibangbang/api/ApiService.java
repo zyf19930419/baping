@@ -52,7 +52,7 @@ public interface ApiService {
     Call<ResponseBody> postMakeMoney(@Body TokenBody tokenBody);
 
     @POST("Service/service_list.html")
-    Call<ResponseBody> postContactCustomerService();
+    Call<ResponseBody> postContactCustomerService(@Body TokenBody tokenBody);
 
     @POST("Work/task_rules.html")
     Call<ResponseBody> postTaskRules();

@@ -191,7 +191,11 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
                 startActivity(ShareMoneyAty.class);
                 break;
             case R.id.re_kefu:
-                startActivity(ContactCustomerAty.class);
+                if (Config.isLogin()) {
+                    startActivity(ContactCustomerAty.class);
+                } else {
+                    startActivity(LoginAty.class);
+                }
                 //                if (DisplayHelper.hasApplication(getContext(), "com.tencent.mm")) {
                 //                    DisplayHelper.getWechatApi(getContext(),"com.tencent.mm");
                 //                } else {
