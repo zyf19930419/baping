@@ -1,24 +1,24 @@
 package com.weibangbang.bean.home;
 
-import java.util.List;
-
+// FIXME generate failure  field _$Data154
+// FIXME generate failure  field _$Data109
 /**
  * 创建者：zhangyunfei
- * 创建时间：2018/10/9 9:40
+ * 创建时间：2018/10/16 13:39
  * 功能描述：
  */
-public class NoticeBean {
+public class NoticeDetailsBean {
 
 
     /**
-     * code : 1
-     * msg :
-     * data : [{"notice_id":3,"notice_title":"公告实验","notice_brief":"","notice_content":"<p>真的没问题<\/p><p><img src=\"/public/static/admin/ueditor/php/upload/image/20181014/1539517118155272.gif\" title=\"1539517118155272.gif\" alt=\"1.gif\"/><\/p>","notice_creattime":1539517119},{"notice_id":2,"notice_title":"马到成功","notice_brief":"","notice_content":"<p>中秋会员优惠<img src=\"/public/static/admin/ueditor/php/upload/image/20181014/1539516954539451.jpg\" title=\"1539516954539451.jpg\" alt=\"【高燃】游戏视频精彩集锦常用BGM_3405187513632803.jpg\"/><\/p>","notice_creattime":1537687868}]
+     *  code  : 1
+     *  msg  :
+     *  data  : {" notice_id ":2," notice_title ":"站内公告"," notice_content ":"<p>中秋会员优惠<img src=\"/ueditor/php/upload/image/20180923/1537687866514660.jpg\" title=\"1537687866514660.jpg\" alt=\"QQ图片20180908132158. jpg\"/><\/p>"," notice_creattime ":1537687868}
      */
 
     private int code;
     private String msg;
-    private List<DataBean> data;
+    private DataBean data;
 
     public int getCode() {
         return code;
@@ -36,26 +36,24 @@ public class NoticeBean {
         this.msg = msg;
     }
 
-    public List<DataBean> getData() {
+    public DataBean getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(DataBean data) {
         this.data = data;
     }
 
     public static class DataBean {
         /**
-         * notice_id : 3
-         * notice_title : 公告实验
-         * notice_brief :
-         * notice_content : <p>真的没问题</p><p><img src="/public/static/admin/ueditor/php/upload/image/20181014/1539517118155272.gif" title="1539517118155272.gif" alt="1.gif"/></p>
-         * notice_creattime : 1539517119
+         *  notice_id  : 2
+         *  notice_title  : 站内公告
+         *  notice_content  : <p>中秋会员优惠<img src="/ueditor/php/upload/image/20180923/1537687866514660.jpg" title="1537687866514660.jpg" alt="QQ图片20180908132158. jpg"/></p>
+         *  notice_creattime  : 1537687868
          */
 
         private int notice_id;
         private String notice_title;
-        private String notice_brief;
         private String notice_content;
         private int notice_creattime;
 
@@ -73,14 +71,6 @@ public class NoticeBean {
 
         public void setNotice_title(String notice_title) {
             this.notice_title = notice_title;
-        }
-
-        public String getNotice_brief() {
-            return notice_brief;
-        }
-
-        public void setNotice_brief(String notice_brief) {
-            this.notice_brief = notice_brief;
         }
 
         public String getNotice_content() {

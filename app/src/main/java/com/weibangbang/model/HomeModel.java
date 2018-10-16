@@ -1,6 +1,7 @@
 package com.weibangbang.model;
 
 import com.weibangbang.api.body.LaunchCommitBody;
+import com.weibangbang.api.body.NoticeDetailsBody;
 import com.weibangbang.api.body.ReceiveCommitBody;
 import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.base.BaseView;
@@ -39,7 +40,9 @@ public class HomeModel extends BaseModel {
      * @param notice_id 任务id
      */
     public void postNoticeDetails(String notice_id, BaseView baseView) {
-        mCall = mApiService.postNoticeDetails(notice_id);
+        NoticeDetailsBody noticeDetailsBody=new NoticeDetailsBody();
+        noticeDetailsBody.setNotice_id(notice_id);
+        mCall = mApiService.postNoticeDetails(noticeDetailsBody);
         request(baseView);
     }
 

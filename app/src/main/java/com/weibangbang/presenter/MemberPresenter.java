@@ -43,5 +43,19 @@ public class MemberPresenter extends BasePresenter{
         mModel.postUniversalLeaderboard(token,mBaseView);
     }
 
+    /**
+     *我的任务-已领用接口
+     */
+    public void postReceivie(String token){
+        mModel.postReceivie(token,mBaseView);
+    }
+
+    /**
+     * 我的任务已完成接口
+     */
+    public void postTaskAccomplish(String token){
+        mModel.postTaskAccomplish(token,mBaseView);
+    }
+
 
 }

@@ -5,7 +5,6 @@ import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
-import com.weibangbang.api.ApiService;
 import com.weibangbang.api.Config;
 import com.weibangbang.aty.LoginAty;
 import com.weibangbang.aty.home.ContactCustomerAty;
@@ -16,7 +15,6 @@ import com.weibangbang.aty.home.PutInAty;
 import com.weibangbang.aty.home.ShareMoneyAty;
 import com.weibangbang.base.BaseFragment;
 import com.weibangbang.bean.home.BannerBean;
-import com.weibangbang.bean.home.NoticeBean;
 import com.weibangbang.presenter.HomePresenter;
 import com.weibangbang.utils.GlideImageLoader;
 import com.youth.banner.Banner;
@@ -39,6 +37,10 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
     private List<String> images;
     private RelativeLayout re_zhuangyong, re_lingyong, re_huiyuan, re_toufang, re_haoyou, re_kefu;
 
+//    private MyViewFlipper myViewFilpper;
+//    private List<View> mViews;
+    private HomePresenter mPresenter;
+
     @Override
     protected int getLayoutResId() {
         return R.layout.fgt_home;
@@ -56,6 +58,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
         re_toufang = view.findViewById(R.id.re_toufang);
         re_haoyou = view.findViewById(R.id.re_haoyou);
         re_kefu = view.findViewById(R.id.re_kefu);
+//        myViewFilpper = view.findViewById(R.id.myViewFilpper);
         images = new ArrayList<>();
         mBanner = view.findViewById(R.id.banner);
         re_zhuangyong.setOnClickListener(this);
@@ -68,21 +71,24 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void requestData() {
-        HomePresenter presenter = new HomePresenter(this);
-        presenter.postBanner("1");
-        presenter.postNotice();
+        mPresenter = new HomePresenter(this);
+        mPresenter.postBanner("1");
+//        mPresenter.postNotice();
     }
 
     @Override
     public void onStart() {
         super.onStart();
         mBanner.startAutoPlay();
+//        myViewFilpper.startFlipping();
     }
 
     @Override
     public void onStop() {
         super.onStop();
         mBanner.stopAutoPlay();
+//        myViewFilpper.stopFlipping();
+//        myViewFilpper.removeAllViews();
     }
 
     @Override
@@ -91,7 +97,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
         if (requestUrl.endsWith("banner.html")) {
             BannerBean bannerBean = JSON.parseObject(jsonStr, BannerBean.class);
             List<BannerBean.DataBean> dataBeanList = bannerBean.getData();
-            if (dataBeanList!=null && dataBeanList.size()>0){
+            if (dataBeanList != null && dataBeanList.size() > 0) {
                 for (BannerBean.DataBean bean : dataBeanList) {
                     images.add("http://weibangbang.dazhu-ltd.cn/public/static/upload/" + bean.getBanner_content());
                 }
@@ -114,9 +120,36 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
             }
         }
 
-        if (requestUrl.endsWith("notice.html")) {
-            NoticeBean noticeBean =JSON.parseObject(jsonStr, NoticeBean.class);
-        }
+//        if (requestUrl.endsWith("notice.html")) {
+//            NoticeBean noticeBean = JSON.parseObject(jsonStr, NoticeBean.class);
+//            final List<NoticeBean.DataBean> data = noticeBean.getData();
+//            mViews = new ArrayList<>();
+//            if (data != null && data.size() > 0) {
+//                for (int i = 0; i < data.size(); i++) {
+//                    //设置滚动的单个布局
+//                    LinearLayout moreView = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.adv_item, null);
+//                    //初始化布局的控件
+//                    TextView title_tv = moreView.findViewById(R.id.title_tv);
+//                    TextView content_tv = moreView.findViewById(R.id.content_tv);
+//                    //进行对控件赋值
+//                    title_tv.setText(data.get(i).getNotice_title());
+//                    content_tv.setText(data.get(i).getNotice_brief());
+//                    //添加到循环滚动数组里面去
+//                    mViews.add(moreView);
+//                }
+//
+//            }
+//            myViewFilpper.setViews(mViews);
+//            myViewFilpper.getCurrentView().setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    int notice_id = data.get(myViewFilpper.getDisplayedChild()).getNotice_id();
+//                    Bundle bundle=new Bundle();
+//                    bundle.putInt("notice_id",notice_id);
+//                    startActivity(NoticeDetailsAty.class,bundle);
+//                }
+//            });
+//        }
 
     }
 
@@ -126,12 +159,16 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
         int viewId = v.getId();
         switch (viewId) {
             case R.id.re_zhuangyong:
-                startActivity(MakeMoneyAty.class);
+                if (Config.isLogin()) {
+                    startActivity(MakeMoneyAty.class);
+                } else {
+                    startActivity(LoginAty.class);
+                }
                 break;
             case R.id.re_lingyong:
-                if (Config.isLogin()){
+                if (Config.isLogin()) {
                     startActivity(FreeLeadAty.class);
-                }else {
+                } else {
                     startActivity(LoginAty.class);
                 }
                 break;
@@ -139,9 +176,9 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
                 startActivity(OpenMemberAty.class);
                 break;
             case R.id.re_toufang:
-                if (Config.isLogin()){
+                if (Config.isLogin()) {
                     startActivity(PutInAty.class);
-                }else {
+                } else {
                     startActivity(LoginAty.class);
                 }
                 break;

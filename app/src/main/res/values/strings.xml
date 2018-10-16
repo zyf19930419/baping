@@ -95,11 +95,14 @@
     <string name="confirm_new_password_tips">请确认新密码</string>
 
     <!--个人资料-->
+    <string name="head_portrait">头像</string>
     <string name="nick_name">昵称</string>
     <string name="nick_name_hint">请填写真实姓名</string>
     <string name="sex">性别</string>
     <string name="man">男生</string>
     <string name="woman">女生</string>
+    <string name="age">年龄</string>
+    <string name="age_hint">请填写真实年龄</string>
     <string name="owned_city">所属城市</string>
     <string name="owned_city_hint">请填写我所在的城市</string>
     <string name="urban_area">所属市区</string>

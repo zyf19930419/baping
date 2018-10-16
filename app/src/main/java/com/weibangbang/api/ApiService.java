@@ -1,9 +1,11 @@
 package com.weibangbang.api;
 
+import com.weibangbang.api.body.ChangePasswordBody;
 import com.weibangbang.api.body.ForgetBody;
 import com.weibangbang.api.body.LaunchCommitBody;
 import com.weibangbang.api.body.LobbyBody;
 import com.weibangbang.api.body.LoginBody;
+import com.weibangbang.api.body.NoticeDetailsBody;
 import com.weibangbang.api.body.ReceiveCommitBody;
 import com.weibangbang.api.body.RegisterBody;
 import com.weibangbang.api.body.SendmessageBody;
@@ -41,7 +43,7 @@ public interface ApiService {
     Call<ResponseBody> postUniversalLeaderboard(@Body TokenBody tokenBody);
 
     @POST("Index/notice_details.html")
-    Call<ResponseBody> postNoticeDetails(@Field("notice_id") String notice_id);
+    Call<ResponseBody> postNoticeDetails(@Body NoticeDetailsBody noticeDetailsBody);
 
     @POST("Work/lobby.html")
     Call<ResponseBody> postMakeMoney(@Body TokenBody tokenBody);
@@ -86,4 +88,16 @@ public interface ApiService {
 
     @POST("User/team22J.html")
     Call<ResponseBody> postTeam22J(@Body TokenBody tokenBody);
+
+
+    @POST("User/change_password.html")
+    Call<ResponseBody> postChangePassword(@Body ChangePasswordBody changePasswordBody);
+
+
+
+    @POST("Work/receive.html")
+    Call<ResponseBody> postReceivie(@Body TokenBody tokenBody);
+
+    @POST("Work/task_accomplish.html")
+    Call<ResponseBody> postTaskAccomplish(@Body TokenBody tokenBody);
 }

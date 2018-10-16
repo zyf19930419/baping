@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.weibangbang.R;
 import com.weibangbang.api.Config;
+import com.weibangbang.aty.home.NoticeAty;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.common.ActivityStack;
 import com.weibangbang.fgt.HomeMainFgt;
@@ -178,4 +179,10 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 首页公告栏点击事件
+     */
+    public void onAdvClick(View view) {
+        startActivity(NoticeAty.class);
+    }
 }

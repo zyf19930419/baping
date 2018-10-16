@@ -1,5 +1,6 @@
 package com.weibangbang.model;
 
+import com.weibangbang.api.body.ChangePasswordBody;
 import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.base.BaseView;
 
@@ -36,6 +37,21 @@ public class PersonalModel extends BaseModel{
         TokenBody tokenBody=new TokenBody();
         tokenBody.setToken(token);
         mCall = mApiService.postTeam22J(tokenBody);
+        request(baseView);
+    }
+
+    /**
+     * 修改密码接口
+     * @param token
+     * @param old_pass 旧密码
+     * @param new_pass 新密码
+     */
+        public void postChangePassword(String token,String old_pass,String new_pass,BaseView baseView) {
+        ChangePasswordBody changePasswordBody=new ChangePasswordBody();
+        changePasswordBody.setToken(token);
+        changePasswordBody.setOld_pass(old_pass);
+        changePasswordBody.setNew_pass(new_pass);
+        mCall = mApiService.postChangePassword(changePasswordBody);
         request(baseView);
     }
 

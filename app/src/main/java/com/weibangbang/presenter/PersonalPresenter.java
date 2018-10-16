@@ -38,6 +38,13 @@ public class PersonalPresenter extends BasePresenter{
     }
 
     /**
+     * 修改密码接口
+     */
+    public void postChangePassword(String token,String old_pass,String new_pass){
+        mModel.postChangePassword(token,old_pass,new_pass,mBaseView);
+    }
+
+    /**
      * 退出登录接口
      * @param token
      */

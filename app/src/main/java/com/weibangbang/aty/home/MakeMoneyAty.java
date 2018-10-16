@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.weibangbang.R;
+import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
+import com.weibangbang.presenter.HomePresenter;
 
 /**
  * 创建者：zhangyunfei
@@ -21,6 +23,7 @@ public class MakeMoneyAty extends BaseActivity {
     private RecyclerView mRecyclerView;
     private MakeMoneyAdapter mMoneyAdapter;
     private  TextView commit_tv;
+    private HomePresenter mHomePresenter;
 
     @Override
     public int getLayoutId() {
@@ -41,6 +44,8 @@ public class MakeMoneyAty extends BaseActivity {
 
     @Override
     public void initData() {
+        mHomePresenter = new HomePresenter(this);
+        mHomePresenter.postMakeMoney(Config.getToken());
         mMoneyAdapter=new MakeMoneyAdapter();
         mRecyclerView.setAdapter(mMoneyAdapter);
     }

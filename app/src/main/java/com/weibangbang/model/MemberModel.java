@@ -52,5 +52,25 @@ public class MemberModel extends BaseModel{
         request(baseView);
     }
 
+    /**
+     *我的任务-已领用接口
+     */
+    public void postReceivie(String token,BaseView baseView){
+        TokenBody tokenBody=new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postReceivie(tokenBody);
+        request(baseView);
+    }
+
+    /**
+     * 我的任务已完成接口
+     */
+    public void postTaskAccomplish(String token,BaseView baseView){
+        TokenBody tokenBody=new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postTaskAccomplish(tokenBody);
+        request(baseView);
+    }
+
 
 }

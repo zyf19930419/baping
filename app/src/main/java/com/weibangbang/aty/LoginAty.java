@@ -232,6 +232,7 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
             Log.e("token", data.getUser_token());
             ToastUtils.showToast(loginBean.getMsg());
             startActivity(MainActivity.class);
+            finish();
         }
 
         // 获取验证码
