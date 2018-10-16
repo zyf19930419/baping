@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.weibangbang.R;
 import com.weibangbang.api.Config;
@@ -22,7 +23,7 @@ public class MakeMoneyAty extends BaseActivity {
 
     private RecyclerView mRecyclerView;
     private MakeMoneyAdapter mMoneyAdapter;
-    private  TextView commit_tv;
+    private TextView commit_tv;
     private HomePresenter mHomePresenter;
 
     @Override
@@ -32,13 +33,13 @@ public class MakeMoneyAty extends BaseActivity {
 
     @Override
     public void initView() {
-        setTitleBar(getResources().getString(R.string.woyaozhuangyong),true);
+        setTitleBar(getResources().getString(R.string.woyaozhuangyong), true);
 
-        mRecyclerView=findViewById(R.id.recyclerView);
-        LinearLayoutManager manager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        mRecyclerView = findViewById(R.id.recyclerView);
+        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(manager);
 
-        commit_tv=findViewById(R.id.commit_tv);
+        commit_tv = findViewById(R.id.commit_tv);
         commit_tv.setText(R.string.lijizhuanyong);
     }
 
@@ -46,22 +47,25 @@ public class MakeMoneyAty extends BaseActivity {
     public void initData() {
         mHomePresenter = new HomePresenter(this);
         mHomePresenter.postMakeMoney(Config.getToken());
-        mMoneyAdapter=new MakeMoneyAdapter();
+        mMoneyAdapter = new MakeMoneyAdapter();
         mRecyclerView.setAdapter(mMoneyAdapter);
     }
 
+    public void onCommit(View view) {
+        showShortToast("立即赚佣金", Toast.LENGTH_SHORT);
+    }
 
-    private class MakeMoneyAdapter extends RecyclerView.Adapter<MakeMoneyAdapter.ViewHolder>{
+    private class MakeMoneyAdapter extends RecyclerView.Adapter<MakeMoneyAdapter.ViewHolder> {
 
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.make_money_item,parent,false));
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.make_money_item, parent, false));
         }
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.content_tv.setText("第"+(position+1)+"步\u3000~\u3000"+R.string.make_money_tips);
+            holder.content_tv.setText("第" + (position + 1) + "步\u3000~\u3000" + R.string.make_money_tips);
         }
 
         @Override
@@ -69,12 +73,12 @@ public class MakeMoneyAty extends BaseActivity {
             return 5;
         }
 
-        class ViewHolder extends RecyclerView.ViewHolder{
-            private  TextView content_tv;
+        class ViewHolder extends RecyclerView.ViewHolder {
+            private TextView content_tv;
 
             public ViewHolder(View itemView) {
                 super(itemView);
-                content_tv=itemView.findViewById(R.id.content_tv);
+                content_tv = itemView.findViewById(R.id.content_tv);
             }
         }
     }

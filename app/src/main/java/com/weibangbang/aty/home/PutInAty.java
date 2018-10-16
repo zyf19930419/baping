@@ -6,10 +6,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.api.Config;
 import com.weibangbang.api.Constant;
 import com.weibangbang.base.BaseActivity;
+import com.weibangbang.bean.home.LaunchCommitBean;
 import com.weibangbang.model.HomeModel;
 import com.weibangbang.presenter.HomePresenter;
 import com.weibangbang.utils.LogUtils;
@@ -81,7 +83,12 @@ public class PutInAty extends BaseActivity implements View.OnClickListener {
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
-        showShortToast("提交成功", Toast.LENGTH_SHORT);
-        finish();
+        if (requestUrl.endsWith("Launch/launch_commit.html")) {
+            LaunchCommitBean launchCommitBean = JSON.parseObject(jsonStr, LaunchCommitBean.class);
+            showShortToast(launchCommitBean.getMsg(), Toast.LENGTH_SHORT);
+            if (1 == launchCommitBean.getCode()) {
+                finish();
+            }
+        }
     }
 }
