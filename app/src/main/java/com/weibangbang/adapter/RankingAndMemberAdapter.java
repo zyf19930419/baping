@@ -3,7 +3,6 @@ package com.weibangbang.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.weibangbang.R;
-import com.weibangbang.api.ApiService;
 import com.weibangbang.bean.member.DailyRankingsBean;
-import com.weibangbang.utils.GlideApp;
+import com.weibangbang.bean.personal.MemberShipBean;
 
 import java.util.List;
 
@@ -25,12 +23,24 @@ import java.util.List;
 public class RankingAndMemberAdapter extends RecyclerView.Adapter<RankingAndMemberAdapter.MyViewHolder> {
 
     private List<DailyRankingsBean.DataBean> data;
-
+    private List<MemberShipBean.DataBean> memberShipData;
+    /**
+     * 1 排行榜
+     * 2 会员列表
+     */
+    private int type = 0;
     private Context mContext;
 
 
-    public void setData(List<DailyRankingsBean.DataBean> data) {
+    public void setData(List<DailyRankingsBean.DataBean> data,int type) {
         this.data = data;
+        this.type=type;
+        notifyDataSetChanged();
+    }
+
+    public void setMemberShipData(List<MemberShipBean.DataBean> memberShipData, int type) {
+        this.memberShipData = memberShipData;
+        this.type = type;
         notifyDataSetChanged();
     }
 
@@ -44,21 +54,38 @@ public class RankingAndMemberAdapter extends RecyclerView.Adapter<RankingAndMemb
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        DailyRankingsBean.DataBean dataBean = data.get(position);
         holder.order_tv.setText(String.valueOf(position + 1));
-        holder.name_tv.setText(dataBean.getUser_name());
-        if (TextUtils.isEmpty(dataBean.getUser_portrait())) {
-            GlideApp.with(mContext).load(ApiService.OFFICIAL_WEB + dataBean.getUser_portrait()).circleCrop().into(holder.head_img);
+        if (1==type){
+            DailyRankingsBean.DataBean dataBean = data.get(position);
+            holder.name_tv.setText(dataBean.getUser_name());
+//            if (TextUtils.isEmpty(dataBean.getUser_portrait())) {
+//                GlideApp.with(mContext).load(ApiService.OFFICIAL_WEB + dataBean.getUser_portrait()).circleCrop().into(holder.head_img);
+//            }
+
+            holder.price_tv.setText(dataBean.getUser_history_brokerage());
         }
 
-        holder.price_tv.setText(dataBean.getUser_history_brokerage());
+
+        if (2==type){
+            MemberShipBean.DataBean dataBean = memberShipData.get(position);
+            holder.name_tv.setText(dataBean.getUser_name());
+            holder.price_tv.setText(dataBean.getUser_balance());
+        }
+
 
 
     }
 
     @Override
     public int getItemCount() {
-        return data.size() > 0 ? data.size() : 0;
+        if (1 == type) {
+            return data.size() > 0 ? data.size() : 0;
+        }
+
+        if (2 == type) {
+            return memberShipData.size() > 0 ? memberShipData.size() : 0;
+        }
+        return 0;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

@@ -71,10 +71,10 @@ public class MembershipListAty extends BaseActivity{
         MemberShipBean memberShipBean = JSON.parseObject(jsonStr, MemberShipBean.class);
         List<MemberShipBean.DataBean> data = memberShipBean.getData();
         if (requestUrl.endsWith("User/team11J.html")){
-
+            mAdapter.setMemberShipData(data,2);
         }
         if (requestUrl.endsWith("User/team22J.html")){
-
+            mAdapter.setMemberShipData(data,2);
         }
     }
 }

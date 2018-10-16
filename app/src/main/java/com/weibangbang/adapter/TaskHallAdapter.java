@@ -113,7 +113,7 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
             NoticeBean.DataBean dataBean = noticeData.get(position);
             holder.title_tv.setText(dataBean.getNotice_title());
             holder.status_tv.setText(dataBean.getNotice_brief());
-            holder.date_tv.setText(DateUtils.times(String.valueOf(dataBean.getNotice_creattime())));
+            holder.date_tv.setText(DateUtils.getDate(String.valueOf(dataBean.getNotice_creattime())));
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

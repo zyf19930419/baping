@@ -60,12 +60,14 @@ public abstract  class BaseModel {
                         e.printStackTrace();
                     }
                 }else {
+                    Toast.makeText(ActivityStack.getInstance().topActivity(), "数据解析失败", Toast.LENGTH_SHORT).show();
                     baseView.onFailure("数据解析失败");
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(ActivityStack.getInstance().topActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 baseView.onFailure(t.getMessage());
             }
         });

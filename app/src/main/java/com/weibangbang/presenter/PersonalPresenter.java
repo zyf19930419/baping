@@ -23,6 +23,13 @@ public class PersonalPresenter extends BasePresenter{
     }
 
     /**
+     *个人信息修改页接口
+     */
+    public void postInformation(String token,String name,String sex,String age,String address){
+        mModel.postInformation(token,name,sex,age,address,mBaseView);
+    }
+
+    /**
      * 我的团队-我的一级会员接口
      */
     public void postTeam11J(String token){
@@ -35,6 +42,13 @@ public class PersonalPresenter extends BasePresenter{
      */
     public void postTeam22J(String token){
         mModel.postTeam22J(token,mBaseView);
+    }
+
+    /**
+     *我的钱包
+     */
+    public void postMyWallet(String token){
+        mModel.postMyWallet(token,mBaseView);
     }
 
     /**

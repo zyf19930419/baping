@@ -1,5 +1,6 @@
 package com.weibangbang.base;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
@@ -35,6 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
 
     private FrameLayout content;
     public TextView rootText;
+    protected Context mContext;
 
     /**
      * 网络类型
@@ -63,6 +65,7 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext=this;
         mApplication = BaseApplication.getApplication();
         DenisityUtils.setCustomDensity(this, mApplication);
         inspectNet();

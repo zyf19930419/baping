@@ -2,6 +2,7 @@ package com.weibangbang.api;
 
 import com.weibangbang.api.body.ChangePasswordBody;
 import com.weibangbang.api.body.ForgetBody;
+import com.weibangbang.api.body.InformationBody;
 import com.weibangbang.api.body.LaunchCommitBody;
 import com.weibangbang.api.body.LobbyBody;
 import com.weibangbang.api.body.LoginBody;
@@ -100,4 +101,10 @@ public interface ApiService {
 
     @POST("Work/task_accomplish.html")
     Call<ResponseBody> postTaskAccomplish(@Body TokenBody tokenBody);
+
+    @POST("User/information.html")
+    Call<ResponseBody> postInformation(@Body InformationBody informationBody);
+
+    @POST("User/my_wallet.html")
+    Call<ResponseBody> postMyWallet(@Body TokenBody tokenBody);
 }
