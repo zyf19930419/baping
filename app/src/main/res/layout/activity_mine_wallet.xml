@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
+            android:onClick="onTiXian"
             android:background="@drawable/white_shape"
             android:paddingBottom="2dp"
             android:paddingLeft="8dp"
@@ -63,6 +64,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_marginTop="8dp">

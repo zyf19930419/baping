@@ -63,14 +63,14 @@ public class RankingListAty extends BaseActivity{
             DailyRankingsBean dailyRankingsBean = JSON.parseObject(jsonStr, DailyRankingsBean.class);
             List<DailyRankingsBean.DataBean> data = dailyRankingsBean.getData();
             if (data!=null ){
-                mAdapter.setData(data);
+                mAdapter.setData(data,1);
             }
         }
         if (requestUrl.endsWith("ranking_list.html")){
             DailyRankingsBean dailyRankingsBean = JSON.parseObject(jsonStr, DailyRankingsBean.class);
             List<DailyRankingsBean.DataBean> data = dailyRankingsBean.getData();
             if (data!=null ){
-                mAdapter.setData(data);
+                mAdapter.setData(data,1);
             }
         }
     }

@@ -6,7 +6,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.weibangbang.R;
+import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
+import com.weibangbang.presenter.PersonalPresenter;
+import com.weibangbang.utils.ToastUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * 创建者：zhangyunfei
@@ -17,6 +23,7 @@ public class PersonaInfoAty extends BaseActivity {
     private TextView commit_tv,img_hint_tv,man_tv,woman_tv;
     private EditText name_edit,age_edit,address_edit;
     private int sex=1;
+    private PersonalPresenter mPersonalPresenter;
     @Override
     public int getLayoutId() {
         return R.layout.activity_personal_info;
@@ -52,7 +59,7 @@ public class PersonaInfoAty extends BaseActivity {
 
     @Override
     public void initData() {
-
+        mPersonalPresenter=new PersonalPresenter(this);
     }
 
     public void onMan(View view) {
@@ -72,5 +79,24 @@ public class PersonaInfoAty extends BaseActivity {
     }
 
     public void onCommit(View view) {
+        String name = name_edit.getText().toString();
+        String age = age_edit.getText().toString();
+        String address = address_edit.getText().toString();
+        mPersonalPresenter.postInformation(Config.getToken(),name,String.valueOf(sex),age,address);
+    }
+
+    @Override
+    public void onComplete(String requestUrl, String jsonStr) {
+        super.onComplete(requestUrl, jsonStr);
+        if (requestUrl.endsWith("User/information.html")){
+            try {
+                JSONObject jsonObject=new JSONObject(jsonStr);
+                String msg = jsonObject.getString("msg");
+                ToastUtils.showToast(msg);
+                finish();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

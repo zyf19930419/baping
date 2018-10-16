@@ -1,6 +1,7 @@
 package com.weibangbang.model;
 
 import com.weibangbang.api.body.ChangePasswordBody;
+import com.weibangbang.api.body.InformationBody;
 import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.base.BaseView;
 
@@ -21,6 +22,25 @@ public class PersonalModel extends BaseModel{
     }
 
     /**
+     *个人信息修改页接口
+     * @param token
+     * @param name
+     * @param sex
+     * @param age
+     * @param address
+     */
+    public void postInformation(String token,String name,String sex,String age,String address,BaseView baseView) {
+        InformationBody informationBody=new InformationBody();
+        informationBody.setToken(token);
+        informationBody.setName(name);
+        informationBody.setSex(sex);
+        informationBody.setAge(age);
+        informationBody.setDowntown(address);
+        mCall = mApiService.postInformation(informationBody);
+        request(baseView);
+    }
+
+    /**
      *我的团队-我的一级会员接口
      */
     public void postTeam11J(String token,BaseView baseView) {
@@ -37,6 +57,16 @@ public class PersonalModel extends BaseModel{
         TokenBody tokenBody=new TokenBody();
         tokenBody.setToken(token);
         mCall = mApiService.postTeam22J(tokenBody);
+        request(baseView);
+    }
+
+    /**
+     *我的钱包
+     */
+    public void postMyWallet(String token,BaseView baseView) {
+        TokenBody tokenBody=new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postMyWallet(tokenBody);
         request(baseView);
     }
 
