@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -24,8 +25,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
+                android:orientation="horizontal"
                 android:paddingStart="15dp">
 
                 <TextView
@@ -35,39 +36,40 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:layout_marginStart="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:text="@string/copywriting_tip"
                     android:textSize="10sp" />
             </LinearLayout>
 
             <FrameLayout
-                android:elevation="3dp"
-                android:layout_marginStart="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/edit_shape"
-                android:layout_width="match_parent"
-                android:minHeight="120dp"
-                android:layout_height="wrap_content">
+                android:elevation="3dp"
+                android:minHeight="120dp">
 
                 <TextView
-                    android:padding="10dp"
-                    android:textSize="12sp"
-                    android:text="尽快尽快尽快卡死了科技阿里卡时间段风口浪尖埃里克森大家发老师看到尽快尽快尽快卡死了科技阿里卡时间段风口浪尖埃里克森大家发老师看到尽快尽快尽快卡死了科技阿里卡时间段风口浪尖埃里克森大家发老师看到尽快尽快尽快卡死了科技阿里卡时间段风口浪尖埃里克森大家发老师看到"
+                    android:id="@+id/taskDetails_wenAn_tv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="尽快尽快尽快卡死了科技阿里卡时间段风口浪尖埃里克森大家发老师看到尽快尽快尽快卡死了科技阿里卡时间段风口浪尖埃里克森大家发老师看到尽快尽快尽快卡死了科技阿里卡时间段风口浪尖埃里克森大家发老师看到尽快尽快尽快卡死了科技阿里卡时间段风口浪尖埃里克森大家发老师看到"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
                     android:layout_marginBottom="10dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/commit_shape"
                     android:elevation="3dp"
                     android:gravity="center"
-                    android:layout_gravity="right|bottom"
                     android:onClick="onCopy"
                     android:paddingBottom="3dp"
                     android:paddingEnd="15dp"
@@ -81,8 +83,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="15dp"
+                android:orientation="horizontal"
                 android:paddingStart="15dp">
 
                 <TextView
@@ -92,14 +94,14 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:layout_marginStart="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:text="@string/pic_tip"
                     android:textSize="10sp" />
             </LinearLayout>
 
-            <include layout="@layout/button_layout"/>
+            <include layout="@layout/button_layout" />
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

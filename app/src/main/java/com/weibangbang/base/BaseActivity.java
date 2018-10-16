@@ -1,5 +1,8 @@
 package com.weibangbang.base;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
@@ -282,6 +285,22 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
         if (isShowBack) {
             ImageView back_img = findViewById(R.id.back_img);
             back_img.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * 复制字符串内容
+     *
+     * @param contentStr
+     */
+    public void copyText(String contentStr) {
+        if (!contentStr.isEmpty()) {
+            ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clipData = ClipData.newPlainText("simple text", contentStr);
+            clipboardManager.setPrimaryClip(clipData);
+            ToastUtils.showToast("复制成功");
+        } else {
+            ToastUtils.showToast("复制失败，内容为空");
         }
     }
 }
