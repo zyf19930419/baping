@@ -173,7 +173,11 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
                 }
                 break;
             case R.id.re_huiyuan:
-                startActivity(OpenMemberAty.class);
+                if (Config.isLogin()) {
+                    startActivity(OpenMemberAty.class);
+                } else {
+                    startActivity(LoginAty.class);
+                }
                 break;
             case R.id.re_toufang:
                 if (Config.isLogin()) {

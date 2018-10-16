@@ -76,6 +76,17 @@ public class HomeModel extends BaseModel {
         mCall = mApiService.postReceiveCommit(receiveCommitBody);
         request(baseView);
     }
+
+    /**
+     * 开通会员
+     */
+    public void postVipList(String token, BaseView baseView) {
+        TokenBody tokenBody = new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postVipList(tokenBody);
+        request(baseView);
+    }
+
     /**
      * 联系客服接口
      */

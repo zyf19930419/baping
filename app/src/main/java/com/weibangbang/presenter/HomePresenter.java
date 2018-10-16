@@ -54,6 +54,13 @@ public class HomePresenter extends BasePresenter {
         mModel.postReceiveCommit(token,name,phone,address,mBaseView);
     }
 
+    /**
+     * 开通会员
+     */
+    public void postVipList(String token) {
+        mModel.postVipList(token, mBaseView);
+    }
+
 
     /**
      * 联系客服接口

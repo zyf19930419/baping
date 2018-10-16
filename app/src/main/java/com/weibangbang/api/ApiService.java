@@ -111,4 +111,8 @@ public interface ApiService {
 
     @POST("Work/task_info.html")
     Call<ResponseBody> posTaskInfo(@Body TaskInfoBody taskInfoBody);
+
+    @POST("Vip/vip_list.html")
+    Call<ResponseBody> postVipList(@Body TokenBody tokenBody);
+
 }
