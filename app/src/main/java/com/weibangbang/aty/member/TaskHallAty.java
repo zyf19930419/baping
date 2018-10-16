@@ -1,5 +1,6 @@
 package com.weibangbang.aty.member;
 
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -56,14 +57,17 @@ public class TaskHallAty extends BaseActivity{
         super.onComplete(requestUrl, jsonStr);
         if (requestUrl.endsWith("Work/lobby.html")){
             LobbyBean lobbyBean= JSON.parseObject(jsonStr,LobbyBean.class);
-            List<LobbyBean.DataBean> data = lobbyBean.getData();
+            final List<LobbyBean.DataBean> data = lobbyBean.getData();
             if (null!=data){
                 mTaskHallAdapter=new TaskHallAdapter(getResources().getString(R.string.renwudating),data);
                 mRecyclerView.setAdapter(mTaskHallAdapter);
                 mTaskHallAdapter.setOnButtonClickListener(new TaskHallAdapter.onButtonClickListener() {
                     @Override
                     public void onButtonClick(int position) {
-                        startActivity(TaskDetailsAty.class);
+                        int task_id = data.get(position).getTask_id();
+                        Bundle bundle=new Bundle();
+                        bundle.putInt("task_id",task_id);
+                        startActivity(TaskDetailsAty.class,bundle);
                     }
                 });
             }

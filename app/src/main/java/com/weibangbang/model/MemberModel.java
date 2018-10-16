@@ -1,6 +1,7 @@
 package com.weibangbang.model;
 
 import com.weibangbang.api.body.LobbyBody;
+import com.weibangbang.api.body.TaskInfoBody;
 import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.base.BaseView;
 
@@ -21,6 +22,19 @@ public class MemberModel extends BaseModel{
         lobbyBody.setToken(token);
         lobbyBody.setVip(vip);
         mCall = mApiService.postlobby(lobbyBody);
+        request(baseView);
+    }
+
+    /**
+     * 任务大厅点击查看的任务详情
+     * @param token
+     * @param id
+     */
+    public void posTaskInfo(String token,String id,BaseView baseView){
+        TaskInfoBody taskInfoBody=new TaskInfoBody();
+        taskInfoBody.setToken(token);
+        taskInfoBody.setId(id);
+        mCall = mApiService.posTaskInfo(taskInfoBody);
         request(baseView);
     }
 

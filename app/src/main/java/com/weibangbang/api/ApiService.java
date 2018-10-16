@@ -10,6 +10,7 @@ import com.weibangbang.api.body.NoticeDetailsBody;
 import com.weibangbang.api.body.ReceiveCommitBody;
 import com.weibangbang.api.body.RegisterBody;
 import com.weibangbang.api.body.SendmessageBody;
+import com.weibangbang.api.body.TaskInfoBody;
 import com.weibangbang.api.body.TokenBody;
 
 import okhttp3.ResponseBody;
@@ -107,4 +108,7 @@ public interface ApiService {
 
     @POST("User/my_wallet.html")
     Call<ResponseBody> postMyWallet(@Body TokenBody tokenBody);
+
+    @POST("Work/task_info.html")
+    Call<ResponseBody> posTaskInfo(@Body TaskInfoBody taskInfoBody);
 }

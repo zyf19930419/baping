@@ -22,6 +22,13 @@ public class MemberPresenter extends BasePresenter{
     public void postlobby(String token,String vip){
         mModel.postlobby(token,vip,mBaseView);
     }
+
+    /**
+     * 任务大厅点击查看的任务详情
+     */
+    public void posTaskInfo(String token,String id){
+        mModel.posTaskInfo(token,id,mBaseView);
+    }
     /**
      * 任务规则
      */

@@ -38,10 +38,10 @@ public abstract  class BaseModel {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 String requestUrl = call.request().url().toString();
-                LogUtils.e(response.toString());
                 if (response.isSuccessful()) {
                     try {
                         String jsonStr = response.body().string();
+                        LogUtils.e(response.toString()+"========"+jsonStr);
                         JSONObject jsonObject=new JSONObject(jsonStr);
                         int code = jsonObject.optInt("code");
                         if (1==code){

@@ -7,10 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.weibangbang.R;
 import com.weibangbang.api.Config;
+import com.weibangbang.aty.member.TaskHallAty;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.presenter.HomePresenter;
 
@@ -52,11 +52,11 @@ public class MakeMoneyAty extends BaseActivity {
     }
 
     public void onCommit(View view) {
-        showShortToast("立即赚佣金", Toast.LENGTH_SHORT);
+        startActivity(TaskHallAty.class);
     }
 
     private class MakeMoneyAdapter extends RecyclerView.Adapter<MakeMoneyAdapter.ViewHolder> {
-
+        private String[] titles={"扫码下载APP","支付99元成为VIP","【任务中心】领取任务发朋友圈保留两小时","【提交任务】按照任务模板截图上传","赚取8元一天的佣金"};
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -65,7 +65,7 @@ public class MakeMoneyAty extends BaseActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.content_tv.setText("第" + (position + 1) + "步\u3000~\u3000" + R.string.make_money_tips);
+            holder.content_tv.setText("第" + (position + 1) + "步\u3000~\u3000" + titles[position]);
         }
 
         @Override
