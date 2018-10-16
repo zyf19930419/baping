@@ -1,10 +1,16 @@
 package com.weibangbang.aty.personal;
 
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.lzy.imagepicker.ImagePicker;
+import com.lzy.imagepicker.bean.ImageItem;
+import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.weibangbang.R;
 import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
@@ -13,6 +19,8 @@ import com.weibangbang.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * 创建者：zhangyunfei
@@ -24,6 +32,8 @@ public class PersonaInfoAty extends BaseActivity {
     private EditText name_edit,age_edit,address_edit;
     private int sex=1;
     private PersonalPresenter mPersonalPresenter;
+    private int IMAGE_PICKER=1;
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_personal_info;
@@ -76,6 +86,29 @@ public class PersonaInfoAty extends BaseActivity {
      * 头像选择
      */
     public void onChooseHead(View view) {
+        setImagePicker();
+        Intent intent = new Intent(this, ImageGridActivity.class);
+        startActivityForResult(intent, IMAGE_PICKER);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
+            if (data != null && requestCode == IMAGE_PICKER) {
+                ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+                if (null !=images &&images.size()>0){
+                    Log.e("TAG", images.toString() );
+                }else {
+                    Toast.makeText(this, "没有", Toast.LENGTH_SHORT).show();
+                }
+
+//                MyAdapter adapter = new MyAdapter(images);
+//                gridView.setAdapter(adapter);
+            } else {
+                Toast.makeText(this, "没有数据", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public void onCommit(View view) {

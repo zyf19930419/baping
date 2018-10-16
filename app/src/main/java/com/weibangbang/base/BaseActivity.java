@@ -312,6 +312,7 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
 
     public void setImagePicker(){
         ImagePicker imagePicker = ImagePicker.getInstance();
+        imagePicker.setMultiMode(false);
         imagePicker.setImageLoader(new ImagePickerLoader());   //设置图片加载器
         imagePicker.setShowCamera(true);  //显示拍照按钮
         imagePicker.setCrop(true);        //允许裁剪（单选才有效）
