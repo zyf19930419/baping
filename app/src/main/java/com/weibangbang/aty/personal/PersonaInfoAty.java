@@ -1,10 +1,12 @@
 package com.weibangbang.aty.personal;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,10 +31,11 @@ import java.util.ArrayList;
  */
 public class PersonaInfoAty extends BaseActivity {
     private TextView commit_tv,img_hint_tv,man_tv,woman_tv;
+    private ImageView head_img;
     private EditText name_edit,age_edit,address_edit;
     private int sex=1;
     private PersonalPresenter mPersonalPresenter;
-    private int IMAGE_PICKER=1;
+    private int IMAGE_PICKER=100;
 
     @Override
     public int getLayoutId() {
@@ -44,6 +47,7 @@ public class PersonaInfoAty extends BaseActivity {
         setTitleBar(R.string.personal_info,true);
         commit_tv=findViewById(R.id.commit_tv);
         commit_tv.setText(R.string.querenxiugai);
+        head_img=findViewById(R.id.head_img);
         img_hint_tv=findViewById(R.id.img_hint_tv);
         man_tv=findViewById(R.id.man_tv);
         woman_tv=findViewById(R.id.woman_tv);
@@ -97,14 +101,8 @@ public class PersonaInfoAty extends BaseActivity {
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             if (data != null && requestCode == IMAGE_PICKER) {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
-                if (null !=images &&images.size()>0){
-                    Log.e("TAG", images.toString() );
-                }else {
-                    Toast.makeText(this, "没有", Toast.LENGTH_SHORT).show();
-                }
-
-//                MyAdapter adapter = new MyAdapter(images);
-//                gridView.setAdapter(adapter);
+                ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, images.get(0).path, head_img, 0, 0);
+                img_hint_tv.setVisibility(View.GONE);
             } else {
                 Toast.makeText(this, "没有数据", Toast.LENGTH_SHORT).show();
             }
