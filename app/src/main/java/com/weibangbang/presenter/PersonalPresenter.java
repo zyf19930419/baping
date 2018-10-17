@@ -3,6 +3,9 @@ package com.weibangbang.presenter;
 import com.weibangbang.base.BaseView;
 import com.weibangbang.model.PersonalModel;
 
+import java.io.File;
+import java.util.List;
+
 /**
  * 创建者：zhangyunfei
  * 创建时间：2018/10/11 9:08
@@ -64,5 +67,12 @@ public class PersonalPresenter extends BasePresenter{
      */
     public void postLoginOut(String token){
         mModel.postLoginOut(token,mBaseView);
+    }
+
+    /**
+     * 图片上传
+     */
+    public void postUpLoad(String token,List<File> fileList){
+        mModel.postUpLoad(token,fileList,mBaseView);
     }
 }

@@ -3,7 +3,6 @@ package com.weibangbang.aty.personal;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,7 +21,9 @@ import com.weibangbang.utils.ToastUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 创建者：zhangyunfei
@@ -103,6 +104,14 @@ public class PersonaInfoAty extends BaseActivity {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
                 ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, images.get(0).path, head_img, 0, 0);
                 img_hint_tv.setVisibility(View.GONE);
+                List<File> fileList=new ArrayList<>();
+                for (int i = 0; i < images.size(); i++) {
+                    fileList.add(new File(images.get(i).path));
+                }
+                if (fileList.size()>0){
+                    mPersonalPresenter.postUpLoad(Config.getToken(),fileList);
+                }
+
             } else {
                 Toast.makeText(this, "没有数据", Toast.LENGTH_SHORT).show();
             }
@@ -128,6 +137,10 @@ public class PersonaInfoAty extends BaseActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+
+        if (requestUrl.endsWith("Base/upload_img.html")){
+
         }
     }
 }

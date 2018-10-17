@@ -13,10 +13,15 @@ import com.weibangbang.api.body.SendmessageBody;
 import com.weibangbang.api.body.TaskInfoBody;
 import com.weibangbang.api.body.TokenBody;
 
+import java.util.Map;
+
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PartMap;
 
 /**
  * 创建者：zhangyunfei
@@ -112,5 +117,9 @@ public interface ApiService {
 
     @POST("Vip/vip_list.html")
     Call<ResponseBody> postVipList(@Body TokenBody tokenBody);
+
+    @Multipart
+    @POST("Base/upload_img.html")
+    Call<ResponseBody> postUpLoad(@PartMap() Map<String, RequestBody> files);
 
 }

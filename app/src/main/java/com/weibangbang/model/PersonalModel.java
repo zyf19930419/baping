@@ -5,6 +5,14 @@ import com.weibangbang.api.body.InformationBody;
 import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.base.BaseView;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+
 /**
  * 创建者：zhangyunfei
  * 创建时间：2018/10/11 9:08
@@ -93,6 +101,24 @@ public class PersonalModel extends BaseModel{
         TokenBody tokenBody = new TokenBody();
         tokenBody.setToken(token);
         mCall = mApiService.postLoginOut(tokenBody);
+        request(baseView);
+    }
+
+    /**
+     * 图片上传
+     * @param fileList
+     * @param baseView
+     */
+    public void postUpLoad(String token,List<File> fileList, BaseView baseView) {
+        Map<String, RequestBody> map = new HashMap<>();
+        map.put("token", RequestBody.create(MediaType.parse("text/plain"), token));
+//        for (int i = 0; i < fileList.size(); i++) {
+//            RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), fileList.get(i));
+//            map.put("image"+i, requestBody);
+//        }
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"),fileList.get(0));
+        map.put("image", requestBody);
+        mCall = mApiService.postUpLoad(map);
         request(baseView);
     }
 }
