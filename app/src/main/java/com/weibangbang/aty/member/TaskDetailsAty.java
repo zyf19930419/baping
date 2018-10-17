@@ -3,14 +3,20 @@ package com.weibangbang.aty.member;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
+import com.weibangbang.api.ApiService;
 import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.member.TaskDetailsBean;
 import com.weibangbang.presenter.MemberPresenter;
+import com.weibangbang.utils.BitmapUtils;
+import com.weibangbang.utils.GlideApp;
 import com.weibangbang.utils.ToastUtils;
+
+import static com.mob.MobSDK.getContext;
 
 /**
  * 创建者：zhangyunfei
@@ -58,8 +64,28 @@ public class TaskDetailsAty extends BaseActivity{
         super.onComplete(requestUrl, jsonStr);
         if (requestUrl.endsWith("Work/task_info.html")){
             TaskDetailsBean taskDetailsBean = JSON.parseObject(jsonStr, TaskDetailsBean.class);
-            title_tv.setText(taskDetailsBean.getData().get(0).getTask_name());
-            status_tv.setText(taskDetailsBean.getData().get(0).getTask_content());
+            title_tv.setText(taskDetailsBean.getData().getTask_name());
+            status_tv.setText(taskDetailsBean.getData().getTask_require());
+            copy_tv.setText(taskDetailsBean.getData().getTask_content());
+            final String img_url=ApiService.BASE_IMAGE+taskDetailsBean.getData().getTask_image();
+            GlideApp.with(mContext).load(img_url).into(task_img);
+            task_img.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    BitmapUtils.gainInstance().savePic(mContext, img_url, System.currentTimeMillis() + "", new BitmapUtils.Listener() {
+                        @Override
+                        public void saveSuccess() {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getContext(), "图片保存成功", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+                    return false;
+                }
+            });
         }
     }
 

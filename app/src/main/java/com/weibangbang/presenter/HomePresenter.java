@@ -47,6 +47,13 @@ public class HomePresenter extends BasePresenter {
     }
 
     /**
+     *免费领用详情
+     */
+    public void postReceiveInfo(String token) {
+        mModel.postReceiveInfo(token, mBaseView);
+    }
+
+    /**
      *免费领取提交接口
      */
     public void postReceiveCommit(String token,String name,String phone,String address) {

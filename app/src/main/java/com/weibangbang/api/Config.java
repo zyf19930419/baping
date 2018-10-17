@@ -28,4 +28,30 @@ public class Config {
         }
         SharedPreferencesUtils.getInstance(ActivityStack.getInstance().topActivity()).putString(Constant.TOKEN,token);
     }
+
+    /**
+     * 分享页面的邀请码
+     * @param user_inviter
+     */
+    public static void setUserInviter(String user_inviter){
+        SharedPreferencesUtils.getInstance(ActivityStack.getInstance().topActivity()).putString(Constant.USER_INVITER,user_inviter);
+    }
+
+    /**
+     * 分享页面的二维码图片
+     * @param user_inviter_qrcode
+     */
+    public static void setUserInviterQrcode(String user_inviter_qrcode){
+        SharedPreferencesUtils.getInstance(ActivityStack.getInstance().topActivity()).putString(Constant.USER_INVITER_QRCODE,user_inviter_qrcode);
+    }
+
+    public static String getUserInviter(){
+        String user_inviter=SharedPreferencesUtils.getInstance(ActivityStack.getInstance().topActivity()).getString(Constant.USER_INVITER,"");
+        return user_inviter;
+    }
+
+    public static String getUserInviterQrcode(){
+        String user_inviter_qrcode=SharedPreferencesUtils.getInstance(ActivityStack.getInstance().topActivity()).getString(Constant.USER_INVITER_QRCODE,"");
+        return user_inviter_qrcode;
+    }
 }

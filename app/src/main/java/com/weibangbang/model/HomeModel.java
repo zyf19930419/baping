@@ -3,6 +3,7 @@ package com.weibangbang.model;
 import com.weibangbang.api.body.LaunchCommitBody;
 import com.weibangbang.api.body.NoticeDetailsBody;
 import com.weibangbang.api.body.ReceiveCommitBody;
+import com.weibangbang.api.body.ReceiveInfoBody;
 import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.base.BaseView;
 
@@ -54,6 +55,17 @@ public class HomeModel extends BaseModel {
         TokenBody tokenBody = new TokenBody();
         tokenBody.setToken(token);
         mCall = mApiService.postMakeMoney(tokenBody);
+        request(baseView);
+    }
+
+    /**
+     *免费领用详情
+     */
+    public void postReceiveInfo(String token, BaseView baseView) {
+        ReceiveInfoBody receiveInfoBody = new ReceiveInfoBody();
+        receiveInfoBody.setToken(token);
+        receiveInfoBody.setId("1");
+        mCall = mApiService.postReceiveInfo(receiveInfoBody);
         request(baseView);
     }
 

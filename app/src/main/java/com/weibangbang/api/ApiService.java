@@ -8,6 +8,7 @@ import com.weibangbang.api.body.LobbyBody;
 import com.weibangbang.api.body.LoginBody;
 import com.weibangbang.api.body.NoticeDetailsBody;
 import com.weibangbang.api.body.ReceiveCommitBody;
+import com.weibangbang.api.body.ReceiveInfoBody;
 import com.weibangbang.api.body.RegisterBody;
 import com.weibangbang.api.body.SendmessageBody;
 import com.weibangbang.api.body.TaskInfoBody;
@@ -125,4 +126,7 @@ public interface ApiService {
 
     @POST("User/information_display.html")
     Call<ResponseBody> postInformationDisplay(@Body TokenBody tokenBody);
+
+    @POST("Receive/receive_info.html")
+    Call<ResponseBody> postReceiveInfo(@Body ReceiveInfoBody receiveInfoBody);
 }

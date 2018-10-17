@@ -8,7 +8,10 @@ package com.weibangbang.api;
  */
 public class Constant {
 
-    public static final String PREFERENCE_NAME="baping";
-    public static final String ISLOGIN="isLogin";
-    public static final String TOKEN="token";
+    public static final String PREFERENCE_NAME = "baping";
+    public static final String ISLOGIN = "isLogin";
+    public static final String TOKEN = "token";
+    //分享赚钱页面的邀请码直接使用登陆接口返回的user_inviter和user_inviter_qrcode字段就可以
+    public static final String USER_INVITER = "user_inviter";
+    public static final String USER_INVITER_QRCODE = "user_inviter_qrcode";
 }

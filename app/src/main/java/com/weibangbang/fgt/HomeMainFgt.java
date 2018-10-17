@@ -188,7 +188,11 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
                 }
                 break;
             case R.id.re_haoyou:
-                startActivity(ShareMoneyAty.class);
+                if (Config.isLogin()) {
+                    startActivity(ShareMoneyAty.class);
+                } else {
+                    startActivity(LoginAty.class);
+                }
                 break;
             case R.id.re_kefu:
                 if (Config.isLogin()) {
