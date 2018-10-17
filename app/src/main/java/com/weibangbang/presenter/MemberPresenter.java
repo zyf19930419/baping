@@ -32,8 +32,8 @@ public class MemberPresenter extends BasePresenter{
     /**
      * 任务规则
      */
-    public void postTaskRules(){
-        mModel.postTaskRules(mBaseView);
+    public void postTaskRules(String token){
+        mModel.postTaskRules(token,mBaseView);
     }
 
     /**

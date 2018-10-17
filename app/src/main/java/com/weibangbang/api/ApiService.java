@@ -16,8 +16,6 @@ import com.weibangbang.api.body.TokenBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
@@ -55,7 +53,7 @@ public interface ApiService {
     Call<ResponseBody> postContactCustomerService(@Body TokenBody tokenBody);
 
     @POST("Work/task_rules.html")
-    Call<ResponseBody> postTaskRules();
+    Call<ResponseBody> postTaskRules(@Body TokenBody tokenBody);
 
 
     @POST("Account/send_message.html")

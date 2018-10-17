@@ -41,8 +41,10 @@ public class MemberModel extends BaseModel{
     /**
      * 任务规则
      */
-    public void postTaskRules(BaseView baseView) {
-        mCall = mApiService.postTaskRules();
+    public void postTaskRules(String token,BaseView baseView) {
+        TokenBody tokenBody=new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postTaskRules(tokenBody);
         request(baseView);
     }
 

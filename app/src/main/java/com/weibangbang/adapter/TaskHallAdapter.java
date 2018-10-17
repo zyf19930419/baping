@@ -82,7 +82,7 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
 
             MyTaskBean.DataBean dataBean = myTaskData.get(position);
 
-            holder.title_tv.setText(dataBean.getTask_id());
+            holder.title_tv.setText(dataBean.getTask_id()+"");
             int user_task_status = dataBean.getUser_task_status();
             //1.领取2.审核中3.审核成功4.审核失败
             String status="";

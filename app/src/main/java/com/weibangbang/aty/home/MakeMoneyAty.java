@@ -8,11 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.api.Config;
 import com.weibangbang.aty.member.TaskHallAty;
 import com.weibangbang.base.BaseActivity;
+import com.weibangbang.bean.home.MakeMoneyBean;
 import com.weibangbang.presenter.HomePresenter;
+
+import java.util.List;
 
 /**
  * 创建者：zhangyunfei
@@ -47,16 +51,34 @@ public class MakeMoneyAty extends BaseActivity {
     public void initData() {
         mHomePresenter = new HomePresenter(this);
         mHomePresenter.postMakeMoney(Config.getToken());
-        mMoneyAdapter = new MakeMoneyAdapter();
-        mRecyclerView.setAdapter(mMoneyAdapter);
+
     }
 
     public void onCommit(View view) {
         startActivity(TaskHallAty.class);
     }
 
+    @Override
+    public void onComplete(String requestUrl, String jsonStr) {
+        super.onComplete(requestUrl, jsonStr);
+        if (requestUrl.endsWith("Work/lobby.html")){
+            MakeMoneyBean makeMoneyBean = JSON.parseObject(jsonStr, MakeMoneyBean.class);
+            List<MakeMoneyBean.DataBean> data = makeMoneyBean.getData();
+            if (null != data){
+                mMoneyAdapter = new MakeMoneyAdapter(data);
+                mRecyclerView.setAdapter(mMoneyAdapter);
+            }
+        }
+    }
+
     private class MakeMoneyAdapter extends RecyclerView.Adapter<MakeMoneyAdapter.ViewHolder> {
-        private String[] titles={"扫码下载APP","支付99元成为VIP","【任务中心】领取任务发朋友圈保留两小时","【提交任务】按照任务模板截图上传","赚取8元一天的佣金"};
+//        private String[] titles={"扫码下载APP","支付99元成为VIP","【任务中心】领取任务发朋友圈保留两小时","【提交任务】按照任务模板截图上传","赚取8元一天的佣金"};
+        private List<MakeMoneyBean.DataBean> data;
+
+        public MakeMoneyAdapter(List<MakeMoneyBean.DataBean> data) {
+            this.data = data;
+        }
+
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -65,12 +87,12 @@ public class MakeMoneyAty extends BaseActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.content_tv.setText("第" + (position + 1) + "步\u3000~\u3000" + titles[position]);
+            holder.content_tv.setText("第" + (position + 1) + "步\u3000~\u3000" + data.get(position).getTask_content());
         }
 
         @Override
         public int getItemCount() {
-            return 5;
+            return data.size()>0?data.size():0;
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {

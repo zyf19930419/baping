@@ -75,6 +75,8 @@ public class ContactCustomerAty extends BaseActivity{
                 phone2_tv.setText(service.get(1).getService_contact());
             }
             CustomerBean.DataBean.InformationBean information = data.getInformation();
+            service_am_tv.setText(information.getService_time());
+            service_pm_tv.setText(information.getService_time2());
             hot_line_tv.setText("客户服务热线\u3000:\u3000"+information.getService_phone());
         }
     }

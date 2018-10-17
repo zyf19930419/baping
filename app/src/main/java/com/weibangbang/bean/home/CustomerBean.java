@@ -74,11 +74,21 @@ public class CustomerBean {
              * service_id : 1
              * service_phone : 022-2458-0118
              * service_time : AM 9.00~11.00 PM 1.00~6.00
+             * service_time2 : AM 9.00~11.00 PM 1.00~6.00
              */
 
             private int service_id;
             private String service_phone;
             private String service_time;
+            private String service_time2;
+
+            public String getService_time2() {
+                return service_time2;
+            }
+
+            public void setService_time2(String service_time2) {
+                this.service_time2 = service_time2;
+            }
 
             public int getService_id() {
                 return service_id;
