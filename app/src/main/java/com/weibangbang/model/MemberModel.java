@@ -39,6 +39,19 @@ public class MemberModel extends BaseModel{
     }
 
     /**
+     *领取任务接口
+     * @param token
+     * @param id
+     */
+    public void posTaskGet(String token,String id,BaseView baseView){
+        TaskInfoBody taskInfoBody=new TaskInfoBody();
+        taskInfoBody.setToken(token);
+        taskInfoBody.setId(id);
+        mCall = mApiService.posTaskGet(taskInfoBody);
+        request(baseView);
+    }
+
+    /**
      * 任务规则
      */
     public void postTaskRules(String token,BaseView baseView) {

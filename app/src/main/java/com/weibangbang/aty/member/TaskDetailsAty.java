@@ -16,6 +16,11 @@ import com.weibangbang.utils.BitmapUtils;
 import com.weibangbang.utils.GlideApp;
 import com.weibangbang.utils.ToastUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.security.spec.MGF1ParameterSpec;
+
 import static com.mob.MobSDK.getContext;
 
 /**
@@ -87,6 +92,17 @@ public class TaskDetailsAty extends BaseActivity{
                 }
             });
         }
+
+        if (requestUrl.endsWith("Work/task_get.html")){
+            try {
+                JSONObject jsonObject=new JSONObject(jsonStr);
+                String msg = jsonObject.getString("msg");
+                ToastUtils.showToast(msg);
+                finish();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -104,7 +120,7 @@ public class TaskDetailsAty extends BaseActivity{
      * @param view
      */
     public void onCommit(View view) {
-        ToastUtils.showToast("确认领取任务");
+        mMemberPresenter.posTaskGet(Config.getToken(), String.valueOf(mTask_id));
     }
 
 }

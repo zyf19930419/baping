@@ -29,6 +29,13 @@ public class MemberPresenter extends BasePresenter{
     public void posTaskInfo(String token,String id){
         mModel.posTaskInfo(token,id,mBaseView);
     }
+
+    /**
+     * 领取任务接口
+     */
+    public void posTaskGet(String token,String id){
+        mModel.posTaskGet(token,id,mBaseView);
+    }
     /**
      * 任务规则
      */
