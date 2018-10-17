@@ -26,6 +26,12 @@ public class PersonalPresenter extends BasePresenter{
     }
 
     /**
+     *个人信息修改显示页接口
+     */
+    public void postInformationDisplay(String token){
+        mModel.postInformationDisplay(token,mBaseView);
+    }
+    /**
      *个人信息修改页接口
      */
     public void postInformation(String token,String name,String sex,String age,String address){

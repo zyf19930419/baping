@@ -13,9 +13,12 @@ import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.weibangbang.R;
+import com.weibangbang.api.ApiService;
 import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
+import com.weibangbang.bean.personal.InformationDisplayBean;
 import com.weibangbang.presenter.PersonalPresenter;
+import com.weibangbang.utils.GlideApp;
 import com.weibangbang.utils.ToastUtils;
 
 import org.json.JSONException;
@@ -24,6 +27,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * 创建者：zhangyunfei
@@ -37,6 +41,7 @@ public class PersonaInfoAty extends BaseActivity {
     private int sex=1;
     private PersonalPresenter mPersonalPresenter;
     private int IMAGE_PICKER=100;
+    private InformationDisplayBean.DataBean mData;
 
     @Override
     public int getLayoutId() {
@@ -55,7 +60,16 @@ public class PersonaInfoAty extends BaseActivity {
         name_edit=findViewById(R.id.name_edit);
         age_edit=findViewById(R.id.age_edit);
         address_edit=findViewById(R.id.address_edit);
-        setChoose(sex);
+        mData= (InformationDisplayBean.DataBean) getIntent().getSerializableExtra("personalInfo");
+        if (null!=mData){
+            String img_url= ApiService.BASE_IMAGE+ mData.getUser_portrait();
+            GlideApp.with(mContext).load(img_url).circleCrop().into(head_img);
+            setChoose(mData.getUser_sex());
+            name_edit.setText(mData.getUser_name());
+            age_edit.setText(String.valueOf(mData.getUser_age()));
+            address_edit.setText(mData.getUser_site());
+        }
+
     }
 
     private void setChoose(int position){

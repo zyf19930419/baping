@@ -30,6 +30,16 @@ public class PersonalModel extends BaseModel{
     }
 
     /**
+     *个人信息修改显示页接口
+     */
+    public void postInformationDisplay(String token,BaseView baseView) {
+        TokenBody tokenBody=new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postInformationDisplay(tokenBody);
+        request(baseView);
+    }
+
+    /**
      *个人信息修改页接口
      * @param token
      * @param name

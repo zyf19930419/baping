@@ -1,5 +1,6 @@
 package com.weibangbang.fgt;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -7,15 +8,16 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
+import com.weibangbang.api.ApiService;
 import com.weibangbang.api.Config;
 import com.weibangbang.aty.LoginAty;
-import com.weibangbang.aty.home.PutInAty;
 import com.weibangbang.aty.personal.ChangePasswordAty;
 import com.weibangbang.aty.personal.MineTeamAty;
 import com.weibangbang.aty.personal.MineWalletAty;
 import com.weibangbang.aty.personal.PersonaInfoAty;
 import com.weibangbang.aty.personal.WithdrawMoneyAty;
 import com.weibangbang.base.BaseFragment;
+import com.weibangbang.bean.personal.InformationDisplayBean;
 import com.weibangbang.bean.personal.PersonalPageBean;
 import com.weibangbang.presenter.PersonalPresenter;
 import com.weibangbang.utils.BitmapUtils;
@@ -35,6 +37,7 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
     private TextView personal_info_tv, mine_team_tv, wallet_tv, put_forward_tv, change_password_tv, commit_tv;
     private TextView personal_totalRevenue_tv, personal_todayRevenue_tv, personal_withdraw_tv; // 总收入，今日收入，已提现
     private PersonalPresenter mPersonalPresenter;
+    private InformationDisplayBean.DataBean mData;
 
     @Override
     protected int getLayoutResId() {
@@ -61,40 +64,25 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
         commit_tv = view.findViewById(R.id.commit_tv);
         commit_tv.setOnClickListener(this);
         commit_tv.setText(R.string.login_out);
-        final String url = "https://i8.mifile.cn/b2c-mimall-media/2a6cffab13db95ec8f3204ca0bef5d2a.png";
-        GlideApp.with(getContext()).load(url).circleCrop().into(head_img);
-
-        head_img.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                BitmapUtils.gainInstance().savePic(getContext(), url, System.currentTimeMillis() + "", new BitmapUtils.Listener() {
-                    @Override
-                    public void saveSuccess() {
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getContext(), "图片保存成功", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                });
-                return false;
-            }
-        });
-
     }
 
     @Override
     protected void requestData() {
         mPersonalPresenter=new PersonalPresenter(this);
         mPersonalPresenter.postPersonalPage(Config.getToken());
+        mPersonalPresenter.postInformationDisplay(Config.getToken());
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.personal_info_tv:
-                startActivity(PersonaInfoAty.class);
+                if (null!=mData){
+                    Bundle bundle=new Bundle();
+                    bundle.putSerializable("personalInfo",mData);
+                    startActivity(PersonaInfoAty.class,bundle);
+                }
+
                 break;
             case R.id.mine_team_tv:
                 startActivity(MineTeamAty.class);
@@ -125,6 +113,30 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
             personal_totalRevenue_tv.setText(data.getSum_brokerage()); // 总收入
             personal_todayRevenue_tv.setText(data.getToday_brokerage()); // 今日收入
             personal_withdraw_tv.setText(data.getSum_extract()); // 已提现
+        }
+
+        if (requestUrl.endsWith("User/information_display.html")){
+            InformationDisplayBean informationDisplayBean = JSON.parseObject(jsonStr, InformationDisplayBean.class);
+            mData = informationDisplayBean.getData();
+            final String img_url=ApiService.BASE_IMAGE+ mData.getUser_portrait();
+            GlideApp.with(getContext()).load(img_url).circleCrop().into(head_img);
+            head_img.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    BitmapUtils.gainInstance().savePic(getContext(), img_url, System.currentTimeMillis() + "", new BitmapUtils.Listener() {
+                        @Override
+                        public void saveSuccess() {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getContext(), "图片保存成功", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+                    return false;
+                }
+            });
         }
 
         if (requestUrl.endsWith("User/login_out.html")){

@@ -122,4 +122,7 @@ public interface ApiService {
     @POST("Base/upload_img.html")
     Call<ResponseBody> postUpLoad(@PartMap() Map<String, RequestBody> files);
 
+
+    @POST("User/information_display.html")
+    Call<ResponseBody> postInformationDisplay(@Body TokenBody tokenBody);
 }
