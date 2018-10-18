@@ -70,7 +70,7 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
             });
 
             holder.title_tv.setText(dataBean.getTask_name());
-            holder.status_tv.setText(dataBean.getTask_content());
+            holder.status_tv.setText(dataBean.getTask_require());
 
         }
 

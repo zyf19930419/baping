@@ -10,7 +10,7 @@ import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.api.ApiService;
 import com.weibangbang.api.Config;
-import com.weibangbang.aty.LoginAty;
+import com.weibangbang.aty.MainActivity;
 import com.weibangbang.aty.personal.ChangePasswordAty;
 import com.weibangbang.aty.personal.MineTeamAty;
 import com.weibangbang.aty.personal.MineWalletAty;
@@ -19,6 +19,7 @@ import com.weibangbang.aty.personal.WithdrawMoneyAty;
 import com.weibangbang.base.BaseFragment;
 import com.weibangbang.bean.personal.InformationDisplayBean;
 import com.weibangbang.bean.personal.PersonalPageBean;
+import com.weibangbang.common.ActivityStack;
 import com.weibangbang.presenter.PersonalPresenter;
 import com.weibangbang.utils.BitmapUtils;
 import com.weibangbang.utils.GlideApp;
@@ -144,10 +145,10 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
                 JSONObject jsonObject = new JSONObject(jsonStr);
                 if (jsonObject.has("msg")) {
                     String requestMsg = jsonObject.getString("msg");
-                    ToastUtils.showToast(requestMsg);
+                    Toast.makeText(getActivity(), requestMsg, Toast.LENGTH_SHORT).show();
                     Config.setToken("");
-                    startActivity(LoginAty.class);
-                    getActivity().finish();
+                    startActivity(MainActivity.class);
+                    ActivityStack.getInstance().finishAllActivity();
                 }
             } catch (JSONException e) {
                 ToastUtils.showToast("回传数据异常");

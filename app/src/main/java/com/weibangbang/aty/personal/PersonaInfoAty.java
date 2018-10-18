@@ -66,6 +66,7 @@ public class PersonaInfoAty extends BaseActivity {
         if (null!=mData){
             String img_url= ApiService.BASE_IMAGE+ mData.getUser_portrait();
             GlideApp.with(mContext).load(img_url).circleCrop().into(head_img);
+            img_hint_tv.setVisibility(View.GONE);
             setChoose(mData.getUser_sex());
             name_edit.setText(mData.getUser_name());
             age_edit.setText(String.valueOf(mData.getUser_age()));

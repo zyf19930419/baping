@@ -22,7 +22,7 @@ import retrofit2.Retrofit;
  * 创建时间：2018/10/11 9:11
  * 功能描述：
  */
-public abstract  class BaseModel {
+public abstract class BaseModel {
 
     public Call<ResponseBody> mCall;
     public final ApiService mApiService;
@@ -41,25 +41,25 @@ public abstract  class BaseModel {
                 if (response.isSuccessful()) {
                     try {
                         String jsonStr = response.body().string();
-                        LogUtils.e(response.toString()+"========"+jsonStr);
-                        JSONObject jsonObject=new JSONObject(jsonStr);
+                        LogUtils.e(response.toString() + "========" + jsonStr);
+                        JSONObject jsonObject = new JSONObject(jsonStr);
                         int code = jsonObject.optInt("code");
-                        if (1==code){
+                        if (1 == code) {
                             baseView.onComplete(requestUrl, jsonStr);
-                        }else {
+                        } else if (-1 == code) {
+                            Config.setToken("");
                             String msg = jsonObject.optString("msg");
-                            if (msg.contains("token")){
-                                Config.setToken("");
-                            }else {
-                                Toast.makeText(ActivityStack.getInstance().topActivity(), msg, Toast.LENGTH_SHORT).show();
-                                baseView.onFailure(msg);
-                            }
+                            Toast.makeText(ActivityStack.getInstance().topActivity(), msg, Toast.LENGTH_SHORT).show();
+                        } else {
+                            String msg = jsonObject.optString("msg");
+                            Toast.makeText(ActivityStack.getInstance().topActivity(), msg, Toast.LENGTH_SHORT).show();
+                            baseView.onFailure(msg);
                         }
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }else {
+                } else {
                     Toast.makeText(ActivityStack.getInstance().topActivity(), "数据解析失败", Toast.LENGTH_SHORT).show();
                     baseView.onFailure("数据解析失败");
                 }

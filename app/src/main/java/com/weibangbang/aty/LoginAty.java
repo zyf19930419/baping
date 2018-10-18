@@ -233,7 +233,6 @@ public class LoginAty extends BaseActivity implements View.OnClickListener {
             Config.setUserInviterQrcode(data.getUser_inviter_qrcode());
             Log.e("token", data.getUser_token());
             ToastUtils.showToast(loginBean.getMsg());
-            startActivity(MainActivity.class);
             finish();
         }
 
