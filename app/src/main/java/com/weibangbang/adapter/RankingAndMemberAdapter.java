@@ -3,6 +3,7 @@ package com.weibangbang.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.weibangbang.R;
+import com.weibangbang.api.ApiService;
 import com.weibangbang.bean.member.DailyRankingsBean;
 import com.weibangbang.bean.personal.MemberShipBean;
+import com.weibangbang.utils.GlideApp;
 
 import java.util.List;
 
@@ -58,9 +61,9 @@ public class RankingAndMemberAdapter extends RecyclerView.Adapter<RankingAndMemb
         if (1==type){
             DailyRankingsBean.DataBean dataBean = data.get(position);
             holder.name_tv.setText(dataBean.getUser_name());
-//            if (TextUtils.isEmpty(dataBean.getUser_portrait())) {
-//                GlideApp.with(mContext).load(ApiService.OFFICIAL_WEB + dataBean.getUser_portrait()).circleCrop().into(holder.head_img);
-//            }
+            if (!TextUtils.isEmpty(dataBean.getUser_portrait())) {
+                GlideApp.with(mContext).load(ApiService.BASE_IMAGE + dataBean.getUser_portrait()).circleCrop().into(holder.head_img);
+            }
 
             holder.price_tv.setText(dataBean.getUser_history_brokerage());
         }
