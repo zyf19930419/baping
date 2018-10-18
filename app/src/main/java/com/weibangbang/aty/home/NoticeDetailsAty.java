@@ -1,6 +1,8 @@
 package com.weibangbang.aty.home;
 
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -46,7 +48,13 @@ public class NoticeDetailsAty extends BaseActivity {
         if (requestUrl.endsWith("Index/notice_details.html")) {
             NoticeDetailsBean noticeDetailsBean = JSON.parseObject(jsonStr, NoticeDetailsBean.class);
             NoticeDetailsBean.DataBean data = noticeDetailsBean.getData();
-            content_tv.setText(data.getNotice_content());
+            Spanned result;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                result = Html.fromHtml(data.getNotice_content(),Html.FROM_HTML_MODE_LEGACY);
+            } else {
+                result = Html.fromHtml(data.getNotice_content());
+            }
+                content_tv.setText(result);
 
         }
     }
