@@ -2,6 +2,7 @@ package com.weibangbang.model;
 
 import com.weibangbang.api.body.LobbyBody;
 import com.weibangbang.api.body.TaskInfoBody;
+import com.weibangbang.api.body.TaskPrintscreenBody;
 import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.base.BaseView;
 
@@ -98,6 +99,21 @@ public class MemberModel extends BaseModel{
         TokenBody tokenBody=new TokenBody();
         tokenBody.setToken(token);
         mCall = mApiService.postTaskAccomplish(tokenBody);
+        request(baseView);
+    }
+
+    /**
+     *上传截图接口
+     * @param token
+     * @param id 任务id
+     * @param printscreen
+     */
+    public void postTaskPrintscreen(String token,String id,String printscreen,BaseView baseView){
+        TaskPrintscreenBody taskPrintscreenBody=new TaskPrintscreenBody();
+        taskPrintscreenBody.setToken(token);
+        taskPrintscreenBody.setId(id);
+        taskPrintscreenBody.setPrintscreen(printscreen);
+        mCall = mApiService.postTaskPrintscreen(taskPrintscreenBody);
         request(baseView);
     }
 

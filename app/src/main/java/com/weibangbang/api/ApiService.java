@@ -12,17 +12,16 @@ import com.weibangbang.api.body.ReceiveInfoBody;
 import com.weibangbang.api.body.RegisterBody;
 import com.weibangbang.api.body.SendmessageBody;
 import com.weibangbang.api.body.TaskInfoBody;
+import com.weibangbang.api.body.TaskPrintscreenBody;
 import com.weibangbang.api.body.TokenBody;
 
-import java.util.Map;
-
-import okhttp3.RequestBody;
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.PartMap;
+import retrofit2.http.Part;
 
 /**
  * 创建者：zhangyunfei
@@ -124,7 +123,7 @@ public interface ApiService {
 
     @Multipart
     @POST("Base/upload_img.html")
-    Call<ResponseBody> postUpLoad(@PartMap() Map<String, RequestBody> files);
+    Call<ResponseBody> postUpLoad(@Part MultipartBody.Part file);
 
 
     @POST("User/information_display.html")
@@ -132,4 +131,7 @@ public interface ApiService {
 
     @POST("Receive/receive_info.html")
     Call<ResponseBody> postReceiveInfo(@Body ReceiveInfoBody receiveInfoBody);
+
+    @POST("Work/task_printscreen.html")
+    Call<ResponseBody> postTaskPrintscreen(@Body TaskPrintscreenBody taskPrintscreenBody);
 }

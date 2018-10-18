@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
@@ -17,6 +18,7 @@ import com.weibangbang.api.ApiService;
 import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.personal.InformationDisplayBean;
+import com.weibangbang.bean.personal.UpLoadBean;
 import com.weibangbang.presenter.PersonalPresenter;
 import com.weibangbang.utils.GlideApp;
 import com.weibangbang.utils.ToastUtils;
@@ -40,7 +42,7 @@ public class PersonaInfoAty extends BaseActivity {
     private EditText name_edit,age_edit,address_edit;
     private int sex=1;
     private PersonalPresenter mPersonalPresenter;
-    private int IMAGE_PICKER=100;
+    public static  final int IMAGE_PICKER=100;
     private InformationDisplayBean.DataBean mData;
 
     @Override
@@ -123,7 +125,7 @@ public class PersonaInfoAty extends BaseActivity {
                     fileList.add(new File(images.get(i).path));
                 }
                 if (fileList.size()>0){
-                    mPersonalPresenter.postUpLoad(Config.getToken(),fileList);
+                    mPersonalPresenter.postUpLoad(fileList);
                 }
 
             } else {
@@ -154,6 +156,12 @@ public class PersonaInfoAty extends BaseActivity {
         }
 
         if (requestUrl.endsWith("Base/upload_img.html")){
+            UpLoadBean upLoadBean = JSON.parseObject(jsonStr, UpLoadBean.class);
+            ToastUtils.showToast(upLoadBean.getMsg());
+            if (upLoadBean.getCode()==1){
+                GlideApp.with(mContext).load(ApiService.BASE_IMAGE+upLoadBean.getData().getPath()).circleCrop().into(head_img);
+                img_hint_tv.setVisibility(View.GONE);
+            }
 
         }
     }

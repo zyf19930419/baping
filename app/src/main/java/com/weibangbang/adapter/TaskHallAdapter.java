@@ -103,6 +103,14 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
             }
 
             holder.status_tv.setText(status);
+            holder.button_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (null != mOnButtonClickListener){
+                        mOnButtonClickListener.onButtonClick(position);
+                    }
+                }
+            });
         }
 
         if ("公告栏".equals(mTitle)){

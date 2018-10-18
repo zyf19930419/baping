@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 /**
@@ -119,16 +120,11 @@ public class PersonalModel extends BaseModel{
      * @param fileList
      * @param baseView
      */
-    public void postUpLoad(String token,List<File> fileList, BaseView baseView) {
-        Map<String, RequestBody> map = new HashMap<>();
-        map.put("token", RequestBody.create(MediaType.parse("text/plain"), token));
-//        for (int i = 0; i < fileList.size(); i++) {
-//            RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), fileList.get(i));
-//            map.put("image"+i, requestBody);
-//        }
-        RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"),fileList.get(0));
-        map.put("image", requestBody);
-        mCall = mApiService.postUpLoad(map);
+    public void postUpLoad(List<File> fileList, BaseView baseView) {
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),fileList.get(0));
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", fileList.get(0).getName(), requestBody);
+        mCall = mApiService.postUpLoad(body);
         request(baseView);
     }
 }

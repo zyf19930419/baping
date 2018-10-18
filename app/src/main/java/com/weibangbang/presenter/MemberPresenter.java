@@ -71,5 +71,12 @@ public class MemberPresenter extends BasePresenter{
         mModel.postTaskAccomplish(token,mBaseView);
     }
 
+    /**
+     * 上传截图接口
+     */
+    public void postTaskPrintscreen(String token,String id,String printscreen){
+        mModel.postTaskPrintscreen(token,id,printscreen,mBaseView);
+    }
+
 
 }

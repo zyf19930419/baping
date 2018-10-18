@@ -78,7 +78,7 @@ public class PersonalPresenter extends BasePresenter{
     /**
      * 图片上传
      */
-    public void postUpLoad(String token,List<File> fileList){
-        mModel.postUpLoad(token,fileList,mBaseView);
+    public void postUpLoad(List<File> fileList){
+        mModel.postUpLoad(fileList,mBaseView);
     }
 }
