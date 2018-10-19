@@ -102,7 +102,6 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
         if (requestUrl.endsWith("User/withdrawal.html")){
-
         }
         /**
          * {"code":1,"msg":"","data":{"user_balance":"99.00"}}
