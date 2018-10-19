@@ -9,10 +9,11 @@ import java.io.Serializable;
  */
 public class InformationDisplayBean {
 
+
     /**
      * code : 1
      * msg :
-     * data : {"user_id":1,"user_sex":1,"user_age":30,"user_phone":"15999999999","user_password":"96e79218965eb72c92a549dd5a330112","user_name":"凡尘","user_city":"2","user_downtown":"tianjin","user_site":"江城汀棠路","user_balance":"99.00","vip_id":1,"user_invitation":"dasdsa","user_inviter":2,"user_inviter_2":0,"user_history_brokerage":"100.00","user_history_withdraw":"0.00","user_token":"1cec7d96736c22df2919908439017891","user_portrait":"20181016/8860db3f5286df7c31aa2e77bf062a2a.png"}
+     * data : {"user_id":1,"user_sex":1,"user_age":4294967295,"user_phone":"15999999999","user_password":"96e79218965eb72c92a549dd5a330112","user_name":"凡尘","user_city":"2","user_downtown":"tianjin","user_site":"江城汀棠路","user_balance":"99.00","vip_id":1,"user_invitation":"123","user_inviter":2,"user_inviter_2":0,"user_history_brokerage":"100.00","user_history_withdraw":"0.00","user_token":"5aecbb6d37c7a18f4875c97688856dac","user_portrait":"546546846841"}
      */
 
     private int code;
@@ -47,7 +48,7 @@ public class InformationDisplayBean {
         /**
          * user_id : 1
          * user_sex : 1
-         * user_age : 30
+         * user_age : 4294967295
          * user_phone : 15999999999
          * user_password : 96e79218965eb72c92a549dd5a330112
          * user_name : 凡尘
@@ -56,18 +57,18 @@ public class InformationDisplayBean {
          * user_site : 江城汀棠路
          * user_balance : 99.00
          * vip_id : 1
-         * user_invitation : dasdsa
+         * user_invitation : 123
          * user_inviter : 2
          * user_inviter_2 : 0
          * user_history_brokerage : 100.00
          * user_history_withdraw : 0.00
-         * user_token : 1cec7d96736c22df2919908439017891
-         * user_portrait : 20181016/8860db3f5286df7c31aa2e77bf062a2a.png
+         * user_token : 5aecbb6d37c7a18f4875c97688856dac
+         * user_portrait : 546546846841
          */
 
         private int user_id;
         private int user_sex;
-        private int user_age;
+        private long user_age;
         private String user_phone;
         private String user_password;
         private String user_name;
@@ -100,11 +101,11 @@ public class InformationDisplayBean {
             this.user_sex = user_sex;
         }
 
-        public int getUser_age() {
+        public long getUser_age() {
             return user_age;
         }
 
-        public void setUser_age(int user_age) {
+        public void setUser_age(long user_age) {
             this.user_age = user_age;
         }
 

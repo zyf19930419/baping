@@ -61,8 +61,8 @@ dependencies {
 apply plugin: 'com.mob.sdk'
 
 MobSDK {
-    appKey "替换为mob官方申请的appkey"
-    appSecret "替换为mob官方申请的appkey对应的appSecret"
+    appKey "284463e107d7f"
+    appSecret "fd7b4a2036f354568006d0e859289c78"
     ShareSDK {
         devInfo {
             SinaWeibo {

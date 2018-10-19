@@ -14,6 +14,7 @@ import com.weibangbang.api.body.SendmessageBody;
 import com.weibangbang.api.body.TaskInfoBody;
 import com.weibangbang.api.body.TaskPrintscreenBody;
 import com.weibangbang.api.body.TokenBody;
+import com.weibangbang.api.body.WithDrawalBody;
 
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
@@ -134,4 +135,11 @@ public interface ApiService {
 
     @POST("Work/task_printscreen.html")
     Call<ResponseBody> postTaskPrintscreen(@Body TaskPrintscreenBody taskPrintscreenBody);
+
+    @POST("User/withdrawal.html")
+    Call<ResponseBody> postWithDrawal(@Body WithDrawalBody withDrawalBody);
+
+
+    @POST("User/user_balance.html")
+    Call<ResponseBody> postUserBalance(@Body TokenBody tokenBody);
 }

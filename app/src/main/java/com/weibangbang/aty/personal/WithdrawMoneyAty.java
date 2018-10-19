@@ -9,7 +9,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weibangbang.R;
+import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
+import com.weibangbang.presenter.PersonalPresenter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * 创建者：voodoo_jie
@@ -25,6 +30,7 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
     private ImageView wechat_img;
     private TextView alipay_tip_tv;
     private TextView wechat_tip_tv;
+    private PersonalPresenter mPersonalPresenter;
 
     @Override
     public int getLayoutId() {
@@ -41,6 +47,7 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
         alipay_tip_tv = findViewById(R.id.alipay_tip_tv);
         wechat_tip_tv = findViewById(R.id.wechat_tip_tv);
         withdrawMoney_moneyInput_et = findViewById(R.id.withdrawMoney_moneyInput_et);
+        withdrawMoney_money_tv=findViewById(R.id.withdrawMoney_money_tv);
 
         commit_tv.setText(R.string.lijitixian); // 立即提现按钮
         commit_tv.setOnClickListener(this);
@@ -58,7 +65,8 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
 
     @Override
     public void initData() {
-
+        mPersonalPresenter=new PersonalPresenter(this);
+        mPersonalPresenter.postUserBalance(Config.getToken());
     }
 
     public void onAlipay(View view) {
@@ -84,7 +92,29 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
                     showShortToast("请输入金额", Toast.LENGTH_SHORT);
                     return;
                 }
+//                mPersonalPresenter.postWithDrawal();
                 break;
+        }
+    }
+
+
+    @Override
+    public void onComplete(String requestUrl, String jsonStr) {
+        super.onComplete(requestUrl, jsonStr);
+        if (requestUrl.endsWith("User/withdrawal.html")){
+
+        }
+        /**
+         * {"code":1,"msg":"","data":{"user_balance":"99.00"}}
+         */
+        if (requestUrl.endsWith("User/user_balance.html")){
+            try {
+                JSONObject jsonObject=new JSONObject(jsonStr);
+                JSONObject jsonObject2=new JSONObject(jsonObject.optString("data"));
+                withdrawMoney_money_tv.setText(jsonObject2.optString("user_balance"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 

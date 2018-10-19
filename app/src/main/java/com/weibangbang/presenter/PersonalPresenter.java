@@ -61,6 +61,19 @@ public class PersonalPresenter extends BasePresenter{
     }
 
     /**
+     *可提现金额
+     */
+    public void postUserBalance(String token){
+        mModel.postUserBalance(token,mBaseView);
+    }
+    /**
+     * 提现
+     */
+    public void postWithDrawal(String money, String way, String account){
+        mModel.postWithDrawal(money,way,account,mBaseView);
+    }
+
+    /**
      * 修改密码接口
      */
     public void postChangePassword(String token,String old_pass,String new_pass){
