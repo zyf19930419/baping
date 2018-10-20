@@ -67,6 +67,13 @@ public class HomePresenter extends BasePresenter {
         mModel.postVipList(token, mBaseView);
     }
 
+    /**
+     * 升级会员接口
+     */
+    public void postVipUpgrade(String token,String upgrade,String pay_way) {
+        mModel.postVipUpgrade(token,upgrade,pay_way, mBaseView);
+    }
+
 
     /**
      * 联系客服接口

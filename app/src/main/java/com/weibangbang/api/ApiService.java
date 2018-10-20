@@ -14,6 +14,7 @@ import com.weibangbang.api.body.SendmessageBody;
 import com.weibangbang.api.body.TaskInfoBody;
 import com.weibangbang.api.body.TaskPrintscreenBody;
 import com.weibangbang.api.body.TokenBody;
+import com.weibangbang.api.body.VipUpgradeBody;
 import com.weibangbang.api.body.WithDrawalBody;
 
 import okhttp3.MultipartBody;
@@ -142,4 +143,8 @@ public interface ApiService {
 
     @POST("User/user_balance.html")
     Call<ResponseBody> postUserBalance(@Body TokenBody tokenBody);
+
+
+    @POST("Vip/vip_upgrade.html")
+    Call<ResponseBody> postVipUpgrade(@Body VipUpgradeBody vipUpgradeBody);
 }

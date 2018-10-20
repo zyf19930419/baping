@@ -5,6 +5,7 @@ import com.weibangbang.api.body.NoticeDetailsBody;
 import com.weibangbang.api.body.ReceiveCommitBody;
 import com.weibangbang.api.body.ReceiveInfoBody;
 import com.weibangbang.api.body.TokenBody;
+import com.weibangbang.api.body.VipUpgradeBody;
 import com.weibangbang.base.BaseView;
 
 /**
@@ -95,6 +96,21 @@ public class HomeModel extends BaseModel {
         TokenBody tokenBody = new TokenBody();
         tokenBody.setToken(token);
         mCall = mApiService.postVipList(tokenBody);
+        request(baseView);
+    }
+
+    /**
+     *升级会员接口
+     * @param token
+     * @param upgrade  升级vip的id(级别)
+     * @param pay_way  1微信  2支付宝
+     */
+    public void postVipUpgrade(String token,String upgrade,String pay_way, BaseView baseView) {
+        VipUpgradeBody vipUpgradeBody = new VipUpgradeBody();
+        vipUpgradeBody.setToken(token);
+        vipUpgradeBody.setUpgrade(upgrade);
+        vipUpgradeBody.setPay_way(pay_way);
+        mCall = mApiService.postVipUpgrade(vipUpgradeBody);
         request(baseView);
     }
 

@@ -19,17 +19,19 @@ public class AliPay implements Runnable {
     private String orderInfo;
     private AliPayCallBack aliPayCallBack;
 
-    private static final int SDK_PAY_FLAG = 1;
-    private static final int SDK_AUTH_FLAG = 2;
+    public static final int SDK_PAY_FLAG = 1;
+    public static final int SDK_AUTH_FLAG = 2;
+    private int sdk_type;
 
     /**
      * 够造函数
      *
      * @param orderInfo 这个参数是有服务器获取到的订单信息
      */
-    public AliPay(String orderInfo, AliPayCallBack aliPayCallBack) {
+    public AliPay(String orderInfo, int sdk_type,AliPayCallBack aliPayCallBack) {
         this.orderInfo = orderInfo;
         this.aliPayCallBack = aliPayCallBack;
+        this.sdk_type=sdk_type;
         thread = new Thread(this);
     }
 
@@ -45,7 +47,7 @@ public class AliPay implements Runnable {
         PayTask alipay = new PayTask(ActivityStack.getInstance().topActivity());
         Map<String, String> result = alipay.payV2(orderInfo, true);
         Message msg = new Message();
-        msg.what = SDK_PAY_FLAG;
+        msg.what = sdk_type;
         msg.obj = result;
         mHandler.sendMessage(msg);
     }
@@ -67,7 +69,7 @@ public class AliPay implements Runnable {
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        aliPayCallBack.onComplete();
+                        aliPayCallBack.onComplete(resultInfo);
                     } else {
                         // 支付失败
                         aliPayCallBack.onFailure();

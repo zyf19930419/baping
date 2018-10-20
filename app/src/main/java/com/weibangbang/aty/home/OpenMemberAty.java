@@ -2,6 +2,7 @@ package com.weibangbang.aty.home;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.home.VipListBean;
 import com.weibangbang.presenter.HomePresenter;
+import com.weibangbang.utils.ToastUtils;
 
 import java.util.List;
 
@@ -27,7 +29,12 @@ public class OpenMemberAty extends BaseActivity {
     private TextView[] textviews;
     private int redColor, txtColor;
     private String price;
+    private String regularPrice;
+    private String seniorPrice;
     private HomePresenter mHomePresenter;
+    private String regularUpgrade;
+    private String seniorUpgrade;
+    private String upgrade;
 
     @Override
     public int getLayoutId() {
@@ -75,7 +82,8 @@ public class OpenMemberAty extends BaseActivity {
         textviews[0].setTextColor(redColor);
         textviews[1].setTextColor(txtColor);
         commit_tv.setText(R.string.become_regular_member);
-        price = "99.00";
+        price = regularPrice;
+        upgrade=regularUpgrade;
     }
 
     /**
@@ -91,18 +99,26 @@ public class OpenMemberAty extends BaseActivity {
         textviews[1].setTextColor(redColor);
         textviews[0].setTextColor(txtColor);
         commit_tv.setText(R.string.become_senior_member);
-        price = "999.00";
+        price = seniorPrice;
+        upgrade=seniorUpgrade;
     }
 
 
     @Override
-    public void onComplete(String requestUrl, String jsonStr) {
+    public void onComplete(final String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
         if (requestUrl.endsWith("Vip/vip_list.html")) {
             VipListBean vipListBean = JSON.parseObject(jsonStr, VipListBean.class);
             List<VipListBean.DataBean> data = vipListBean.getData();
-            if (null!=data ){
-
+            if (null!=data && data.size()==2){
+                regularPrice=data.get(0).getVip_price();
+                String vip_name = data.get(0).getVip_name();
+                regularUpgrade= String.valueOf(data.get(0).getVip_id());
+                upgrade=regularUpgrade;
+                price=regularPrice;
+                seniorPrice=data.get(1).getVip_price();
+                String vip_name1 = data.get(1).getVip_name();
+                seniorUpgrade= String.valueOf(data.get(1).getVip_id());
             }
         }
     }
@@ -113,8 +129,14 @@ public class OpenMemberAty extends BaseActivity {
      * @param view
      */
     public void onCommit(View view) {
-        Bundle bundle = new Bundle();
-        bundle.putString("price", price);
-        startActivity(PayMemberAty.class, bundle);
+        if (!TextUtils.isEmpty(price) && !TextUtils.isEmpty(upgrade)){
+            Bundle bundle = new Bundle();
+            bundle.putString("price", price);
+            bundle.putString("upgrade",upgrade);
+            startActivity(PayMemberAty.class, bundle);
+        }else {
+            ToastUtils.showToast("数据获取错误，请稍后重试");
+        }
+
     }
 }
