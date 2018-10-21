@@ -49,9 +49,11 @@ public abstract class BaseFragment extends Fragment implements BaseView{
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        requestData();
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint()){
+            requestData();
+        }
     }
 
     /**
