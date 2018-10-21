@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class OpenMemberAty extends BaseActivity {
     private TextView commit_tv;
-    private ImageView[] imagebuttons;
+    private TextView[] priceTextViews;
     private ImageView[] imagebuttons2;
     private TextView[] textviews;
     private int redColor, txtColor;
@@ -48,10 +48,10 @@ public class OpenMemberAty extends BaseActivity {
         commit_tv.setText(R.string.become_regular_member);
         redColor = ContextCompat.getColor(this, R.color.red_bg);
         txtColor = ContextCompat.getColor(this, R.color.txt_color);
-        imagebuttons = new ImageView[2];
-        imagebuttons[0] = findViewById(R.id.regular_member_img);
-        imagebuttons[1] = findViewById(R.id.senior_member_img);
-        imagebuttons[0].setSelected(true);
+        priceTextViews = new TextView[2];
+        priceTextViews[0] = findViewById(R.id.left_price_tv);
+        priceTextViews[1] = findViewById(R.id.right_price_tv);
+        priceTextViews[0].setBackgroundResource(R.mipmap.icon_red_circle);
         imagebuttons2 = new ImageView[2];
         imagebuttons2[0] = findViewById(R.id.regular_member_img2);
         imagebuttons2[1] = findViewById(R.id.senior_member_img2);
@@ -75,8 +75,8 @@ public class OpenMemberAty extends BaseActivity {
      * @param view
      */
     public void onRegularClicked(View view) {
-        imagebuttons[0].setSelected(true);
-        imagebuttons[1].setSelected(false);
+        priceTextViews[0].setBackgroundResource(R.mipmap.icon_red_circle);
+        priceTextViews[1].setBackgroundResource(R.mipmap.icon_grey_circle);
         imagebuttons2[0].setSelected(true);
         imagebuttons2[1].setSelected(false);
         textviews[0].setTextColor(redColor);
@@ -92,8 +92,8 @@ public class OpenMemberAty extends BaseActivity {
      * @param view
      */
     public void onSeniorClicked(View view) {
-        imagebuttons[1].setSelected(true);
-        imagebuttons[0].setSelected(false);
+        priceTextViews[0].setBackgroundResource(R.mipmap.icon_grey_circle);
+        priceTextViews[1].setBackgroundResource(R.mipmap.icon_red_circle);
         imagebuttons2[1].setSelected(true);
         imagebuttons2[0].setSelected(false);
         textviews[1].setTextColor(redColor);
@@ -112,13 +112,18 @@ public class OpenMemberAty extends BaseActivity {
             List<VipListBean.DataBean> data = vipListBean.getData();
             if (null!=data && data.size()==2){
                 regularPrice=data.get(0).getVip_price();
+                priceTextViews[0].setText(regularPrice);
                 String vip_name = data.get(0).getVip_name();
+                textviews[0].setText(vip_name);
                 regularUpgrade= String.valueOf(data.get(0).getVip_id());
                 upgrade=regularUpgrade;
                 price=regularPrice;
                 seniorPrice=data.get(1).getVip_price();
+                priceTextViews[1].setText(seniorPrice);
                 String vip_name1 = data.get(1).getVip_name();
                 seniorUpgrade= String.valueOf(data.get(1).getVip_id());
+                textviews[1].setText(vip_name1);
+
             }
         }
     }

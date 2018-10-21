@@ -41,6 +41,7 @@ public class MyTaskAty extends BaseActivity{
     private MemberPresenter mMemberPresenter;
     private PersonalPresenter mPersonalPresenter;
     private int mTask_id;
+    private boolean isFirst=false;
 
     @Override
     public int getLayoutId() {
@@ -63,9 +64,12 @@ public class MyTaskAty extends BaseActivity{
 
     @Override
     public void initData() {
-        mMemberPresenter = new MemberPresenter(this);
-        mPersonalPresenter=new PersonalPresenter(this);
-        mMemberPresenter.postReceivie(Config.getToken());
+        if (!isFirst){
+            mMemberPresenter = new MemberPresenter(this);
+            mPersonalPresenter=new PersonalPresenter(this);
+            mMemberPresenter.postReceivie(Config.getToken());
+            isFirst=true;
+        }
     }
 
     /**

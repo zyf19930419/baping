@@ -85,32 +85,34 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
             holder.title_tv.setText(dataBean.getTask_name());
             int user_task_status = dataBean.getUser_task_status();
             //1.领取2.审核中3.审核成功4.审核失败
-            String status="";
             switch (user_task_status){
                 case 1:
-                    status="领取";
+                    holder.button_tv.setBackgroundResource(R.mipmap.icon_button_bg);
+                    holder.button_tv.setClickable(true);
+                    holder.button_tv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (null != mOnButtonClickListener){
+                                mOnButtonClickListener.onButtonClick(position);
+                            }
+                        }
+                    });
                     break;
                 case 2:
-                    status="审核中";
+                    holder.button_tv.setBackgroundResource(R.mipmap.icon_button_grey_bg);
+                    holder.button_tv.setClickable(false);
                     break;
                 case 3:
-                    status="审核成功";
+                    holder.button_tv.setBackgroundResource(R.mipmap.icon_button_grey_bg);
+                    holder.button_tv.setClickable(false);
                     break;
                 case 4:
-                    status="审核失败";
+                    holder.button_tv.setBackgroundResource(R.mipmap.icon_button_grey_bg);
+                    holder.button_tv.setClickable(false);
                     break;
 
             }
-
             holder.status_tv.setText(dataBean.getTask_require());
-            holder.button_tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (null != mOnButtonClickListener){
-                        mOnButtonClickListener.onButtonClick(position);
-                    }
-                }
-            });
         }
 
         if ("公告栏".equals(mTitle)){
