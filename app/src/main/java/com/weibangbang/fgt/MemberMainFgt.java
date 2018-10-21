@@ -72,7 +72,9 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener{
     }
     @Override
     protected void requestData() {
-        mPresenter.postBanner();
+        if (isViewCreate && isViewVisible) {
+            mPresenter.postBanner();
+        }
     }
 
 

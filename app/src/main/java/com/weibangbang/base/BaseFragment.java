@@ -20,6 +20,8 @@ import com.weibangbang.utils.ToastUtils;
 public abstract class BaseFragment extends Fragment implements BaseView{
 
     private Context mContext;
+    protected boolean isViewCreate;//view是否已创建
+    protected boolean isViewVisible;//fragment是否可见
 
     /**
      * 用于设置页面布局
@@ -49,9 +51,17 @@ public abstract class BaseFragment extends Fragment implements BaseView{
     }
 
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (getUserVisibleHint()){
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        isViewCreate=true;
+        requestData();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            isViewVisible = true;
             requestData();
         }
     }

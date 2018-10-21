@@ -16,8 +16,8 @@ import com.weibangbang.aty.home.PutInAty;
 import com.weibangbang.aty.home.ShareMoneyAty;
 import com.weibangbang.base.BaseFragment;
 import com.weibangbang.bean.home.BannerBean;
-import com.weibangbang.presenter.HomePresenter;
 import com.weibangbang.loader.BannerLoader;
+import com.weibangbang.presenter.HomePresenter;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -38,7 +38,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
     private List<String> images;
     private RelativeLayout re_zhuangyong, re_lingyong, re_huiyuan, re_toufang, re_haoyou, re_kefu;
 
-//    private MyViewFlipper myViewFilpper;
+    //    private MyViewFlipper myViewFilpper;
 //    private List<View> mViews;
     private HomePresenter mPresenter;
 
@@ -72,8 +72,16 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
     }
 
     @Override
-    protected void requestData() {
+    public void onResume() {
+        super.onResume();
         mPresenter.postBanner();
+    }
+
+    @Override
+    protected void requestData() {
+        if (isViewCreate && isViewVisible) {
+            mPresenter.postBanner();
+        }
 //        mPresenter.postNotice();
     }
 
