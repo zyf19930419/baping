@@ -56,6 +56,7 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener{
         re_guize.setOnClickListener(this);
         re_paihang.setOnClickListener(this);
         re_renwu.setOnClickListener(this);
+        mPresenter = new HomePresenter(this);
     }
 
     @Override
@@ -71,7 +72,6 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener{
     }
     @Override
     protected void requestData() {
-        mPresenter = new HomePresenter(this);
         mPresenter.postBanner();
     }
 

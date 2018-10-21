@@ -68,11 +68,11 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
         re_toufang.setOnClickListener(this);
         re_haoyou.setOnClickListener(this);
         re_kefu.setOnClickListener(this);
+        mPresenter = new HomePresenter(this);
     }
 
     @Override
     protected void requestData() {
-        mPresenter = new HomePresenter(this);
         mPresenter.postBanner();
 //        mPresenter.postNotice();
     }

@@ -65,11 +65,11 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
         commit_tv = view.findViewById(R.id.commit_tv);
         commit_tv.setOnClickListener(this);
         commit_tv.setText(R.string.login_out);
+        mPersonalPresenter=new PersonalPresenter(this);
     }
 
     @Override
     protected void requestData() {
-        mPersonalPresenter=new PersonalPresenter(this);
         mPersonalPresenter.postPersonalPage(Config.getToken());
         mPersonalPresenter.postInformationDisplay(Config.getToken());
     }
