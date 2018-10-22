@@ -49,8 +49,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.youth.banner:banner:1.4.10'
-    implementation files('libs/alipaySdk-20180601.jar')
-    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.alibaba:fastjson:1.2.51'
@@ -94,8 +92,21 @@ MobSDK {
                 bypassApproval false
                 enable true
             }
+            WechatFavorite {
+                id 6
+                sortId 6
+                appId "wx9197c855d2953ff9"
+                appSecret "0a9d109baddf3e8377c8d416a5833da9"
+                bypassApproval false
+                enable true
+            }
 
-
+        }
+    }
+    PaySDK {
+        info {
+            AliPay {}
+            Wechat {}
         }
     }
 }

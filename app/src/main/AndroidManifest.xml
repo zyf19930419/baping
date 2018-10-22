@@ -51,33 +51,6 @@
         <activity android:name=".aty.personal.MineWalletAty" />
         <activity android:name=".aty.personal.WithdrawMoneyAty" /> <!-- 提现 -->
 
-        <!--支付宝支付 START-->
-        <activity
-            android:name="com.alipay.sdk.app.H5PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
-            android:exported="false"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
-        <activity
-            android:name="com.alipay.sdk.app.H5AuthActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
-        <!--支付宝支付 END-->
-
-
-        <!-- 微信分享回调 -->
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <!--微信支付-->
-        <activity
-            android:name=".wxapi.WXPayEntryActivity"
-            android:exported="true"
-            android:launchMode="singleTop" />
         <activity android:name=".aty.home.PayMemberAty" />
         <activity android:name=".aty.home.ContactCustomerAty" />
         <activity android:name=".aty.member.RankingListAty" />

@@ -1,21 +1,22 @@
 package com.weibangbang.aty.home;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mob.paysdk.AliPayAPI;
+import com.mob.paysdk.MobPayAPI;
+import com.mob.paysdk.OnPayListener;
+import com.mob.paysdk.Order;
+import com.mob.paysdk.PayOrder;
+import com.mob.paysdk.PaySDK;
 import com.weibangbang.R;
-import com.weibangbang.alipay.AliPay;
-import com.weibangbang.alipay.AliPayCallBack;
 import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.presenter.HomePresenter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import static com.weibangbang.alipay.AliPay.SDK_PAY_FLAG;
 
 /**
  * 创建者：zhangyunfei
@@ -100,18 +101,23 @@ public class PayMemberAty extends BaseActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(jsonStr);
                     String data = jsonObject.optString("data");
-                    AliPay aliPay = new AliPay(data, SDK_PAY_FLAG, new AliPayCallBack() {
+                    PayOrder order = new PayOrder();
+                    order.setOrderNo("订单号");
+                    order.setAmount(Integer.parseInt(mPrice)*100);
+                    order.setSubject("1111");
+                    order.setBody("支付主体");
+                    AliPayAPI alipay = PaySDK.createMobPayAPI(AliPayAPI.class);
+                    alipay.pay(order, new OnPayListener<Order>() {
                         @Override
-                        public void onComplete(String resultInfo) {
-                            Log.e("TAG", "onComplete: " + resultInfo);
+                        public boolean onWillPay(String s, Order order, MobPayAPI mobPayAPI) {
+                            return false;
                         }
 
                         @Override
-                        public void onFailure() {
-                            Log.e("TAG", "onFailure: ");
+                        public void onPayEnd(com.mob.paysdk.PayResult payResult, Order order, MobPayAPI mobPayAPI) {
+
                         }
                     });
-                    aliPay.pay();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
