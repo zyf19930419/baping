@@ -114,8 +114,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void requestSomePermission() {
-        if (!PermissionHelper.hasSelfPermissions(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            PermissionHelper.requestPermissions(this, 100, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionHelper.OnPermissionListener() {
+        if (!PermissionHelper.hasSelfPermissions(this, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.READ_PHONE_STATE)) {
+            PermissionHelper.requestPermissions(this, 100, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.READ_PHONE_STATE}, new PermissionHelper.OnPermissionListener() {
                 @Override
                 public void onPermissionGranted() {
 
