@@ -1,9 +1,9 @@
 package com.weibangbang.fgt;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-;
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.api.ApiService;
@@ -23,6 +23,8 @@ import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
 import java.util.List;
+
+;
 
 /**
  * 创建者：zhangyunfei
@@ -70,9 +72,11 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener{
         super.onStop();
         mBanner.stopAutoPlay();
     }
+
+
     @Override
     protected void requestData() {
-        if (isViewCreate && isViewVisible) {
+        if ( isViewVisible) {
             mPresenter.postBanner();
         }
     }

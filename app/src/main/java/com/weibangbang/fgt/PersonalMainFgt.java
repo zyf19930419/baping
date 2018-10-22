@@ -68,9 +68,10 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
         mPersonalPresenter=new PersonalPresenter(this);
     }
 
+
     @Override
     protected void requestData() {
-        if (isViewCreate && isViewVisible){
+        if (isViewVisible){
             mPersonalPresenter.postPersonalPage(Config.getToken());
             mPersonalPresenter.postInformationDisplay(Config.getToken());
         }

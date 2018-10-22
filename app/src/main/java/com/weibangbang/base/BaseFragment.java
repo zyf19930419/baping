@@ -20,7 +20,6 @@ import com.weibangbang.utils.ToastUtils;
 public abstract class BaseFragment extends Fragment implements BaseView{
 
     private Context mContext;
-    protected boolean isViewCreate;//view是否已创建
     protected boolean isViewVisible;//fragment是否可见
 
     /**
@@ -53,7 +52,6 @@ public abstract class BaseFragment extends Fragment implements BaseView{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        isViewCreate=true;
         requestData();
     }
 

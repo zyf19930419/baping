@@ -74,12 +74,13 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.postBanner();
+            mPresenter.postBanner();
+
     }
 
     @Override
     protected void requestData() {
-        if (isViewCreate && isViewVisible) {
+        if (isViewVisible) {
             mPresenter.postBanner();
         }
 //        mPresenter.postNotice();
