@@ -173,4 +173,8 @@
     <string name="tixianfangshi">选择提现方式</string>
     <string name="yixianjine">输入提现金额</string>
     <string name="keyixianjine">可提现金额</string>
+
+    <string name="main_pay_success">支付成功</string>
+    <string name="main_pay_fail">支付失败</string>
+    <string name="main_pay_cancel">支付取消</string>
 </resources>

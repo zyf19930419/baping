@@ -10,6 +10,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -87,24 +88,24 @@ public class ShareMoneyAty extends BaseActivity {
         // text是分享文本，所有平台都需要这个字段
         oks.setText("我是分享文本");
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-        oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+        oks.setImageUrl("http://e.hiphotos.baidu.com/image/h%3D300/sign=047b418c923df8dcb93d8991fd1072bf/aec379310a55b3199f70cd0e4ea98226cffc173b.jpg");//确保SDcard下面存在此张图片
         // url仅在微信（包括好友和朋友圈）中使用
-        oks.setUrl("http://sharesdk.cn");
+        oks.setUrl("https://www.baidu.com/");
 
         oks.setCallback(new PlatformActionListener() {
             @Override
             public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-
+                Toast.makeText(mContext, "分享成功", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(Platform platform, int i, Throwable throwable) {
-
+                Log.e("TAG", "onError: "+throwable.getMessage());
             }
 
             @Override
             public void onCancel(Platform platform, int i) {
-
+                Toast.makeText(mContext, "分享取消", Toast.LENGTH_SHORT).show();
             }
         });
         // 启动分享GUI
