@@ -3,19 +3,14 @@ package com.weibangbang.aty.home;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.mob.paysdk.AliPayAPI;
-import com.mob.paysdk.MobPayAPI;
-import com.mob.paysdk.OnPayListener;
-import com.mob.paysdk.PayOrder;
-import com.mob.paysdk.PayResult;
-import com.mob.paysdk.PaySDK;
-import com.mob.paysdk.WXPayAPI;
 import com.weibangbang.R;
+import com.weibangbang.aliPay.AliPay;
+import com.weibangbang.aliPay.AliPayCallBack;
 import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.presenter.HomePresenter;
+import com.weibangbang.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,24 +89,59 @@ public class PayMemberAty extends BaseActivity {
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
+//        if (requestUrl.endsWith("Vip/vip_upgrade.html")) {
+//            try {
+//                JSONObject jsonObject = new JSONObject(jsonStr);
+//                String data = jsonObject.optString("data");
+//                PayOrder order = new PayOrder();
+//                order.setOrderNo("订单号");
+//                order.setAmount(Integer.parseInt(mPrice)*100);
+//                order.setSubject("1111");
+//                order.setBody(data);
+//                //微信
+//                if ("1".equals(pay_way)) {
+//                    WXPayAPI wxpay = PaySDK.createMobPayAPI(WXPayAPI.class);
+//                    wxpay.pay(order,new MyOnPayListener());
+//                }
+//                //支付宝
+//                if ("2".equals(pay_way)) {
+//                    AliPayAPI alipay = PaySDK.createMobPayAPI(AliPayAPI.class);
+//                    alipay.pay(order, new MyOnPayListener());
+//                }
+//
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
+
         if (requestUrl.endsWith("Vip/vip_upgrade.html")) {
             try {
                 JSONObject jsonObject = new JSONObject(jsonStr);
                 String data = jsonObject.optString("data");
-                PayOrder order = new PayOrder();
-                order.setOrderNo("订单号");
-                order.setAmount(Integer.parseInt(mPrice)*100);
-                order.setSubject("1111");
-                order.setBody("支付主体");
                 //微信
                 if ("1".equals(pay_way)) {
-                    WXPayAPI wxpay = PaySDK.createMobPayAPI(WXPayAPI.class);
-                    wxpay.pay(order,new MyOnPayListener());
                 }
                 //支付宝
                 if ("2".equals(pay_way)) {
-                    AliPayAPI alipay = PaySDK.createMobPayAPI(AliPayAPI.class);
-                    alipay.pay(order, new MyOnPayListener());
+                    AliPay aliPay=new AliPay(data, new AliPayCallBack() {
+                        @Override
+                        public void onComplete() {
+                            ToastUtils.showToast(getResources().getString(R.string.main_pay_success));
+                        }
+
+                        @Override
+                        public void onFailure() {
+                            ToastUtils.showToast(getResources().getString(R.string.main_pay_cancel));
+                        }
+
+                        @Override
+                        public void onProcessing() {
+
+                        }
+                    });
+                    aliPay.setMessageWhat(AliPay.SDK_PAY_FLAG);
+                    aliPay.pay();
                 }
 
             } catch (JSONException e) {
@@ -122,25 +152,25 @@ public class PayMemberAty extends BaseActivity {
     }
 
 
-    class MyOnPayListener implements OnPayListener{
-        @Override
-        public boolean onWillPay(String s, Object o, MobPayAPI mobPayAPI) {
-            // TODO 保存本次支付操作的 ticketId
-            // 返回false表示不阻止本次支付
-            return false;
-        }
-
-        @Override
-        public void onPayEnd(PayResult payResult, Object o, MobPayAPI mobPayAPI) {
-            // TODO 处理支付的结果，成功或失败可以在payResult中获取
-            int result = payResult.getPayCode();
-            if (PayResult.PAYCODE_OK == result) {
-                Toast.makeText(mContext, R.string.main_pay_success, Toast.LENGTH_SHORT).show();
-            } else if (PayResult.PAYCODE_CANCEL == result) {
-                Toast.makeText(mContext, R.string.main_pay_cancel, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(mContext, R.string.main_pay_fail, Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
+//    class MyOnPayListener implements OnPayListener{
+//        @Override
+//        public boolean onWillPay(String s, Object o, MobPayAPI mobPayAPI) {
+//            // TODO 保存本次支付操作的 ticketId
+//            // 返回false表示不阻止本次支付
+//            return false;
+//        }
+//
+//        @Override
+//        public void onPayEnd(PayResult payResult, Object o, MobPayAPI mobPayAPI) {
+//            // TODO 处理支付的结果，成功或失败可以在payResult中获取
+//            int result = payResult.getPayCode();
+//            if (PayResult.PAYCODE_OK == result) {
+//                Toast.makeText(mContext, R.string.main_pay_success, Toast.LENGTH_SHORT).show();
+//            } else if (PayResult.PAYCODE_CANCEL == result) {
+//                Toast.makeText(mContext, R.string.main_pay_cancel, Toast.LENGTH_SHORT).show();
+//            } else {
+//                Toast.makeText(mContext, R.string.main_pay_fail, Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
 }
