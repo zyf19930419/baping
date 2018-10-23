@@ -55,7 +55,7 @@ public class LoginBean {
         private String user_phone;
         private String user_name;
         private int vip_id;
-        private int user_inviter;
+        private String user_inviter;
         private String user_inviter_qrcode;
         private String user_token;
 
@@ -83,11 +83,11 @@ public class LoginBean {
             this.vip_id = vip_id;
         }
 
-        public int getUser_inviter() {
+        public String getUser_inviter() {
             return user_inviter;
         }
 
-        public void setUser_inviter(int user_inviter) {
+        public void setUser_inviter(String user_inviter) {
             this.user_inviter = user_inviter;
         }
 
