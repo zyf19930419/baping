@@ -1,5 +1,6 @@
 package com.weibangbang.aty.personal;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -76,6 +77,7 @@ public class MineTeamAty extends BaseActivity {
         // text是分享文本，所有平台都需要这个字段
         oks.setText(bref);
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        oks.setImageData(BitmapFactory.decodeResource(getResources(), getResources().getIdentifier("ic_launcher", "mipmap", getApplicationInfo().packageName)));
         //        oks.setImageUrl("http://e.hiphotos.baidu.com/image/h%3D300/sign=047b418c923df8dcb93d8991fd1072bf/aec379310a55b3199f70cd0e4ea98226cffc173b.jpg");//确保SDcard下面存在此张图片
         // url仅在微信（包括好友和朋友圈）中使用
         oks.setUrl(share_usl);

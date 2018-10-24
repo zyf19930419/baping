@@ -73,6 +73,7 @@
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <!--支付宝支付  END-->
+
     </application>
 
 </manifest>

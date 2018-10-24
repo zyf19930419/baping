@@ -3,6 +3,7 @@ package com.weibangbang.aty.home;
 import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.SpannableString;
@@ -83,14 +84,14 @@ public class ShareMoneyAty extends BaseActivity {
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
-        if (requestUrl.endsWith("Index/share.html")){
-            JSONObject jsonObject=JSONObject.parseObject(jsonStr);
-            if (jsonObject.containsKey("data")){
-                JSONObject object=JSONObject.parseObject(jsonObject.getString("data"));
-                String title=object.containsKey("title")?object.getString("title"):"";
-                String brief=object.containsKey("brief")?object.getString("brief"):"";
-                String url=object.containsKey("url")?object.getString("url"):"";
-                showShare(title,brief,url);
+        if (requestUrl.endsWith("Index/share.html")) {
+            JSONObject jsonObject = JSONObject.parseObject(jsonStr);
+            if (jsonObject.containsKey("data")) {
+                JSONObject object = JSONObject.parseObject(jsonObject.getString("data"));
+                String title = object.containsKey("title") ? object.getString("title") : "";
+                String brief = object.containsKey("brief") ? object.getString("brief") : "";
+                String url = object.containsKey("url") ? object.getString("url") : "";
+                showShare(title, brief, url);
             }
 
         }
@@ -106,7 +107,8 @@ public class ShareMoneyAty extends BaseActivity {
         // text是分享文本，所有平台都需要这个字段
         oks.setText(bref);
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-//        oks.setImageUrl("http://e.hiphotos.baidu.com/image/h%3D300/sign=047b418c923df8dcb93d8991fd1072bf/aec379310a55b3199f70cd0e4ea98226cffc173b.jpg");//确保SDcard下面存在此张图片
+        oks.setImageData(BitmapFactory.decodeResource(getResources(), getResources().getIdentifier("ic_launcher", "mipmap", getApplicationInfo().packageName)));
+        //        oks.setImageUrl("http://e.hiphotos.baidu.com/image/h%3D300/sign=047b418c923df8dcb93d8991fd1072bf/aec379310a55b3199f70cd0e4ea98226cffc173b.jpg");//确保SDcard下面存在此张图片
         // url仅在微信（包括好友和朋友圈）中使用
         oks.setUrl(share_usl);
 
@@ -128,6 +130,10 @@ public class ShareMoneyAty extends BaseActivity {
         });
         // 启动分享GUI
         oks.show(this);
+    }
+
+    public void readFile(){
+
     }
 
     /**

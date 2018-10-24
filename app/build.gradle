@@ -101,7 +101,6 @@ MobSDK {
                 bypassApproval false
                 enable true
             }
-
         }
     }
     PaySDK {

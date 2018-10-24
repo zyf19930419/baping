@@ -31,7 +31,8 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
     private TextView alipay_tip_tv;
     private TextView wechat_tip_tv;
     private PersonalPresenter mPersonalPresenter;
-    private int total_price;
+    private float total_price;
+    private String pay_way="2";
 
     @Override
     public int getLayoutId() {
@@ -75,6 +76,7 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
         alipay_tip_tv.setVisibility(View.VISIBLE);
         wechat_img.setSelected(false);
         wechat_tip_tv.setVisibility(View.GONE);
+        pay_way="2";
     }
 
     public void onWechat(View view) {
@@ -82,6 +84,7 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
         alipay_tip_tv.setVisibility(View.GONE);
         wechat_img.setSelected(true);
         wechat_tip_tv.setVisibility(View.VISIBLE);
+        pay_way="1";
     }
 
     @Override
@@ -93,14 +96,70 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
                     showShortToast("请输入金额", Toast.LENGTH_SHORT);
                     return;
                 }
-                if (Integer.parseInt(s)>total_price){
+                if (Float.parseFloat(s)>total_price){
                     showShortToast("输入金额不能大于可提现金额", Toast.LENGTH_SHORT);
                     return;
                 }
 //                mPersonalPresenter.postWithDrawal();
+//                authorize();
                 break;
         }
     }
+
+//    public void authorize(){
+//        Platform weixin = ShareSDK.getPlatform(Alipay.NAME);
+//        if (weixin.isAuthValid()){
+//            String openId = weixin.getDb().getUserId(); // 获取用户在此平台的ID
+//            mPersonalPresenter.postWithDrawal(Config.getToken(),withdrawMoney_moneyInput_et.getText().toString(),pay_way,openId);
+//        }
+//        weixin.SSOSetting(false);//设置false表示使用SSO授权方式
+//        //回调信息，可以在这里获取基本的授权返回的信息，但是注意如果做提示和UI操作要传到主线程handler里去执行
+//        weixin.setPlatformActionListener(new PlatformActionListener() {
+//
+//            @Override
+//            public void onError(Platform arg0, int arg1, Throwable arg2) {
+//                // TODO Auto-generated method stub
+//                arg2.printStackTrace();
+//            }
+//
+//            @Override
+//            public void onComplete(Platform platform, int action, HashMap<String, Object> arg2) {
+//                // TODO Auto-generated method stub
+//                //输出所有授权信息
+//                platform.getDb().exportData();
+//                Log.e("TAG", platform.getDb().exportData());
+//                String openId = platform.getDb().getUserId();
+//                mPersonalPresenter.postWithDrawal(Config.getToken(),withdrawMoney_moneyInput_et.getText().toString(),pay_way,openId);
+//
+//                //遍历Map
+//                Iterator ite =arg2.entrySet().iterator();
+//                while (ite.hasNext()) {
+//                    Map.Entry entry = (Map.Entry)ite.next();
+//                    Object key = entry.getKey();
+//                    Object value = entry.getValue();
+//                    System.out.println(key+"： "+value);
+//                }
+//
+//                if (action == Platform.ACTION_USER_INFOR) {
+//                    PlatformDb platDB = platform.getDb();//获取数平台数据DB
+//                    //通过DB获取各种数据
+//                    platDB.getToken();
+//                    platDB.getUserGender();
+//                    platDB.getUserIcon();
+//                    platDB.getUserId();
+//                    platDB.getUserName();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancel(Platform arg0, int arg1) {
+//                // TODO Auto-generated method stub
+//
+//            }
+//        });
+//        //authorize与showUser单独调用一个即可
+//        weixin.authorize();
+//    }
 
 
     @Override
@@ -116,7 +175,7 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
                 JSONObject jsonObject=new JSONObject(jsonStr);
                 JSONObject jsonObject2=new JSONObject(jsonObject.optString("data"));
                 String user_balance = jsonObject2.optString("user_balance");
-                total_price=Integer.parseInt(user_balance);
+                total_price=Float.parseFloat(user_balance);
                 withdrawMoney_money_tv.setText(user_balance);
             } catch (JSONException e) {
                 e.printStackTrace();
