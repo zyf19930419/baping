@@ -16,9 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
 import com.weibangbang.R;
 import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
+import com.weibangbang.presenter.HomePresenter;
 import com.weibangbang.utils.GlideApp;
 
 import java.util.HashMap;
@@ -35,6 +37,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 public class ShareMoneyAty extends BaseActivity {
     private TextView joinTip_tv, invitation_code_tv;
     private ImageView qrCode_img;
+    private HomePresenter mHomePresenter;
 
     @Override
     public int getLayoutId() {
@@ -47,7 +50,7 @@ public class ShareMoneyAty extends BaseActivity {
         setTitleBar(getResources().getString(R.string.fenxiangzhuanqian), true);
         joinTip_tv = findViewById(R.id.joinTip_tv);
         invitation_code_tv = findViewById(R.id.invitation_code_tv);
-        qrCode_img=findViewById(R.id.qrCode_img);
+        qrCode_img = findViewById(R.id.qrCode_img);
 
         SpannableString spannableString = new SpannableString(getResources().getString(R.string.join_tip));
         StyleSpan styleSpan = new StyleSpan(Typeface.BOLD);
@@ -56,13 +59,13 @@ public class ShareMoneyAty extends BaseActivity {
         joinTip_tv.setText(spannableString);
         String userInviterQrcode = Config.getUserInviterQrcode();
         String userInviter = Config.getUserInviter();
-        if (!userInviter.isEmpty()){
+        if (!userInviter.isEmpty()) {
             invitation_code_tv.setText(userInviter);
         }
-        if (!userInviterQrcode.isEmpty()){
+        if (!userInviterQrcode.isEmpty()) {
             GlideApp.with(mContext).load(userInviterQrcode).into(qrCode_img);
         }
-
+        mHomePresenter = new HomePresenter(this);
     }
 
     @Override
@@ -74,23 +77,38 @@ public class ShareMoneyAty extends BaseActivity {
      * 点击分享按钮
      */
     public void onCommit(View view) {
-        showShare();
+        mHomePresenter.postShare();
     }
 
+    @Override
+    public void onComplete(String requestUrl, String jsonStr) {
+        super.onComplete(requestUrl, jsonStr);
+        if (requestUrl.endsWith("Index/share.html")){
+            JSONObject jsonObject=JSONObject.parseObject(jsonStr);
+            if (jsonObject.containsKey("data")){
+                JSONObject object=JSONObject.parseObject(jsonObject.getString("data"));
+                String title=object.containsKey("title")?object.getString("title"):"";
+                String brief=object.containsKey("brief")?object.getString("brief"):"";
+                String url=object.containsKey("url")?object.getString("url"):"";
+                showShare(title,brief,url);
+            }
 
-    private void showShare() {
+        }
+    }
+
+    private void showShare(String title, String bref, String share_usl) {
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
 
         // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
-        oks.setTitle("测试");
+        oks.setTitle(title);
         // text是分享文本，所有平台都需要这个字段
-        oks.setText("我是分享文本");
+        oks.setText(bref);
         // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-        oks.setImageUrl("http://e.hiphotos.baidu.com/image/h%3D300/sign=047b418c923df8dcb93d8991fd1072bf/aec379310a55b3199f70cd0e4ea98226cffc173b.jpg");//确保SDcard下面存在此张图片
+//        oks.setImageUrl("http://e.hiphotos.baidu.com/image/h%3D300/sign=047b418c923df8dcb93d8991fd1072bf/aec379310a55b3199f70cd0e4ea98226cffc173b.jpg");//确保SDcard下面存在此张图片
         // url仅在微信（包括好友和朋友圈）中使用
-        oks.setUrl("https://www.baidu.com/");
+        oks.setUrl(share_usl);
 
         oks.setCallback(new PlatformActionListener() {
             @Override
@@ -100,7 +118,7 @@ public class ShareMoneyAty extends BaseActivity {
 
             @Override
             public void onError(Platform platform, int i, Throwable throwable) {
-                Log.e("TAG", "onError: "+throwable.getMessage());
+                Log.e("TAG", "onError: " + throwable.getMessage());
             }
 
             @Override
@@ -111,6 +129,7 @@ public class ShareMoneyAty extends BaseActivity {
         // 启动分享GUI
         oks.show(this);
     }
+
     /**
      * 复制按钮
      */

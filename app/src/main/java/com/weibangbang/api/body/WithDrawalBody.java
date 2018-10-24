@@ -6,9 +6,18 @@ package com.weibangbang.api.body;
  * 功能描述：
  */
 public class WithDrawalBody {
+    private String token;
     private String money;
     private String way;
     private String account;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String getMoney() {
         return money;

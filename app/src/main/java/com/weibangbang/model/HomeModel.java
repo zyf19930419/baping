@@ -136,4 +136,13 @@ public class HomeModel extends BaseModel {
         mCall = mApiService.postLaunchCommit(launchCommitBody);
         request(baseView);
     }
+
+
+    /**
+     *分享接口
+     */
+    public void postShare(BaseView baseView){
+        mCall=mApiService.postShare();
+        request(baseView);
+    }
 }

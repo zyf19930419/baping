@@ -105,8 +105,9 @@ public class PersonalModel extends BaseModel {
      * @param way
      * @param account
      */
-    public void postWithDrawal(String money, String way, String account, BaseView baseView) {
+    public void postWithDrawal(String token,String money, String way, String account, BaseView baseView) {
         WithDrawalBody withDrawalBody = new WithDrawalBody();
+        withDrawalBody.setToken(token);
         withDrawalBody.setMoney(money);
         withDrawalBody.setWay(way);
         withDrawalBody.setAccount(account);

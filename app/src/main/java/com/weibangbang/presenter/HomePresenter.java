@@ -88,4 +88,11 @@ public class HomePresenter extends BasePresenter {
     public void postLaunchCommit(String token, String user_launch_content, String user_launch_compellation, String user_launch_phone) {
         mModel.postLaunchCommit(token, user_launch_content, user_launch_compellation, user_launch_phone, mBaseView);
     }
+
+    /**
+     * 分享接口
+     */
+    public void postShare() {
+        mModel.postShare(mBaseView);
+    }
 }

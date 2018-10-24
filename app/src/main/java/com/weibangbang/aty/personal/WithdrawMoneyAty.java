@@ -31,6 +31,7 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
     private TextView alipay_tip_tv;
     private TextView wechat_tip_tv;
     private PersonalPresenter mPersonalPresenter;
+    private int total_price;
 
     @Override
     public int getLayoutId() {
@@ -92,6 +93,10 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
                     showShortToast("请输入金额", Toast.LENGTH_SHORT);
                     return;
                 }
+                if (Integer.parseInt(s)>total_price){
+                    showShortToast("输入金额不能大于可提现金额", Toast.LENGTH_SHORT);
+                    return;
+                }
 //                mPersonalPresenter.postWithDrawal();
                 break;
         }
@@ -110,7 +115,9 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
             try {
                 JSONObject jsonObject=new JSONObject(jsonStr);
                 JSONObject jsonObject2=new JSONObject(jsonObject.optString("data"));
-                withdrawMoney_money_tv.setText(jsonObject2.optString("user_balance"));
+                String user_balance = jsonObject2.optString("user_balance");
+                total_price=Integer.parseInt(user_balance);
+                withdrawMoney_money_tv.setText(user_balance);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -147,4 +147,7 @@ public interface ApiService {
 
     @POST("Vip/vip_upgrade.html")
     Call<ResponseBody> postVipUpgrade(@Body VipUpgradeBody vipUpgradeBody);
+
+    @POST("Index/share.html")
+    Call<ResponseBody> postShare();
 }

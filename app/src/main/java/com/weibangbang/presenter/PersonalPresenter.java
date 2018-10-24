@@ -69,8 +69,8 @@ public class PersonalPresenter extends BasePresenter{
     /**
      * 提现
      */
-    public void postWithDrawal(String money, String way, String account){
-        mModel.postWithDrawal(money,way,account,mBaseView);
+    public void postWithDrawal(String token,String money, String way, String account){
+        mModel.postWithDrawal(token,money,way,account,mBaseView);
     }
 
     /**
