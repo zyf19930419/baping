@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
-import com.weibangbang.api.Config;
 import com.weibangbang.aty.member.TaskHallAty;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.home.MakeMoneyBean;
@@ -50,8 +49,7 @@ public class MakeMoneyAty extends BaseActivity {
     @Override
     public void initData() {
         mHomePresenter = new HomePresenter(this);
-        mHomePresenter.postMakeMoney(Config.getToken());
-
+        mHomePresenter.postMakeMoney();
     }
 
     public void onCommit(View view) {
@@ -69,6 +67,11 @@ public class MakeMoneyAty extends BaseActivity {
                 mRecyclerView.setAdapter(mMoneyAdapter);
             }
         }
+    }
+
+    @Override
+    public void onFailure(String msg) {
+        super.onFailure(msg);
     }
 
     private class MakeMoneyAdapter extends RecyclerView.Adapter<MakeMoneyAdapter.ViewHolder> {

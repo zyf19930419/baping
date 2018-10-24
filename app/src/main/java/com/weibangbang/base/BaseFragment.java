@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.weibangbang.utils.ToastUtils;
+import com.weibangbang.view.CommonDialog;
 
 /**
  * 创建者：zhangyunfei
@@ -34,6 +35,8 @@ public abstract class BaseFragment extends Fragment implements BaseView{
 
     protected abstract void requestData();
 
+    private CommonDialog mDialog;
+
 
     @Override
     public void onAttach(Context context) {
@@ -54,6 +57,7 @@ public abstract class BaseFragment extends Fragment implements BaseView{
         super.onActivityCreated(savedInstanceState);
         requestData();
     }
+
 
     @Override
     public void onHiddenChanged(boolean hidden) {

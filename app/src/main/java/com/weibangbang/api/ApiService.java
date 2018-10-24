@@ -45,22 +45,22 @@ public interface ApiService {
 
 
     @POST("Work/ranking_day.html")
-    Call<ResponseBody> postDailyRankings(@Body TokenBody tokenBody);
+    Call<ResponseBody> postDailyRankings();
 
     @POST("Work/ranking_list.html")
-    Call<ResponseBody> postUniversalLeaderboard(@Body TokenBody tokenBody);
+    Call<ResponseBody> postUniversalLeaderboard();
 
     @POST("Index/notice_details.html")
     Call<ResponseBody> postNoticeDetails(@Body NoticeDetailsBody noticeDetailsBody);
 
     @POST("Work/lobby.html")
-    Call<ResponseBody> postMakeMoney(@Body TokenBody tokenBody);
+    Call<ResponseBody> postMakeMoney();
 
     @POST("Service/service_list.html")
-    Call<ResponseBody> postContactCustomerService(@Body TokenBody tokenBody);
+    Call<ResponseBody> postContactCustomerService();
 
     @POST("Work/task_rules.html")
-    Call<ResponseBody> postTaskRules(@Body TokenBody tokenBody);
+    Call<ResponseBody> postTaskRules();
 
 
     @POST("Account/send_message.html")

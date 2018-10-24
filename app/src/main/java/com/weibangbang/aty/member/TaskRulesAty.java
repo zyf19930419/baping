@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.api.ApiService;
-import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.member.TaskRulesBean;
 import com.weibangbang.presenter.MemberPresenter;
@@ -42,7 +41,7 @@ public class TaskRulesAty extends BaseActivity {
     @Override
     public void initData() {
         mPresenter = new MemberPresenter(this);
-        mPresenter.postTaskRules(Config.getToken());
+        mPresenter.postTaskRules();
     }
 
     @Override
@@ -61,5 +60,10 @@ public class TaskRulesAty extends BaseActivity {
                     .load(ApiService.BASE_IMAGE + data.getRule_picture())
                     .into(rules_img);
         }
+    }
+
+    @Override
+    public void onFailure(String msg) {
+        super.onFailure(msg);
     }
 }

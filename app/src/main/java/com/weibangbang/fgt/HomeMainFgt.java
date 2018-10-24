@@ -38,8 +38,6 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
     private List<String> images;
     private RelativeLayout re_zhuangyong, re_lingyong, re_huiyuan, re_toufang, re_haoyou, re_kefu;
 
-    //    private MyViewFlipper myViewFilpper;
-//    private List<View> mViews;
     private HomePresenter mPresenter;
 
     @Override
@@ -59,7 +57,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
         re_toufang = view.findViewById(R.id.re_toufang);
         re_haoyou = view.findViewById(R.id.re_haoyou);
         re_kefu = view.findViewById(R.id.re_kefu);
-//        myViewFilpper = view.findViewById(R.id.myViewFilpper);
+        //        myViewFilpper = view.findViewById(R.id.myViewFilpper);
         images = new ArrayList<>();
         mBanner = view.findViewById(R.id.banner);
         re_zhuangyong.setOnClickListener(this);
@@ -74,7 +72,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-            mPresenter.postBanner();
+        mPresenter.postBanner();
 
     }
 
@@ -83,22 +81,18 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
         if (isViewVisible) {
             mPresenter.postBanner();
         }
-//        mPresenter.postNotice();
     }
 
     @Override
     public void onStart() {
         super.onStart();
         mBanner.startAutoPlay();
-//        myViewFilpper.startFlipping();
     }
 
     @Override
     public void onStop() {
         super.onStop();
         mBanner.stopAutoPlay();
-//        myViewFilpper.stopFlipping();
-//        myViewFilpper.removeAllViews();
     }
 
     @Override
@@ -130,71 +124,28 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
             }
         }
 
-//        if (requestUrl.endsWith("notice.html")) {
-//            NoticeBean noticeBean = JSON.parseObject(jsonStr, NoticeBean.class);
-//            final List<NoticeBean.DataBean> data = noticeBean.getData();
-//            mViews = new ArrayList<>();
-//            if (data != null && data.size() > 0) {
-//                for (int i = 0; i < data.size(); i++) {
-//                    //设置滚动的单个布局
-//                    LinearLayout moreView = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.adv_item, null);
-//                    //初始化布局的控件
-//                    TextView title_tv = moreView.findViewById(R.id.title_tv);
-//                    TextView content_tv = moreView.findViewById(R.id.content_tv);
-//                    //进行对控件赋值
-//                    title_tv.setText(data.get(i).getNotice_title());
-//                    content_tv.setText(data.get(i).getNotice_brief());
-//                    //添加到循环滚动数组里面去
-//                    mViews.add(moreView);
-//                }
-//
-//            }
-//            myViewFilpper.setViews(mViews);
-//            myViewFilpper.getCurrentView().setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    int notice_id = data.get(myViewFilpper.getDisplayedChild()).getNotice_id();
-//                    Bundle bundle=new Bundle();
-//                    bundle.putInt("notice_id",notice_id);
-//                    startActivity(NoticeDetailsAty.class,bundle);
-//                }
-//            });
-//        }
-
     }
 
+    @Override
+    public void onFailure(String msg) {
+        super.onFailure(msg);
+    }
 
     @Override
     public void onClick(View v) {
         int viewId = v.getId();
         switch (viewId) {
             case R.id.re_zhuangyong:
-                if (Config.isLogin()) {
-                    startActivity(MakeMoneyAty.class);
-                } else {
-                    startActivity(LoginAty.class);
-                }
+                startActivity(MakeMoneyAty.class);
                 break;
             case R.id.re_lingyong:
-                if (Config.isLogin()) {
-                    startActivity(FreeLeadAty.class);
-                } else {
-                    startActivity(LoginAty.class);
-                }
+                startActivity(FreeLeadAty.class);
                 break;
             case R.id.re_huiyuan:
-                if (Config.isLogin()) {
-                    startActivity(OpenMemberAty.class);
-                } else {
-                    startActivity(LoginAty.class);
-                }
+                startActivity(OpenMemberAty.class);
                 break;
             case R.id.re_toufang:
-                if (Config.isLogin()) {
-                    startActivity(PutInAty.class);
-                } else {
-                    startActivity(LoginAty.class);
-                }
+                startActivity(PutInAty.class);
                 break;
             case R.id.re_haoyou:
                 if (Config.isLogin()) {
@@ -204,16 +155,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
                 }
                 break;
             case R.id.re_kefu:
-                if (Config.isLogin()) {
-                    startActivity(ContactCustomerAty.class);
-                } else {
-                    startActivity(LoginAty.class);
-                }
-                //                if (DisplayHelper.hasApplication(getContext(), "com.tencent.mm")) {
-                //                    DisplayHelper.getWechatApi(getContext(),"com.tencent.mm");
-                //                } else {
-                //                    Toast.makeText(getContext(), "请安装微信", Toast.LENGTH_LONG).show();
-                //                }
+                startActivity(ContactCustomerAty.class);
                 break;
         }
     }

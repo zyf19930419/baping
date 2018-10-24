@@ -51,7 +51,7 @@ public class RankingListAty extends BaseActivity{
     @Override
     public void initData() {
         mPresenter =new MemberPresenter(this);
-        mPresenter.postDailyRankings(Config.getToken());
+        mPresenter.postDailyRankings();
     }
 
     @Override
@@ -82,7 +82,7 @@ public class RankingListAty extends BaseActivity{
         general_tv.setCompoundDrawablePadding(10);
         general_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this,R.mipmap.icon_white_point),null,null,null);
         advance_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
-        mPresenter.postDailyRankings(Config.getToken());
+        mPresenter.postDailyRankings();
     }
     /**
      *总排行榜
@@ -91,6 +91,6 @@ public class RankingListAty extends BaseActivity{
         general_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
         advance_tv.setCompoundDrawablePadding(10);
         advance_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this,R.mipmap.icon_white_point),null,null,null);
-        mPresenter.postUniversalLeaderboard(Config.getToken());
+        mPresenter.postUniversalLeaderboard();
     }
 }

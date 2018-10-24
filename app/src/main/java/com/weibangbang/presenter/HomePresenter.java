@@ -42,8 +42,8 @@ public class HomePresenter extends BasePresenter {
     /**
      * 我要赚佣接口
      */
-    public void postMakeMoney(String token) {
-        mModel.postMakeMoney(token, mBaseView);
+    public void postMakeMoney() {
+        mModel.postMakeMoney(mBaseView);
     }
 
     /**
@@ -78,8 +78,8 @@ public class HomePresenter extends BasePresenter {
     /**
      * 联系客服接口
      */
-    public void postContactCustomerService(String token) {
-        mModel.postContactCustomerService(token,mBaseView);
+    public void postContactCustomerService() {
+        mModel.postContactCustomerService(mBaseView);
     }
 
     /**

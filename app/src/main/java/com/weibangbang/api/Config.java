@@ -29,6 +29,15 @@ public class Config {
         SharedPreferencesUtils.getInstance(ActivityStack.getInstance().topActivity()).putString(Constant.TOKEN,token);
     }
 
+    public static void setVipId(int vipId){
+        SharedPreferencesUtils.getInstance(ActivityStack.getInstance().topActivity()).putInt(Constant.VIPID,vipId);
+    }
+
+    public static int getVipId(){
+        int vipId=SharedPreferencesUtils.getInstance(ActivityStack.getInstance().topActivity()).getInt(Constant.VIPID,0);
+        return vipId;
+    }
+
     /**
      * 分享页面的邀请码
      * @param user_inviter

@@ -54,8 +54,8 @@ public class CommonDialog extends AlertDialog {
         if (window!=null){
             WindowManager.LayoutParams attributes = window.getAttributes();
             attributes.gravity= Gravity.CENTER;
-            attributes.width= DisplayHelper.getScreenWidth(mContext)/2;
-            attributes.height=DisplayHelper.getScreenHeight(mContext)/3;
+            attributes.width= DisplayHelper.getScreenWidth(mContext)/3;
+            attributes.height=DisplayHelper.getScreenWidth(mContext)/3;
             window.setAttributes(attributes);
         }
     }

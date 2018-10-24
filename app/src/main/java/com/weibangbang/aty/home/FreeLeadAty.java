@@ -9,21 +9,15 @@ import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.api.ApiService;
 import com.weibangbang.api.Config;
+import com.weibangbang.aty.LoginAty;
 import com.weibangbang.base.BaseActivity;
-import com.weibangbang.bean.home.BannerBean;
 import com.weibangbang.bean.home.ReceiveInfoBean;
-import com.weibangbang.loader.BannerLoader;
 import com.weibangbang.presenter.HomePresenter;
 import com.weibangbang.utils.GlideApp;
 import com.weibangbang.utils.ToastUtils;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.List;
 
 /**
  * 创建者：zhangyunfei
@@ -61,6 +55,10 @@ public class FreeLeadAty extends BaseActivity{
     }
 
     public void onCommit(View view) {
+        if (!Config.isLogin()){
+            startActivity(LoginAty.class);
+            return;
+        }
         String name = name_edit.getText().toString();
         String phone = phone_edit.getText().toString();
         String address = address_edit.getText().toString();
@@ -85,5 +83,10 @@ public class FreeLeadAty extends BaseActivity{
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void onFailure(String msg) {
+        super.onFailure(msg);
     }
 }

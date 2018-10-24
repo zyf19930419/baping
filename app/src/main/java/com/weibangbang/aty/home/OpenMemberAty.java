@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.api.Config;
+import com.weibangbang.aty.LoginAty;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.home.VipListBean;
 import com.weibangbang.presenter.HomePresenter;
@@ -128,12 +129,21 @@ public class OpenMemberAty extends BaseActivity {
         }
     }
 
+    @Override
+    public void onFailure(String msg) {
+        super.onFailure(msg);
+    }
+
     /**
      * 开通会员
      *
      * @param view
      */
     public void onCommit(View view) {
+        if (!Config.isLogin()){
+            startActivity(LoginAty.class);
+            return;
+        }
         if (!TextUtils.isEmpty(price) && !TextUtils.isEmpty(upgrade)){
             Bundle bundle = new Bundle();
             bundle.putString("price", price);

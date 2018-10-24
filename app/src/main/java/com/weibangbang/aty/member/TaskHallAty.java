@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.adapter.TaskHallAdapter;
-import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.member.LobbyBean;
 import com.weibangbang.presenter.MemberPresenter;
@@ -49,7 +48,7 @@ public class TaskHallAty extends BaseActivity{
     @Override
     public void initData() {
         mMemberPresenter=new MemberPresenter(this);
-        mMemberPresenter.postlobby(Config.getToken(),"1");
+        mMemberPresenter.postlobby("1");
     }
 
     @Override
@@ -74,6 +73,11 @@ public class TaskHallAty extends BaseActivity{
         }
     }
 
+    @Override
+    public void onFailure(String msg) {
+        super.onFailure(msg);
+    }
+
     /**
      * 普通任务
      */
@@ -81,7 +85,7 @@ public class TaskHallAty extends BaseActivity{
         general_tv.setCompoundDrawablePadding(10);
         general_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this,R.mipmap.icon_white_point),null,null,null);
         advance_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
-        mMemberPresenter.postlobby(Config.getToken(),"1");
+        mMemberPresenter.postlobby("1");
     }
     /**
      *高级任务
@@ -90,6 +94,6 @@ public class TaskHallAty extends BaseActivity{
         general_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
         advance_tv.setCompoundDrawablePadding(10);
         advance_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this,R.mipmap.icon_white_point),null,null,null);
-        mMemberPresenter.postlobby(Config.getToken(),"2");
+        mMemberPresenter.postlobby("2");
     }
 }

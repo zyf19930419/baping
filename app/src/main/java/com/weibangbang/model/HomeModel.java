@@ -50,12 +50,9 @@ public class HomeModel extends BaseModel {
     /**
      * 我要赚佣接口
      *
-     * @param token
      */
-    public void postMakeMoney(String token, BaseView baseView) {
-        TokenBody tokenBody = new TokenBody();
-        tokenBody.setToken(token);
-        mCall = mApiService.postMakeMoney(tokenBody);
+    public void postMakeMoney( BaseView baseView) {
+        mCall = mApiService.postMakeMoney();
         request(baseView);
     }
 
@@ -117,10 +114,8 @@ public class HomeModel extends BaseModel {
     /**
      * 联系客服接口
      */
-    public void postContactCustomerService(String token,BaseView baseView) {
-        TokenBody tokenBody = new TokenBody();
-        tokenBody.setToken(token);
-        mCall = mApiService.postContactCustomerService(tokenBody);
+    public void postContactCustomerService(BaseView baseView) {
+        mCall = mApiService.postContactCustomerService();
         request(baseView);
     }
 

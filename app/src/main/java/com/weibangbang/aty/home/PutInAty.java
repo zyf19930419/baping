@@ -9,14 +9,10 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
 import com.weibangbang.api.Config;
-import com.weibangbang.api.Constant;
+import com.weibangbang.aty.LoginAty;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.home.LaunchCommitBean;
-import com.weibangbang.model.HomeModel;
 import com.weibangbang.presenter.HomePresenter;
-import com.weibangbang.utils.LogUtils;
-import com.weibangbang.utils.SharedPreferencesUtils;
-import com.weibangbang.utils.ToastUtils;
 
 /**
  * 创建者：zhangyunfei
@@ -56,6 +52,10 @@ public class PutInAty extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.commit_tv:
+                if (!Config.isLogin()){
+                    startActivity(LoginAty.class);
+                    return;
+                }
                 String nameStr = name_edit.getText().toString();
                 String phoneStr = phone_edit.getText().toString();
                 String guanggaoStr = guanggao_edit.getText().toString();
@@ -90,5 +90,10 @@ public class PutInAty extends BaseActivity implements View.OnClickListener {
                 finish();
             }
         }
+    }
+
+    @Override
+    public void onFailure(String msg) {
+        super.onFailure(msg);
     }
 }

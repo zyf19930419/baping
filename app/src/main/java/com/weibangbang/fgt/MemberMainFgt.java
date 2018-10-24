@@ -1,6 +1,5 @@
 package com.weibangbang.fgt;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -31,12 +30,13 @@ import java.util.List;
  * 创建时间：2018/9/25 11:16
  * 功能描述：会员中心
  */
-public class MemberMainFgt extends BaseFragment implements View.OnClickListener{
+public class MemberMainFgt extends BaseFragment implements View.OnClickListener {
 
     private Banner mBanner;
     private List<String> images;
-    private RelativeLayout re_dating,re_guize,re_paihang,re_renwu;
+    private RelativeLayout re_dating, re_guize, re_paihang, re_renwu;
     private HomePresenter mPresenter;
+
     @Override
     protected int getLayoutResId() {
         return R.layout.fgt_member;
@@ -50,10 +50,10 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener{
     private void initView(View view) {
         images = new ArrayList<>();
         mBanner = view.findViewById(R.id.banner);
-        re_dating=view.findViewById(R.id.re_dating);
-        re_guize=view.findViewById(R.id.re_guize);
-        re_paihang=view.findViewById(R.id.re_paihang);
-        re_renwu=view.findViewById(R.id.re_renwu);
+        re_dating = view.findViewById(R.id.re_dating);
+        re_guize = view.findViewById(R.id.re_guize);
+        re_paihang = view.findViewById(R.id.re_paihang);
+        re_renwu = view.findViewById(R.id.re_renwu);
         re_dating.setOnClickListener(this);
         re_guize.setOnClickListener(this);
         re_paihang.setOnClickListener(this);
@@ -76,7 +76,7 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener{
 
     @Override
     protected void requestData() {
-        if ( isViewVisible) {
+        if (isViewVisible) {
             mPresenter.postBanner();
         }
     }
@@ -87,11 +87,7 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener{
         int viewId = v.getId();
         switch (viewId) {
             case R.id.re_dating:
-                if (Config.isLogin()){
-                    startActivity(TaskHallAty.class);
-                }else {
-                    startActivity(LoginAty.class);
-                }
+                startActivity(TaskHallAty.class);
                 break;
             case R.id.re_guize:
                 startActivity(TaskRulesAty.class);
@@ -100,7 +96,12 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener{
                 startActivity(RankingListAty.class);
                 break;
             case R.id.re_renwu:
-                startActivity(MyTaskAty.class);
+                if (Config.isLogin()){
+                    startActivity(MyTaskAty.class);
+                }else {
+                    startActivity(LoginAty.class);
+                }
+
                 break;
 
         }
@@ -134,5 +135,10 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener{
                 mBanner.start();
             }
         }
+    }
+
+    @Override
+    public void onFailure(String msg) {
+        super.onFailure(msg);
     }
 }

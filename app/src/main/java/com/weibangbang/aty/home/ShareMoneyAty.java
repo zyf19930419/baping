@@ -97,6 +97,11 @@ public class ShareMoneyAty extends BaseActivity {
         }
     }
 
+    @Override
+    public void onFailure(String msg) {
+        super.onFailure(msg);
+    }
+
     private void showShare(String title, String bref, String share_usl) {
         OnekeyShare oks = new OnekeyShare();
         //关闭sso授权

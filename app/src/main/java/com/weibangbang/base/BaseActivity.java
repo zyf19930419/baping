@@ -1,8 +1,8 @@
 package com.weibangbang.base;
 
-import android.content.Context;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
@@ -66,6 +66,8 @@ public abstract class BaseActivity extends AppCompatActivity implements NetEvent
     public abstract void initView();
 
     public abstract void initData();
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

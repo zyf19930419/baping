@@ -6,16 +6,8 @@ package com.weibangbang.api.body;
  * 联系方式：32457127@qq.com
  */
 public class LobbyBody {
-    private String token;
     private String vip;
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 
     public String getVip() {
         return vip;

@@ -39,10 +39,6 @@
             android:text="@string/notice_2"
             android:textSize="10sp" />
 
-        <!--<com.weibangbang.view.MyViewFlipper
-            android:id="@+id/myViewFilpper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>-->
     </LinearLayout>
 
     <FrameLayout

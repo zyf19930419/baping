@@ -15,12 +15,10 @@ public class MemberModel extends BaseModel{
 
     /**
      *任务大厅接口
-     * @param token
      * @param vip 1.普通任务2.高级任务 可以不传默认普通
      */
-    public void postlobby(String token,String vip,BaseView baseView){
+    public void postlobby(String vip,BaseView baseView){
         LobbyBody lobbyBody=new LobbyBody();
-        lobbyBody.setToken(token);
         lobbyBody.setVip(vip);
         mCall = mApiService.postlobby(lobbyBody);
         request(baseView);
@@ -55,30 +53,24 @@ public class MemberModel extends BaseModel{
     /**
      * 任务规则
      */
-    public void postTaskRules(String token,BaseView baseView) {
-        TokenBody tokenBody=new TokenBody();
-        tokenBody.setToken(token);
-        mCall = mApiService.postTaskRules(tokenBody);
+    public void postTaskRules(BaseView baseView) {
+        mCall = mApiService.postTaskRules();
         request(baseView);
     }
 
     /**
      * 日排行榜
      */
-    public void postDailyRankings(String token,BaseView baseView){
-        TokenBody tokenBody=new TokenBody();
-        tokenBody.setToken(token);
-        mCall = mApiService.postDailyRankings(tokenBody);
+    public void postDailyRankings(BaseView baseView){
+        mCall = mApiService.postDailyRankings();
         request(baseView);
     }
 
     /**
      * 总排行榜
      */
-    public void postUniversalLeaderboard(String token,BaseView baseView){
-        TokenBody tokenBody=new TokenBody();
-        tokenBody.setToken(token);
-        mCall = mApiService.postUniversalLeaderboard(tokenBody);
+    public void postUniversalLeaderboard(BaseView baseView){
+        mCall = mApiService.postUniversalLeaderboard();
         request(baseView);
     }
 

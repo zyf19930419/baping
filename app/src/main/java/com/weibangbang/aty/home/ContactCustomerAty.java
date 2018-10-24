@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.weibangbang.R;
-import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.home.CustomerBean;
 import com.weibangbang.presenter.HomePresenter;
@@ -44,7 +43,7 @@ public class ContactCustomerAty extends BaseActivity{
     @Override
     public void initData() {
         mHomePresenter=new HomePresenter(this);
-        mHomePresenter.postContactCustomerService(Config.getToken());
+        mHomePresenter.postContactCustomerService();
     }
 
     public void onKefu1(View view) {

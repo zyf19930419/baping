@@ -19,8 +19,8 @@ public class MemberPresenter extends BasePresenter{
     /**
      *任务大厅接口
      */
-    public void postlobby(String token,String vip){
-        mModel.postlobby(token,vip,mBaseView);
+    public void postlobby(String vip){
+        mModel.postlobby(vip,mBaseView);
     }
 
     /**
@@ -39,22 +39,22 @@ public class MemberPresenter extends BasePresenter{
     /**
      * 任务规则
      */
-    public void postTaskRules(String token){
-        mModel.postTaskRules(token,mBaseView);
+    public void postTaskRules(){
+        mModel.postTaskRules(mBaseView);
     }
 
     /**
      * 日排行榜
      */
-    public void postDailyRankings(String token){
-        mModel.postDailyRankings(token,mBaseView);
+    public void postDailyRankings(){
+        mModel.postDailyRankings(mBaseView);
     }
 
     /**
      * 总排行榜
      */
-    public void postUniversalLeaderboard(String token){
-        mModel.postUniversalLeaderboard(token,mBaseView);
+    public void postUniversalLeaderboard(){
+        mModel.postUniversalLeaderboard(mBaseView);
     }
 
     /**
