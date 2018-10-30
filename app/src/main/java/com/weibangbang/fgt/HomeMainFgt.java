@@ -57,8 +57,6 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
         re_toufang = view.findViewById(R.id.re_toufang);
         re_haoyou = view.findViewById(R.id.re_haoyou);
         re_kefu = view.findViewById(R.id.re_kefu);
-        //        myViewFilpper = view.findViewById(R.id.myViewFilpper);
-        images = new ArrayList<>();
         mBanner = view.findViewById(R.id.banner);
         re_zhuangyong.setOnClickListener(this);
         re_lingyong.setOnClickListener(this);
@@ -102,6 +100,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
             BannerBean bannerBean = JSON.parseObject(jsonStr, BannerBean.class);
             List<BannerBean.DataBean> dataBeanList = bannerBean.getData();
             if (dataBeanList != null && dataBeanList.size() > 0) {
+                images=new ArrayList<>();
                 for (BannerBean.DataBean bean : dataBeanList) {
                     images.add(ApiService.BASE_IMAGE + bean.getBanner_content());
                 }

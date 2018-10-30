@@ -11,10 +11,9 @@
         android:id="@+id/content_tv"
         android:layout_margin="15dp"
         android:elevation="3dp"
-        android:gravity="center"
         android:padding="15dp"
+        android:gravity="center"
         android:background="@drawable/edit_shape"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
 </LinearLayout>

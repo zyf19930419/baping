@@ -48,7 +48,6 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener 
     }
 
     private void initView(View view) {
-        images = new ArrayList<>();
         mBanner = view.findViewById(R.id.banner);
         re_dating = view.findViewById(R.id.re_dating);
         re_guize = view.findViewById(R.id.re_guize);
@@ -114,6 +113,7 @@ public class MemberMainFgt extends BaseFragment implements View.OnClickListener 
             BannerBean bannerBean = JSON.parseObject(jsonStr, BannerBean.class);
             List<BannerBean.DataBean> dataBeanList = bannerBean.getData();
             if (dataBeanList != null && dataBeanList.size() > 0) {
+                images = new ArrayList<>();
                 for (BannerBean.DataBean bean : dataBeanList) {
                     images.add(ApiService.BASE_IMAGE + bean.getBanner_content());
                 }

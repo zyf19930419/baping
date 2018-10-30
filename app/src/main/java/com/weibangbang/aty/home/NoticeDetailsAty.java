@@ -1,15 +1,24 @@
 package com.weibangbang.aty.home;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LevelListDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.Spanned;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.weibangbang.R;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.home.NoticeDetailsBean;
 import com.weibangbang.presenter.HomePresenter;
+import com.weibangbang.utils.GlideApp;
 
 /**
  * 创建者：zhangyunfei
@@ -50,12 +59,32 @@ public class NoticeDetailsAty extends BaseActivity {
             NoticeDetailsBean.DataBean data = noticeDetailsBean.getData();
             Spanned result;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                result = Html.fromHtml(data.getNotice_content(),Html.FROM_HTML_MODE_LEGACY);
+                result = Html.fromHtml(data.getNotice_content(), Html.FROM_HTML_MODE_LEGACY, imgGetter, null);
             } else {
-                result = Html.fromHtml(data.getNotice_content());
+                result = Html.fromHtml(data.getNotice_content(), imgGetter, null);
             }
-                content_tv.setText(result);
+            content_tv.setText(result);
 
         }
     }
+
+    Html.ImageGetter imgGetter = new Html.ImageGetter() {
+        public Drawable getDrawable(String source) {
+            final LevelListDrawable drawable = new LevelListDrawable();
+            GlideApp.with(NoticeDetailsAty.this).asBitmap().load(source).into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    if(resource != null) {
+                        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(),resource);
+                        drawable.addLevel(1, 1, bitmapDrawable);
+                        drawable.setBounds(0, 0, resource.getWidth(), resource.getHeight());
+                        drawable.setLevel(1);
+                        content_tv.invalidate();
+                        content_tv.setText(content_tv.getText());
+                    }
+                }
+            });
+            return drawable;
+        }
+    };
 }
