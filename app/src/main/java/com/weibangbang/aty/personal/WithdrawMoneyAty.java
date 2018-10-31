@@ -1,6 +1,7 @@
 package com.weibangbang.aty.personal;
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -114,6 +115,23 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
         }
     }
 
+    private String removeBrackets(String str, boolean remove) {
+        if (remove) {
+            if (!TextUtils.isEmpty(str)) {
+                if (str.startsWith("\"")) {
+                    str = str.replaceFirst("\"", "");
+                }
+                if (str.endsWith("\"")) {
+                    str = str.substring(0, str.length() - 1);
+                }
+            }
+        }
+        return str;
+    }
+
+    private String getValue(String header, String data) {
+        return data.substring(header.length(), data.length());
+    }
 
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
@@ -135,8 +153,17 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
             AliPay aliPay=new AliPay(paramData.toString(), new AliPay.OnAuthInterface() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
-                    Log.e("TAG", "onSuccess: "+authResult.toString()+"==="+authResult.getAuthCode()+"-----"+authResult.getAlipayOpenId());
-                    mPersonalPresenter.postWithDrawal(Config.getToken(),withdrawMoney_moneyInput_et.getText().toString(),pay_way,authResult.getAlipayOpenId());
+                    Log.e("TAG", "onSuccess: "+authResult.getResult());
+                    String[] resultValue = authResult.getResult().split("&");
+                    String user_id = "";
+                    for (String value : resultValue) {
+                        if (value.startsWith("user_id")) {
+                            user_id = removeBrackets(getValue("user_id=", value), true);
+                            break;
+                        }
+                    }
+                    Log.e("TAG", "user_id: "+user_id);
+                    mPersonalPresenter.postWithDrawal(Config.getToken(),withdrawMoney_moneyInput_et.getText().toString(),pay_way,user_id);
                 }
 
                 @Override
