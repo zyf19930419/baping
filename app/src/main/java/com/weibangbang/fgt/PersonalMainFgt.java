@@ -78,6 +78,12 @@ public class PersonalMainFgt extends BaseFragment implements View.OnClickListene
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        requestData();
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.personal_info_tv:
