@@ -3,9 +3,13 @@ package com.weibangbang.aty;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
@@ -22,6 +26,7 @@ import com.weibangbang.common.ActivityStack;
 import com.weibangbang.fgt.HomeMainFgt;
 import com.weibangbang.fgt.MemberMainFgt;
 import com.weibangbang.fgt.PersonalMainFgt;
+import com.weibangbang.utils.NotificationsUtils;
 import com.weibangbang.utils.PermissionHelper;
 
 ;
@@ -66,6 +71,7 @@ public class MainActivity extends BaseActivity {
     public void initView() {
         //申请权限
         requestSomePermission();
+        checkNotification();
         redColor = ContextCompat.getColor(this, R.color.bar_color);
         txtColor = ContextCompat.getColor(this, R.color.txt_color);
         txt_title = findViewById(R.id.txt_title);
@@ -94,6 +100,57 @@ public class MainActivity extends BaseActivity {
         transaction.show(mHomeMainFgt);
         transaction.commit();
         switchTo(index);
+    }
+
+
+    private void checkNotification(){
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT&&Build.VERSION.SDK_INT<Build.VERSION_CODES.O) {
+            if (!NotificationsUtils.isNotificationEnabled(this)) {
+                notificationDialog();
+            }
+        }else if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            if (!NotificationsUtils.isEnableV26(this,getPackageName(),android.os.Process.myUid())){
+                notificationDialog();
+            }
+
+        }
+
+    }
+
+    private void notificationDialog() {
+        final AlertDialog dialog = new AlertDialog.Builder(this).create();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setTitle("该应用需要打开通知权限");
+
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE, " 去设置", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                Intent localIntent = new Intent();
+                localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                if (Build.VERSION.SDK_INT >= 9) {
+                    localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    localIntent.setData(Uri.fromParts("package", MainActivity.this.getPackageName(), null));
+                } else if (Build.VERSION.SDK_INT <= 8) {
+                    localIntent.setAction(Intent.ACTION_VIEW);
+
+                    localIntent.setClassName("com.android.settings",
+                            "com.android.settings.InstalledAppDetails");
+
+                    localIntent.putExtra("com.android.settings.ApplicationPkgName",
+                            MainActivity.this.getPackageName());
+                }
+                startActivity(localIntent);
+            }
+        });
+        dialog.show();
     }
 
     private void switchTo(int position) {
