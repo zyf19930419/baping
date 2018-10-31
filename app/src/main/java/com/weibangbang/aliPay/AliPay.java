@@ -104,7 +104,7 @@ public class AliPay implements Runnable {
                         // 获取alipay_open_id，调支付时作为参数extern_token 的value
                         // 传入，则支付账户为该授权账户
 
-                        mOnAuthInterface.onSuccess(authResult.getAuthCode());
+                        mOnAuthInterface.onSuccess(authResult);
                         Toast.makeText(ActivityStack.getInstance().topActivity(),
                                 "授权成功",Toast.LENGTH_SHORT).show();
                     } else {
@@ -122,7 +122,7 @@ public class AliPay implements Runnable {
     };
 
     public interface OnAuthInterface{
-        void onSuccess(String auth_code);
+        void onSuccess(AuthResult authResult);
         void onFailure();
     }
 

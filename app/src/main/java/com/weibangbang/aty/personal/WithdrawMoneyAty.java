@@ -2,6 +2,7 @@ package com.weibangbang.aty.personal;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -9,9 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weibangbang.R;
+import com.weibangbang.aliPay.AliPay;
+import com.weibangbang.aliPay.AuthResult;
 import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
+import com.weibangbang.bean.personal.AliInfoBean;
 import com.weibangbang.presenter.PersonalPresenter;
+import com.weibangbang.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -100,72 +105,48 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
                     showShortToast("输入金额不能大于可提现金额", Toast.LENGTH_SHORT);
                     return;
                 }
-//                mPersonalPresenter.postWithDrawal();
-//                authorize();
+                if ("1".equals(pay_way)){
+
+                }else if ("2".equals(pay_way)){
+                    mPersonalPresenter.postAliShare(Config.getToken());
+                }
                 break;
         }
     }
-
-//    public void authorize(){
-//        Platform weixin = ShareSDK.getPlatform(Alipay.NAME);
-//        if (weixin.isAuthValid()){
-//            String openId = weixin.getDb().getUserId(); // 获取用户在此平台的ID
-//            mPersonalPresenter.postWithDrawal(Config.getToken(),withdrawMoney_moneyInput_et.getText().toString(),pay_way,openId);
-//        }
-//        weixin.SSOSetting(false);//设置false表示使用SSO授权方式
-//        //回调信息，可以在这里获取基本的授权返回的信息，但是注意如果做提示和UI操作要传到主线程handler里去执行
-//        weixin.setPlatformActionListener(new PlatformActionListener() {
-//
-//            @Override
-//            public void onError(Platform arg0, int arg1, Throwable arg2) {
-//                // TODO Auto-generated method stub
-//                arg2.printStackTrace();
-//            }
-//
-//            @Override
-//            public void onComplete(Platform platform, int action, HashMap<String, Object> arg2) {
-//                // TODO Auto-generated method stub
-//                //输出所有授权信息
-//                platform.getDb().exportData();
-//                Log.e("TAG", platform.getDb().exportData());
-//                String openId = platform.getDb().getUserId();
-//                mPersonalPresenter.postWithDrawal(Config.getToken(),withdrawMoney_moneyInput_et.getText().toString(),pay_way,openId);
-//
-//                //遍历Map
-//                Iterator ite =arg2.entrySet().iterator();
-//                while (ite.hasNext()) {
-//                    Map.Entry entry = (Map.Entry)ite.next();
-//                    Object key = entry.getKey();
-//                    Object value = entry.getValue();
-//                    System.out.println(key+"： "+value);
-//                }
-//
-//                if (action == Platform.ACTION_USER_INFOR) {
-//                    PlatformDb platDB = platform.getDb();//获取数平台数据DB
-//                    //通过DB获取各种数据
-//                    platDB.getToken();
-//                    platDB.getUserGender();
-//                    platDB.getUserIcon();
-//                    platDB.getUserId();
-//                    platDB.getUserName();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancel(Platform arg0, int arg1) {
-//                // TODO Auto-generated method stub
-//
-//            }
-//        });
-//        //authorize与showUser单独调用一个即可
-//        weixin.authorize();
-//    }
 
 
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
         if (requestUrl.endsWith("User/withdrawal.html")){
+            try {
+                JSONObject jsonObject=new JSONObject(jsonStr);
+                ToastUtils.showToast(jsonObject.optString("msg"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
+        if (requestUrl.endsWith("User/ali_share.html")){
+            AliInfoBean aliInfoBean= com.alibaba.fastjson.JSONObject.parseObject(jsonStr,AliInfoBean.class);
+            AliInfoBean.DataBean.ParamDataBean paramData = aliInfoBean.getData().getParamData();
+            Log.e("TAG", paramData.toString());
+            AliPay aliPay=new AliPay(paramData.toString(), new AliPay.OnAuthInterface() {
+                @Override
+                public void onSuccess(AuthResult authResult) {
+                    Log.e("TAG", "onSuccess: "+authResult.toString()+"==="+authResult.getAuthCode()+"-----"+authResult.getAlipayOpenId());
+                    mPersonalPresenter.postWithDrawal(Config.getToken(),withdrawMoney_moneyInput_et.getText().toString(),pay_way,authResult.getAlipayOpenId());
+                }
+
+                @Override
+                public void onFailure() {
+
+                }
+            });
+            aliPay.setMessageWhat(AliPay.SDK_AUTH_FLAG);
+            aliPay.pay();
+            return;
         }
         /**
          * {"code":1,"msg":"","data":{"user_balance":"99.00"}}
@@ -180,6 +161,7 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            return;
         }
     }
 

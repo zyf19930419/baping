@@ -155,4 +155,15 @@ public class PersonalModel extends BaseModel {
         mCall = mApiService.postUpLoad(body);
         request(baseView);
     }
+
+
+    /**
+     *支付宝授权签名接口
+     */
+    public void postAliShare(String token, BaseView baseView) {
+        TokenBody tokenBody = new TokenBody();
+        tokenBody.setToken(token);
+        mCall = mApiService.postAliShare(tokenBody);
+        request(baseView);
+    }
 }

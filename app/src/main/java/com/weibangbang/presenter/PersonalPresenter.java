@@ -94,4 +94,11 @@ public class PersonalPresenter extends BasePresenter{
     public void postUpLoad(List<File> fileList){
         mModel.postUpLoad(fileList,mBaseView);
     }
+
+    /**
+     *支付宝授权签名接口
+     */
+    public void postAliShare(String token){
+        mModel.postAliShare(token,mBaseView);
+    }
 }
