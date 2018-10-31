@@ -3,6 +3,8 @@ package com.weibangbang.aty.personal;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -73,6 +75,61 @@ public class PersonaInfoAty extends BaseActivity {
             address_edit.setText(mData.getUser_site());
         }
 
+        name_edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                name_edit.removeTextChangedListener(this);
+                name_edit.setText(s.toString());
+                name_edit.setSelection(s.toString().length());
+            }
+        });
+        age_edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                age_edit.removeTextChangedListener(this);
+                age_edit.setText(s.toString());
+                age_edit.setSelection(s.toString().length());
+            }
+        });
+        address_edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                address_edit.removeTextChangedListener(this);
+                address_edit.setText(s.toString());
+                address_edit.setSelection(s.toString().length());
+            }
+        });
+
     }
 
     private void setChoose(int position){
@@ -139,6 +196,10 @@ public class PersonaInfoAty extends BaseActivity {
         String name = name_edit.getText().toString();
         String age = age_edit.getText().toString();
         String address = address_edit.getText().toString();
+        if (name.isEmpty() || age.isEmpty() || address.isEmpty()){
+            ToastUtils.showToast("请将信息填写完整");
+            return;
+        }
         mPersonalPresenter.postInformation(Config.getToken(),name,String.valueOf(sex),age,address);
     }
 

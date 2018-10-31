@@ -126,6 +126,7 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/edit_shape"
         android:elevation="3dp"
+        android:inputType="number"
         android:hint="@string/age_hint"
         android:lines="1"
         android:paddingBottom="10dp"
