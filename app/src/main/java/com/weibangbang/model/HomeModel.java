@@ -140,4 +140,12 @@ public class HomeModel extends BaseModel {
         mCall=mApiService.postShare();
         request(baseView);
     }
+
+    /**
+     *招商微信接口
+     */
+    public void postAttract(BaseView baseView){
+        mCall=mApiService.postAttract();
+        request(baseView);
+    }
 }

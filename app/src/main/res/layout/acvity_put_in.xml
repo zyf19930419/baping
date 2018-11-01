@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -106,7 +107,7 @@
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@mipmap/notice"
+            android:background="@mipmap/icon_prompts_column"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingBottom="5dp"
@@ -117,16 +118,17 @@
                 android:layout_height="wrap_content"
                 android:lines="1"
                 android:textColor="@color/txt_black"
-                android:text="@string/notice_1"
+                android:text="招商微信"
                 android:textSize="10sp" />
 
             <TextView
+                android:id="@+id/weixin_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:lines="1"
                 android:textColor="#666"
-                android:text="@string/notice_2"
+                tools:text="@string/notice_2"
                 android:textSize="10sp" />
         </LinearLayout>
     </RelativeLayout>

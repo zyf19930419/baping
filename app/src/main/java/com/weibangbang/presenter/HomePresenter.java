@@ -95,4 +95,11 @@ public class HomePresenter extends BasePresenter {
     public void postShare() {
         mModel.postShare(mBaseView);
     }
+
+    /**
+     * 招商微信
+     */
+    public void postAttract() {
+        mModel.postAttract(mBaseView);
+    }
 }

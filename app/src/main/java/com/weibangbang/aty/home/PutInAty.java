@@ -14,6 +14,9 @@ import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.home.LaunchCommitBean;
 import com.weibangbang.presenter.HomePresenter;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * 创建者：zhangyunfei
  * 创建时间：2018/9/25 15:56
@@ -25,6 +28,8 @@ public class PutInAty extends BaseActivity implements View.OnClickListener {
     private EditText name_edit; // 姓名
     private EditText phone_edit; // 手机号
     private EditText guanggao_edit; // 广告描述
+    private HomePresenter mHomePresenter;
+    private TextView weixin_tv;
 
     @Override
     public int getLayoutId() {
@@ -40,12 +45,15 @@ public class PutInAty extends BaseActivity implements View.OnClickListener {
         name_edit = findViewById(R.id.name_edit);
         phone_edit = findViewById(R.id.phone_edit);
         guanggao_edit = findViewById(R.id.guanggao_edit);
+        weixin_tv=findViewById(R.id.weixin_tv);
         findViewById(R.id.commit_tv).setOnClickListener(this);
 
     }
 
     @Override
     public void initData() {
+        mHomePresenter = new HomePresenter(this);
+        mHomePresenter.postAttract();
     }
 
     @Override
@@ -76,8 +84,8 @@ public class PutInAty extends BaseActivity implements View.OnClickListener {
      * @param guanggao 内容
      */
     private void submit(String name, String phone, String guanggao) {
-        HomePresenter homePresenter = new HomePresenter(this);
-        homePresenter.postLaunchCommit(Config.getToken(), guanggao, name, phone);
+
+        mHomePresenter.postLaunchCommit(Config.getToken(), guanggao, name, phone);
     }
 
     @Override
@@ -89,6 +97,17 @@ public class PutInAty extends BaseActivity implements View.OnClickListener {
             if (1 == launchCommitBean.getCode()) {
                 finish();
             }
+            return;
+        }
+        if (requestUrl.endsWith("index/attract.html")){
+            try {
+                JSONObject jsonObject=new JSONObject(jsonStr);
+                JSONObject object=new JSONObject(jsonObject.optString("data"));
+                weixin_tv.setText(object.has("advertising_business")?object.getString("advertising_business"):"");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return;
         }
     }
 

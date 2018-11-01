@@ -154,4 +154,7 @@ public interface ApiService {
 
     @POST("User/ali_share.html")
     Call<ResponseBody> postAliShare(@Body TokenBody tokenBody);
+
+    @POST("index/attract.html")
+    Call<ResponseBody> postAttract();
 }
