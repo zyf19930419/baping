@@ -59,7 +59,7 @@ public class MakeMoneyAty extends BaseActivity {
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
-        if (requestUrl.endsWith("Work/lobby.html")){
+        if (requestUrl.endsWith("Index/commission.html")){
             MakeMoneyBean makeMoneyBean = JSON.parseObject(jsonStr, MakeMoneyBean.class);
             List<MakeMoneyBean.DataBean> data = makeMoneyBean.getData();
             if (null != data){
@@ -90,7 +90,7 @@ public class MakeMoneyAty extends BaseActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.content_tv.setText("第" + (position + 1) + "步\u3000~\u3000" + data.get(position).getTask_content());
+            holder.content_tv.setText("第" + data.get(position).getCommission_id() + "步\u3000~\u3000" + data.get(position).getCommission_content());
         }
 
         @Override

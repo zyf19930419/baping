@@ -53,7 +53,7 @@ public interface ApiService {
     @POST("Index/notice_details.html")
     Call<ResponseBody> postNoticeDetails(@Body NoticeDetailsBody noticeDetailsBody);
 
-    @POST("Work/lobby.html")
+    @POST("Index/commission.html")
     Call<ResponseBody> postMakeMoney();
 
     @POST("Service/service_list.html")

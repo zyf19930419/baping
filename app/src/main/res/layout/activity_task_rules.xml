@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:background="@drawable/edit_shape"
-        android:gravity="center"
+        android:gravity="left|center_vertical"
         android:padding="10dp"
         android:textSize="12sp"
         android:visibility="gone" />
