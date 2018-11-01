@@ -102,4 +102,11 @@ public class HomePresenter extends BasePresenter {
     public void postAttract() {
         mModel.postAttract(mBaseView);
     }
+
+    /**
+     * 公告信息
+     */
+    public void postAnnouncement() {
+        mModel.postAnnouncement(mBaseView);
+    }
 }

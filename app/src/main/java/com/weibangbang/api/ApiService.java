@@ -157,4 +157,8 @@ public interface ApiService {
 
     @POST("index/attract.html")
     Call<ResponseBody> postAttract();
+
+
+    @POST("Index/announcement.html")
+    Call<ResponseBody> postAnnouncement();
 }

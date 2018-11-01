@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:lines="1"
             android:textColor="@color/txt_black"
-            android:text="@string/notice_1"
+            tools:text="@string/notice_1"
             android:textSize="10sp" />
 
         <TextView
@@ -36,7 +37,7 @@
             android:layout_marginTop="5dp"
             android:lines="1"
             android:textColor="#666"
-            android:text="@string/notice_2"
+            tools:text="@string/notice_2"
             android:textSize="10sp" />
 
     </LinearLayout>

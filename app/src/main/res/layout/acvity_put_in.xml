@@ -103,33 +103,45 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
+        <RelativeLayout
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@mipmap/icon_prompts_column"
-            android:gravity="center"
             android:orientation="vertical"
             android:paddingBottom="5dp"
             android:paddingTop="5dp">
-
             <TextView
+                android:layout_centerVertical="true"
+                android:background="@mipmap/icon_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:textColor="@color/txt_black"
-                android:text="招商微信"
-                android:textSize="10sp" />
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/txt_black"
+                    android:text="招商微信"
+                    android:textSize="10sp" />
 
-            <TextView
-                android:id="@+id/weixin_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:lines="1"
-                android:textColor="#666"
-                tools:text="@string/notice_2"
-                android:textSize="10sp" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/weixin_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:lines="1"
+                    android:textColor="#666"
+                    tools:text="@string/notice_2"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

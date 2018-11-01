@@ -2,8 +2,10 @@ package com.weibangbang.fgt;
 
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.weibangbang.R;
 import com.weibangbang.api.ApiService;
 import com.weibangbang.api.Config;
@@ -15,6 +17,7 @@ import com.weibangbang.aty.home.OpenMemberAty;
 import com.weibangbang.aty.home.PutInAty;
 import com.weibangbang.aty.home.ShareMoneyAty;
 import com.weibangbang.base.BaseFragment;
+import com.weibangbang.bean.home.AnnouncementBean;
 import com.weibangbang.bean.home.BannerBean;
 import com.weibangbang.loader.BannerLoader;
 import com.weibangbang.presenter.HomePresenter;
@@ -37,7 +40,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
     private Banner mBanner;
     private List<String> images;
     private RelativeLayout re_zhuangyong, re_lingyong, re_huiyuan, re_toufang, re_haoyou, re_kefu;
-
+    private TextView title_tv,content_tv;
     private HomePresenter mPresenter;
 
     @Override
@@ -58,6 +61,8 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
         re_haoyou = view.findViewById(R.id.re_haoyou);
         re_kefu = view.findViewById(R.id.re_kefu);
         mBanner = view.findViewById(R.id.banner);
+        title_tv = view.findViewById(R.id.title_tv);
+        content_tv = view.findViewById(R.id.content_tv);
         re_zhuangyong.setOnClickListener(this);
         re_lingyong.setOnClickListener(this);
         re_huiyuan.setOnClickListener(this);
@@ -71,7 +76,7 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         mPresenter.postBanner();
-
+        mPresenter.postAnnouncement();
     }
 
     @Override
@@ -121,6 +126,13 @@ public class HomeMainFgt extends BaseFragment implements View.OnClickListener {
                 //banner设置方法全部调用完毕时最后调用
                 mBanner.start();
             }
+            return;
+        }
+        if (requestUrl.endsWith("Index/announcement.html")){
+            AnnouncementBean announcementBean = JSONObject.parseObject(jsonStr, AnnouncementBean.class);
+            title_tv.setText(announcementBean.getData().getNotice_title());
+            content_tv.setText(announcementBean.getData().getNotice_brief());
+            return;
         }
 
     }

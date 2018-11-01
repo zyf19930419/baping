@@ -33,15 +33,16 @@ import static com.weibangbang.aty.personal.PersonaInfoAty.IMAGE_PICKER;
  * 创建时间：2018/9/25 16:19
  * 功能描述：我的任务
  */
-public class MyTaskAty extends BaseActivity{
-    private TextView general_tv,advance_tv;
+public class MyTaskAty extends BaseActivity {
+    private TextView general_tv, advance_tv;
 
     private RecyclerView mRecyclerView;
     private TaskHallAdapter mTaskHallAdapter;
     private MemberPresenter mMemberPresenter;
     private PersonalPresenter mPersonalPresenter;
     private int mTask_id;
-    private boolean isFirst=false;
+    private boolean isFirst = false;
+    private int state = 0;
 
     @Override
     public int getLayoutId() {
@@ -50,25 +51,25 @@ public class MyTaskAty extends BaseActivity{
 
     @Override
     public void initView() {
-        setTitleBar(getResources().getString(R.string.woderenwu),true);
-        general_tv=findViewById(R.id.general_task_tv);
-        advance_tv=findViewById(R.id.advance_task_tv);
+        setTitleBar(getResources().getString(R.string.woderenwu), true);
+        general_tv = findViewById(R.id.general_task_tv);
+        advance_tv = findViewById(R.id.advance_task_tv);
         general_tv.setCompoundDrawablePadding(10);
-        general_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this,R.mipmap.icon_white_point),null,null,null);
+        general_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this, R.mipmap.icon_white_point), null, null, null);
 
-        mRecyclerView=findViewById(R.id.recyclerView);
-        LinearLayoutManager manager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        mRecyclerView = findViewById(R.id.recyclerView);
+        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(manager);
 
     }
 
     @Override
     public void initData() {
-        if (!isFirst){
+        if (!isFirst) {
             mMemberPresenter = new MemberPresenter(this);
-            mPersonalPresenter=new PersonalPresenter(this);
+            mPersonalPresenter = new PersonalPresenter(this);
             mMemberPresenter.postReceivie(Config.getToken());
-            isFirst=true;
+            isFirst = true;
         }
     }
 
@@ -77,65 +78,72 @@ public class MyTaskAty extends BaseActivity{
      */
     public void onGeneral_layout(View view) {
         general_tv.setCompoundDrawablePadding(10);
-        general_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this,R.mipmap.icon_white_point),null,null,null);
-        advance_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
+        general_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this, R.mipmap.icon_white_point), null, null, null);
+        advance_tv.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
         mMemberPresenter.postReceivie(Config.getToken());
+        state = 0;
     }
+
     /**
-     *已完成
+     * 已完成
      */
     public void onAdvance_layout(View view) {
-        general_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
+        general_tv.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
         advance_tv.setCompoundDrawablePadding(10);
-        advance_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this,R.mipmap.icon_white_point),null,null,null);
+        advance_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this, R.mipmap.icon_white_point), null, null, null);
         mMemberPresenter.postTaskAccomplish(Config.getToken());
+        state = 1;
     }
 
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
-            if (requestUrl.endsWith("Work/receive.html")){
-                MyTaskBean myTaskBean = JSON.parseObject(jsonStr, MyTaskBean.class);
-                final List<MyTaskBean.DataBean> data = myTaskBean.getData();
-                if (null!=data) {
-                    mTaskHallAdapter = new TaskHallAdapter(getResources().getString(R.string.woderenwu), data, 0);
-                    mRecyclerView.setAdapter(mTaskHallAdapter);
-                    mTaskHallAdapter.setOnButtonClickListener(new TaskHallAdapter.onButtonClickListener() {
-                        @Override
-                        public void onButtonClick(int position) {
-                            setImagePicker();
-                            Intent intent = new Intent(mContext, ImageGridActivity.class);
-                            startActivityForResult(intent, IMAGE_PICKER);
-                            mTask_id = data.get(position).getTask_id();
-                        }
-                    });
-                }
+        if (requestUrl.endsWith("Work/receive.html")) {
+            MyTaskBean myTaskBean = JSON.parseObject(jsonStr, MyTaskBean.class);
+            final List<MyTaskBean.DataBean> data = myTaskBean.getData();
+            if (null != data) {
+                mTaskHallAdapter = new TaskHallAdapter(getResources().getString(R.string.woderenwu), data, 0);
+                mRecyclerView.setAdapter(mTaskHallAdapter);
+                mTaskHallAdapter.setOnButtonClickListener(new TaskHallAdapter.onButtonClickListener() {
+                    @Override
+                    public void onButtonClick(int position) {
+                        setImagePicker();
+                        Intent intent = new Intent(mContext, ImageGridActivity.class);
+                        startActivityForResult(intent, IMAGE_PICKER);
+                        mTask_id = data.get(position).getTask_id();
+                    }
+                });
             }
-            if (requestUrl.endsWith("Work/task_accomplish.html")){
-                MyTaskBean myTaskBean = JSON.parseObject(jsonStr, MyTaskBean.class);
-                final List<MyTaskBean.DataBean> data = myTaskBean.getData();
-                if (null!=data) {
-                    mTaskHallAdapter = new TaskHallAdapter(getResources().getString(R.string.woderenwu), data, 1);
-                    mRecyclerView.setAdapter(mTaskHallAdapter);
-                    mTaskHallAdapter.setOnButtonClickListener(new TaskHallAdapter.onButtonClickListener() {
-                        @Override
-                        public void onButtonClick(int position) {
-                            setImagePicker();
-                            Intent intent = new Intent(mContext, ImageGridActivity.class);
-                            startActivityForResult(intent, IMAGE_PICKER);
-                            mTask_id = data.get(position).getTask_id();
-                        }
-                    });
-                }
+        }
+        if (requestUrl.endsWith("Work/task_accomplish.html")) {
+            MyTaskBean myTaskBean = JSON.parseObject(jsonStr, MyTaskBean.class);
+            final List<MyTaskBean.DataBean> data = myTaskBean.getData();
+            if (null != data) {
+                mTaskHallAdapter = new TaskHallAdapter(getResources().getString(R.string.woderenwu), data, 1);
+                mRecyclerView.setAdapter(mTaskHallAdapter);
+                mTaskHallAdapter.setOnButtonClickListener(new TaskHallAdapter.onButtonClickListener() {
+                    @Override
+                    public void onButtonClick(int position) {
+                        setImagePicker();
+                        Intent intent = new Intent(mContext, ImageGridActivity.class);
+                        startActivityForResult(intent, IMAGE_PICKER);
+                        mTask_id = data.get(position).getTask_id();
+                    }
+                });
             }
-        if (requestUrl.endsWith("Base/upload_img.html")){
+        }
+        if (requestUrl.endsWith("Base/upload_img.html")) {
             UpLoadBean upLoadBean = JSON.parseObject(jsonStr, UpLoadBean.class);
             ToastUtils.showToast(upLoadBean.getMsg());
-            mMemberPresenter.postTaskPrintscreen(Config.getToken(), String.valueOf(mTask_id),upLoadBean.getData().getPath());
+            mMemberPresenter.postTaskPrintscreen(Config.getToken(), String.valueOf(mTask_id), upLoadBean.getData().getPath());
         }
 
-        if (requestUrl.endsWith("Work/task_printscreen.html")){
-
+        if (requestUrl.endsWith("Work/task_printscreen.html")) {
+            if (0 == state) {
+                mMemberPresenter.postReceivie(Config.getToken());
+            }else if (1==state){
+                mMemberPresenter.postTaskAccomplish(Config.getToken());
+            }
         }
     }
 
@@ -145,11 +153,11 @@ public class MyTaskAty extends BaseActivity{
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             if (data != null && requestCode == IMAGE_PICKER) {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
-                List<File> fileList=new ArrayList<>();
+                List<File> fileList = new ArrayList<>();
                 for (int i = 0; i < images.size(); i++) {
                     fileList.add(new File(images.get(i).path));
                 }
-                if (fileList.size()>0){
+                if (fileList.size() > 0) {
                     mPersonalPresenter.postUpLoad(fileList);
                 }
 

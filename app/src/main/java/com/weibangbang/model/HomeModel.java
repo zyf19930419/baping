@@ -148,4 +148,12 @@ public class HomeModel extends BaseModel {
         mCall=mApiService.postAttract();
         request(baseView);
     }
+
+    /**
+     *公告信息接口
+     */
+    public void postAnnouncement(BaseView baseView){
+        mCall=mApiService.postAnnouncement();
+        request(baseView);
+    }
 }
