@@ -2,7 +2,6 @@ package com.weibangbang.api;
 
 import com.weibangbang.api.body.ChangePasswordBody;
 import com.weibangbang.api.body.ForgetBody;
-import com.weibangbang.api.body.InformationBody;
 import com.weibangbang.api.body.LaunchCommitBody;
 import com.weibangbang.api.body.LobbyBody;
 import com.weibangbang.api.body.LoginBody;
@@ -17,13 +16,17 @@ import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.api.body.VipUpgradeBody;
 import com.weibangbang.api.body.WithDrawalBody;
 
+import java.util.Map;
+
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 
 /**
  * 创建者：zhangyunfei
@@ -108,8 +111,9 @@ public interface ApiService {
     @POST("Work/task_accomplish.html")
     Call<ResponseBody> postTaskAccomplish(@Body TokenBody tokenBody);
 
+    @Multipart
     @POST("User/information.html")
-    Call<ResponseBody> postInformation(@Body InformationBody informationBody);
+    Call<ResponseBody> postInformation(@PartMap Map<String, RequestBody> map, @Part MultipartBody.Part file);
 
     @POST("User/my_wallet.html")
     Call<ResponseBody> postMyWallet(@Body TokenBody tokenBody);

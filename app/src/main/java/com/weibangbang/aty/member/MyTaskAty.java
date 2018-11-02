@@ -110,7 +110,7 @@ public class MyTaskAty extends BaseActivity {
                         setImagePicker();
                         Intent intent = new Intent(mContext, ImageGridActivity.class);
                         startActivityForResult(intent, IMAGE_PICKER);
-                        mTask_id = data.get(position).getTask_id();
+                        mTask_id = data.get(position).getUser_task_id();
                     }
                 });
             }
@@ -127,7 +127,7 @@ public class MyTaskAty extends BaseActivity {
                         setImagePicker();
                         Intent intent = new Intent(mContext, ImageGridActivity.class);
                         startActivityForResult(intent, IMAGE_PICKER);
-                        mTask_id = data.get(position).getTask_id();
+                        mTask_id = data.get(position).getUser_task_id();
                     }
                 });
             }

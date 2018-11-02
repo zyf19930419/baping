@@ -1,13 +1,14 @@
 package com.weibangbang.model;
 
 import com.weibangbang.api.body.ChangePasswordBody;
-import com.weibangbang.api.body.InformationBody;
 import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.api.body.WithDrawalBody;
 import com.weibangbang.base.BaseView;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -48,15 +49,23 @@ public class PersonalModel extends BaseModel {
      * @param age
      * @param address
      */
-    public void postInformation(String token, String name, String sex, String age, String address, BaseView baseView) {
-        InformationBody informationBody = new InformationBody();
-        informationBody.setToken(token);
-        informationBody.setName(name);
-        informationBody.setSex(sex);
-        informationBody.setAge(age);
-        informationBody.setDowntown(address);
-        mCall = mApiService.postInformation(informationBody);
+    public void postInformation(String token, String name, String sex, String age, String address,List<File> fileList, BaseView baseView) {
+        Map<String,RequestBody> params = new HashMap<>();
+        params.put("token", convertToRequestBody(token));
+        params.put("name",convertToRequestBody(name));
+        params.put("sex",convertToRequestBody(sex));
+        params.put("age",convertToRequestBody(age));
+        params.put("downtown",convertToRequestBody(address));
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), fileList.get(0));
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("portrait", fileList.get(0).getName(), requestBody);
+        mCall = mApiService.postInformation(params,body);
         request(baseView);
+    }
+
+    private RequestBody convertToRequestBody(String param){
+        RequestBody requestBody = RequestBody.create(MediaType.parse("text/plain"), param);
+        return requestBody;
     }
 
     /**

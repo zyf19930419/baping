@@ -46,6 +46,7 @@ public class PersonaInfoAty extends BaseActivity {
     private PersonalPresenter mPersonalPresenter;
     public static  final int IMAGE_PICKER=100;
     private InformationDisplayBean.DataBean mData;
+    private List<File> mFileList;
 
     @Override
     public int getLayoutId() {
@@ -176,16 +177,12 @@ public class PersonaInfoAty extends BaseActivity {
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             if (data != null && requestCode == IMAGE_PICKER) {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
-                ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, images.get(0).path, head_img, 0, 0);
+                ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, images.get(0).path, head_img, 80, 80);
                 img_hint_tv.setVisibility(View.GONE);
-                List<File> fileList=new ArrayList<>();
+                mFileList = new ArrayList<>();
                 for (int i = 0; i < images.size(); i++) {
-                    fileList.add(new File(images.get(i).path));
+                    mFileList.add(new File(images.get(i).path));
                 }
-                if (fileList.size()>0){
-                    mPersonalPresenter.postUpLoad(fileList);
-                }
-
             } else {
                 Toast.makeText(this, "没有数据", Toast.LENGTH_SHORT).show();
             }
@@ -200,7 +197,11 @@ public class PersonaInfoAty extends BaseActivity {
             ToastUtils.showToast("请将信息填写完整");
             return;
         }
-        mPersonalPresenter.postInformation(Config.getToken(),name,String.valueOf(sex),age,address);
+        if (mFileList==null || mFileList.size()<=0){
+            ToastUtils.showToast("您还没有上传头像");
+            return;
+        }
+        mPersonalPresenter.postInformation(Config.getToken(),name,String.valueOf(sex),age,address,mFileList);
     }
 
     @Override
