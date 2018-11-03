@@ -49,17 +49,15 @@ public class PersonalModel extends BaseModel {
      * @param age
      * @param address
      */
-    public void postInformation(String token, String name, String sex, String age, String address,List<File> fileList, BaseView baseView) {
+    public void postInformation(String token, String name, String sex, String age, String address,String portrait, BaseView baseView) {
         Map<String,RequestBody> params = new HashMap<>();
         params.put("token", convertToRequestBody(token));
         params.put("name",convertToRequestBody(name));
         params.put("sex",convertToRequestBody(sex));
         params.put("age",convertToRequestBody(age));
         params.put("downtown",convertToRequestBody(address));
-        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), fileList.get(0));
-        MultipartBody.Part body =
-                MultipartBody.Part.createFormData("portrait", fileList.get(0).getName(), requestBody);
-        mCall = mApiService.postInformation(params,body);
+        params.put("portrait",convertToRequestBody(portrait));
+        mCall = mApiService.postInformation(params);
         request(baseView);
     }
 

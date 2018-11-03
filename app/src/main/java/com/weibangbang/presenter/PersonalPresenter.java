@@ -34,8 +34,8 @@ public class PersonalPresenter extends BasePresenter{
     /**
      *个人信息修改页接口
      */
-    public void postInformation(String token,String name,String sex,String age,String address,List<File> fileList){
-        mModel.postInformation(token,name,sex,age,address,fileList,mBaseView);
+    public void postInformation(String token,String name,String sex,String age,String address,String portrait){
+        mModel.postInformation(token,name,sex,age,address,portrait,mBaseView);
     }
 
     /**

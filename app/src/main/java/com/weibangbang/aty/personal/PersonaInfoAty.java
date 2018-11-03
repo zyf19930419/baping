@@ -3,8 +3,6 @@ package com.weibangbang.aty.personal;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -46,7 +44,7 @@ public class PersonaInfoAty extends BaseActivity {
     private PersonalPresenter mPersonalPresenter;
     public static  final int IMAGE_PICKER=100;
     private InformationDisplayBean.DataBean mData;
-    private List<File> mFileList;
+    private String mPath="";
 
     @Override
     public int getLayoutId() {
@@ -75,61 +73,6 @@ public class PersonaInfoAty extends BaseActivity {
             age_edit.setText(String.valueOf(mData.getUser_age()));
             address_edit.setText(mData.getUser_site());
         }
-
-        name_edit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                name_edit.removeTextChangedListener(this);
-                name_edit.setText(s.toString());
-                name_edit.setSelection(s.toString().length());
-            }
-        });
-        age_edit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                age_edit.removeTextChangedListener(this);
-                age_edit.setText(s.toString());
-                age_edit.setSelection(s.toString().length());
-            }
-        });
-        address_edit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                address_edit.removeTextChangedListener(this);
-                address_edit.setText(s.toString());
-                address_edit.setSelection(s.toString().length());
-            }
-        });
 
     }
 
@@ -177,12 +120,16 @@ public class PersonaInfoAty extends BaseActivity {
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             if (data != null && requestCode == IMAGE_PICKER) {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
-                ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, images.get(0).path, head_img, 80, 80);
+                ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, images.get(0).path, head_img, 70, 70);
                 img_hint_tv.setVisibility(View.GONE);
-                mFileList = new ArrayList<>();
+                List<File> fileList=new ArrayList<>();
                 for (int i = 0; i < images.size(); i++) {
-                    mFileList.add(new File(images.get(i).path));
+                    fileList.add(new File(images.get(i).path));
                 }
+                if (fileList.size()>0){
+                    mPersonalPresenter.postUpLoad(fileList);
+                }
+
             } else {
                 Toast.makeText(this, "没有数据", Toast.LENGTH_SHORT).show();
             }
@@ -193,15 +140,7 @@ public class PersonaInfoAty extends BaseActivity {
         String name = name_edit.getText().toString();
         String age = age_edit.getText().toString();
         String address = address_edit.getText().toString();
-        if (name.isEmpty() || age.isEmpty() || address.isEmpty()){
-            ToastUtils.showToast("请将信息填写完整");
-            return;
-        }
-        if (mFileList==null || mFileList.size()<=0){
-            ToastUtils.showToast("您还没有上传头像");
-            return;
-        }
-        mPersonalPresenter.postInformation(Config.getToken(),name,String.valueOf(sex),age,address,mFileList);
+        mPersonalPresenter.postInformation(Config.getToken(),name,String.valueOf(sex),age,address,mPath);
     }
 
     @Override
@@ -222,7 +161,8 @@ public class PersonaInfoAty extends BaseActivity {
             UpLoadBean upLoadBean = JSON.parseObject(jsonStr, UpLoadBean.class);
             ToastUtils.showToast(upLoadBean.getMsg());
             if (upLoadBean.getCode()==1){
-                GlideApp.with(mContext).load(ApiService.BASE_IMAGE+upLoadBean.getData().getPath()).circleCrop().into(head_img);
+                mPath = upLoadBean.getData().getPath();
+                GlideApp.with(mContext).load(ApiService.BASE_IMAGE+ mPath).circleCrop().into(head_img);
                 img_hint_tv.setVisibility(View.GONE);
             }
 

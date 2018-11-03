@@ -113,7 +113,7 @@ public interface ApiService {
 
     @Multipart
     @POST("User/information.html")
-    Call<ResponseBody> postInformation(@PartMap Map<String, RequestBody> map, @Part MultipartBody.Part file);
+    Call<ResponseBody> postInformation(@PartMap Map<String, RequestBody> map);
 
     @POST("User/my_wallet.html")
     Call<ResponseBody> postMyWallet(@Body TokenBody tokenBody);
