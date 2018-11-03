@@ -77,7 +77,6 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
         if ("我的任务".equals(mTitle)){
             holder.button_tv.setVisibility(View.VISIBLE);
             holder.date_tv.setVisibility(View.GONE);
-            holder.button_tv.setText("上传截图");
             holder.left_img.setImageResource(R.mipmap.icon_task);
 
             MyTaskBean.DataBean dataBean = myTaskData.get(position);
@@ -89,6 +88,7 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
                 case 1:
                     holder.button_tv.setBackgroundResource(R.mipmap.icon_button_bg);
                     holder.button_tv.setClickable(true);
+                    holder.button_tv.setText("上传截图");
                     holder.button_tv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -99,14 +99,17 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
                     });
                     break;
                 case 2:
+                    holder.button_tv.setText("审核中");
                     holder.button_tv.setBackgroundResource(R.mipmap.icon_button_grey_bg);
                     holder.button_tv.setClickable(false);
                     break;
                 case 3:
+                    holder.button_tv.setText("审核成功");
                     holder.button_tv.setBackgroundResource(R.mipmap.icon_button_grey_bg);
                     holder.button_tv.setClickable(false);
                     break;
                 case 4:
+                    holder.button_tv.setText("审核失败");
                     holder.button_tv.setBackgroundResource(R.mipmap.icon_button_grey_bg);
                     holder.button_tv.setClickable(false);
                     break;

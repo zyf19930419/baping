@@ -16,24 +16,25 @@
         android:textSize="12sp" />
 
     <RelativeLayout
-        android:onClick="onChooseHead"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="onChooseHead">
+
         <ImageView
             android:id="@+id/head_img"
-            android:src="@mipmap/icon_head"
-            android:layout_centerInParent="true"
             android:layout_width="80dp"
-            android:layout_height="80dp" />
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/icon_head" />
+
         <TextView
             android:id="@+id/img_hint_tv"
-            android:text="点击修改"
-            android:textSize="12sp"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="点击修改"
+            android:textSize="12sp" />
     </RelativeLayout>
-
 
 
     <TextView
@@ -53,7 +54,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/edit_shape"
-        android:elevation="3dp"
+        android:elevation="1dp"
         android:hint="@string/nick_name_hint"
         android:lines="1"
         android:paddingBottom="10dp"
@@ -83,12 +84,12 @@
             android:layout_marginStart="15dp"
             android:background="@drawable/edit_shape"
             android:elevation="3dp"
+            android:onClick="onMan"
             android:paddingBottom="5dp"
             android:paddingEnd="15dp"
             android:paddingStart="15dp"
             android:paddingTop="5dp"
             android:text="@string/man"
-            android:onClick="onMan"
             android:textSize="12sp" />
 
         <TextView
@@ -98,12 +99,12 @@
             android:layout_marginStart="30dp"
             android:background="@drawable/edit_shape"
             android:elevation="3dp"
+            android:onClick="onWoman"
             android:paddingBottom="5dp"
             android:paddingEnd="15dp"
             android:paddingStart="15dp"
             android:paddingTop="5dp"
             android:text="@string/woman"
-            android:onClick="onWoman"
             android:textSize="12sp" />
 
     </LinearLayout>
@@ -125,9 +126,9 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/edit_shape"
-        android:elevation="3dp"
-        android:inputType="number"
+        android:elevation="1dp"
         android:hint="@string/age_hint"
+        android:inputType="number"
         android:lines="1"
         android:paddingBottom="10dp"
         android:paddingEnd="10dp"
@@ -198,7 +199,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/edit_shape"
-        android:elevation="3dp"
+        android:elevation="1dp"
         android:gravity="top|left"
         android:hint="@string/detailed_address_hint"
         android:lines="3"

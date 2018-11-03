@@ -59,7 +59,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/edit_shape"
-        android:elevation="3dp"
+        android:elevation="1dp"
         android:hint="@string/yixianjine"
         android:inputType="numberDecimal"
         android:padding="8dp"
