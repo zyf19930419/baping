@@ -71,6 +71,9 @@ public class RankingAndMemberAdapter extends RecyclerView.Adapter<RankingAndMemb
 
         if (2==type){
             MemberShipBean.DataBean dataBean = memberShipData.get(position);
+            if (!TextUtils.isEmpty(dataBean.getUser_portrait())) {
+                GlideApp.with(mContext).load(ApiService.BASE_IMAGE + dataBean.getUser_portrait()).circleCrop().into(holder.head_img);
+            }
             holder.name_tv.setText(dataBean.getUser_name());
             holder.price_tv.setText(dataBean.getUser_balance());
         }
