@@ -9,10 +9,11 @@ import java.util.List;
  */
 public class MemberShipBean {
 
+
     /**
      * code : 1
      * msg :
-     * data : [{"user_id":2,"user_sex":2,"user_phone":"15999999998","user_password":"96e79218965eb72c92a549dd5a330112","user_name":"明溪","user_city":"城市","user_downtown":"区域","user_site":"道路","user_balance":"562.00","vip_id":2,"user_invitation":"aasdasd","user_inviter":1,"user_inviter_2":0,"user_history_brokerage":"999.00","user_history_withdraw":"0.00","user_token":"952d832806c7eec60b00e5c8de3925f2","user_portrait":""}]
+     * data : [{"user_id":2,"user_sex":1,"user_age":5,"user_phone":"15999999998","user_password":"96e79218965eb72c92a549dd5a330112","user_name":"明溪","user_city":"城市","user_downtown":"区域","user_site":"道路","user_balance":"646.00","vip_id":2,"user_invitation":"456","user_invitation_qrcode":"","user_inviter":1,"user_inviter_2":0,"user_history_brokerage":"1023.00","user_history_withdraw":"0.00","user_token":"72da541df3705bc636777e8de8f1c731","user_portrait":"20181103/f8c4636b2d30e4e9843195f9aff0e0d0.png","vip_name":"高级会员","vip_price":999,"vip_describe":""}]
      */
 
     private int code;
@@ -46,26 +47,32 @@ public class MemberShipBean {
     public static class DataBean {
         /**
          * user_id : 2
-         * user_sex : 2
+         * user_sex : 1
+         * user_age : 5
          * user_phone : 15999999998
          * user_password : 96e79218965eb72c92a549dd5a330112
          * user_name : 明溪
          * user_city : 城市
          * user_downtown : 区域
          * user_site : 道路
-         * user_balance : 562.00
+         * user_balance : 646.00
          * vip_id : 2
-         * user_invitation : aasdasd
+         * user_invitation : 456
+         * user_invitation_qrcode :
          * user_inviter : 1
          * user_inviter_2 : 0
-         * user_history_brokerage : 999.00
+         * user_history_brokerage : 1023.00
          * user_history_withdraw : 0.00
-         * user_token : 952d832806c7eec60b00e5c8de3925f2
-         * user_portrait :
+         * user_token : 72da541df3705bc636777e8de8f1c731
+         * user_portrait : 20181103/f8c4636b2d30e4e9843195f9aff0e0d0.png
+         * vip_name : 高级会员
+         * vip_price : 999
+         * vip_describe :
          */
 
         private int user_id;
         private int user_sex;
+        private int user_age;
         private String user_phone;
         private String user_password;
         private String user_name;
@@ -75,12 +82,16 @@ public class MemberShipBean {
         private String user_balance;
         private int vip_id;
         private String user_invitation;
+        private String user_invitation_qrcode;
         private int user_inviter;
         private int user_inviter_2;
         private String user_history_brokerage;
         private String user_history_withdraw;
         private String user_token;
         private String user_portrait;
+        private String vip_name;
+        private int vip_price;
+        private String vip_describe;
 
         public int getUser_id() {
             return user_id;
@@ -96,6 +107,14 @@ public class MemberShipBean {
 
         public void setUser_sex(int user_sex) {
             this.user_sex = user_sex;
+        }
+
+        public int getUser_age() {
+            return user_age;
+        }
+
+        public void setUser_age(int user_age) {
+            this.user_age = user_age;
         }
 
         public String getUser_phone() {
@@ -170,6 +189,14 @@ public class MemberShipBean {
             this.user_invitation = user_invitation;
         }
 
+        public String getUser_invitation_qrcode() {
+            return user_invitation_qrcode;
+        }
+
+        public void setUser_invitation_qrcode(String user_invitation_qrcode) {
+            this.user_invitation_qrcode = user_invitation_qrcode;
+        }
+
         public int getUser_inviter() {
             return user_inviter;
         }
@@ -216,6 +243,30 @@ public class MemberShipBean {
 
         public void setUser_portrait(String user_portrait) {
             this.user_portrait = user_portrait;
+        }
+
+        public String getVip_name() {
+            return vip_name;
+        }
+
+        public void setVip_name(String vip_name) {
+            this.vip_name = vip_name;
+        }
+
+        public int getVip_price() {
+            return vip_price;
+        }
+
+        public void setVip_price(int vip_price) {
+            this.vip_price = vip_price;
+        }
+
+        public String getVip_describe() {
+            return vip_describe;
+        }
+
+        public void setVip_describe(String vip_describe) {
+            this.vip_describe = vip_describe;
         }
     }
 }

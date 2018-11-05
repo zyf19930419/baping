@@ -61,6 +61,7 @@ public class RankingAndMemberAdapter extends RecyclerView.Adapter<RankingAndMemb
         if (1==type){
             DailyRankingsBean.DataBean dataBean = data.get(position);
             holder.name_tv.setText(dataBean.getUser_name());
+            holder.vip_name_tv.setVisibility(View.GONE);
             if (!TextUtils.isEmpty(dataBean.getUser_portrait())) {
                 GlideApp.with(mContext).load(ApiService.BASE_IMAGE + dataBean.getUser_portrait()).circleCrop().into(holder.head_img);
             }
@@ -75,7 +76,9 @@ public class RankingAndMemberAdapter extends RecyclerView.Adapter<RankingAndMemb
                 GlideApp.with(mContext).load(ApiService.BASE_IMAGE + dataBean.getUser_portrait()).circleCrop().into(holder.head_img);
             }
             holder.name_tv.setText(dataBean.getUser_name());
-            holder.price_tv.setText(dataBean.getUser_balance());
+            holder.vip_name_tv.setVisibility(View.VISIBLE);
+            holder.vip_name_tv.setText(dataBean.getVip_name());
+            holder.price_tv.setText(dataBean.getUser_history_brokerage());
         }
 
 
@@ -95,13 +98,14 @@ public class RankingAndMemberAdapter extends RecyclerView.Adapter<RankingAndMemb
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView order_tv, name_tv, price_tv;
+        private TextView order_tv, name_tv,vip_name_tv, price_tv;
         private ImageView head_img;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             order_tv = itemView.findViewById(R.id.order_tv);
             name_tv = itemView.findViewById(R.id.name_tv);
+            vip_name_tv=itemView.findViewById(R.id.vip_name_tv);
             price_tv = itemView.findViewById(R.id.price_tv);
             head_img = itemView.findViewById(R.id.head_img);
         }
