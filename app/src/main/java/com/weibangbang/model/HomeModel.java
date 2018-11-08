@@ -136,8 +136,10 @@ public class HomeModel extends BaseModel {
     /**
      *分享接口
      */
-    public void postShare(BaseView baseView){
-        mCall=mApiService.postShare();
+    public void postShare(String token,BaseView baseView){
+        TokenBody tokenBody=new TokenBody();
+        tokenBody.setToken(token);
+        mCall=mApiService.postShare(tokenBody);
         request(baseView);
     }
 

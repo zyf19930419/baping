@@ -92,8 +92,8 @@ public class HomePresenter extends BasePresenter {
     /**
      * 分享接口
      */
-    public void postShare() {
-        mModel.postShare(mBaseView);
+    public void postShare(String token) {
+        mModel.postShare(token,mBaseView);
     }
 
     /**

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.weibangbang.R;
+import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.presenter.HomePresenter;
 
@@ -48,7 +49,7 @@ public class MineTeamAty extends BaseActivity {
      * 邀请好友按钮
      */
     public void onCommit(View view) {
-        mHomePresenter.postShare();
+        mHomePresenter.postShare(Config.getToken());
     }
 
     @Override

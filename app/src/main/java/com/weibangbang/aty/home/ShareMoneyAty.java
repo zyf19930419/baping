@@ -78,7 +78,7 @@ public class ShareMoneyAty extends BaseActivity {
      * 点击分享按钮
      */
     public void onCommit(View view) {
-        mHomePresenter.postShare();
+        mHomePresenter.postShare(Config.getToken());
     }
 
     @Override

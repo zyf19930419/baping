@@ -153,7 +153,7 @@ public interface ApiService {
     Call<ResponseBody> postVipUpgrade(@Body VipUpgradeBody vipUpgradeBody);
 
     @POST("Index/share.html")
-    Call<ResponseBody> postShare();
+    Call<ResponseBody> postShare(@Body TokenBody tokenBody);
 
 
     @POST("User/ali_share.html")
