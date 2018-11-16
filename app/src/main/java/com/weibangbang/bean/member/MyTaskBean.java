@@ -59,6 +59,7 @@ public class MyTaskBean {
          * task_image : 20181015/acd5cc13b267de2fa3de244222cfbd8c.jpg
          * task_creattime : 1537769228
          * task_level : 1
+         * user_task_status_chinese
          */
 
         private int user_task_id;
@@ -74,6 +75,15 @@ public class MyTaskBean {
         private String task_image;
         private int task_creattime;
         private int task_level;
+        private String user_task_status_chinese;
+
+        public String getUser_task_status_chinese() {
+            return user_task_status_chinese;
+        }
+
+        public void setUser_task_status_chinese(String user_task_status_chinese) {
+            this.user_task_status_chinese = user_task_status_chinese;
+        }
 
         public int getUser_task_id() {
             return user_task_id;

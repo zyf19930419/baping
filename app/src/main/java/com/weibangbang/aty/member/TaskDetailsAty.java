@@ -29,7 +29,6 @@ import static com.mob.MobSDK.getContext;
  * 功能描述：
  */
 public class TaskDetailsAty extends BaseActivity {
-    private TextView button_tv;
     private TextView commit_tv;
     private int mTask_id;
     private MemberPresenter mMemberPresenter;
@@ -48,8 +47,6 @@ public class TaskDetailsAty extends BaseActivity {
         setTitleBar(getResources().getString(R.string.task_details), true);
         commit_tv = findViewById(R.id.commit_tv);
         commit_tv.setText(R.string.querenlingqu);
-        button_tv = findViewById(R.id.button_tv);
-        button_tv.setVisibility(View.GONE);
         mTask_id = getIntent().getExtras().getInt("task_id");
 
         title_tv = findViewById(R.id.title_tv);
