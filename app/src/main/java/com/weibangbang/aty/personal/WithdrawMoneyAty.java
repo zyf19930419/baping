@@ -36,6 +36,7 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
     private ImageView wechat_img;
     private TextView alipay_tip_tv;
     private TextView wechat_tip_tv;
+    private TextView tip_tv;
     private PersonalPresenter mPersonalPresenter;
     private float total_price;
     private String pay_way="2";
@@ -54,6 +55,7 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
         wechat_img = findViewById(R.id.wechat_img);
         alipay_tip_tv = findViewById(R.id.alipay_tip_tv);
         wechat_tip_tv = findViewById(R.id.wechat_tip_tv);
+        tip_tv=findViewById(R.id.tip_tv);
         withdrawMoney_moneyInput_et = findViewById(R.id.withdrawMoney_moneyInput_et);
         withdrawMoney_money_tv=findViewById(R.id.withdrawMoney_money_tv);
 
@@ -183,8 +185,10 @@ public class WithdrawMoneyAty extends BaseActivity implements View.OnClickListen
                 JSONObject jsonObject=new JSONObject(jsonStr);
                 JSONObject jsonObject2=new JSONObject(jsonObject.optString("data"));
                 String user_balance = jsonObject2.optString("user_balance");
+                String charge = jsonObject2.optString("charge");
                 total_price=Float.parseFloat(user_balance);
                 withdrawMoney_money_tv.setText(user_balance);
+                tip_tv.setText("提示：提现手续费用按照提现总额的"+charge+"%收取");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
