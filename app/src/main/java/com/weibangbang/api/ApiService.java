@@ -5,6 +5,7 @@ import com.weibangbang.api.body.ForgetBody;
 import com.weibangbang.api.body.LaunchCommitBody;
 import com.weibangbang.api.body.LobbyBody;
 import com.weibangbang.api.body.LoginBody;
+import com.weibangbang.api.body.MyTaskBody;
 import com.weibangbang.api.body.NoticeDetailsBody;
 import com.weibangbang.api.body.ReceiveCommitBody;
 import com.weibangbang.api.body.ReceiveInfoBody;
@@ -95,10 +96,10 @@ public interface ApiService {
     Call<ResponseBody> postReceiveCommit(@Body ReceiveCommitBody receiveCommitBody);
 
     @POST("User/team11J.html")
-    Call<ResponseBody> postTeam11J(@Body TokenBody tokenBody);
+    Call<ResponseBody> postTeam11J(@Body MyTaskBody tokenBody);
 
     @POST("User/team22J.html")
-    Call<ResponseBody> postTeam22J(@Body TokenBody tokenBody);
+    Call<ResponseBody> postTeam22J(@Body MyTaskBody tokenBody);
 
 
     @POST("User/change_password.html")
@@ -106,17 +107,17 @@ public interface ApiService {
 
 
     @POST("Work/receive.html")
-    Call<ResponseBody> postReceivie(@Body TokenBody tokenBody);
+    Call<ResponseBody> postReceivie(@Body MyTaskBody tokenBody);
 
     @POST("Work/task_accomplish.html")
-    Call<ResponseBody> postTaskAccomplish(@Body TokenBody tokenBody);
+    Call<ResponseBody> postTaskAccomplish(@Body MyTaskBody tokenBody);
 
     @Multipart
     @POST("User/information.html")
     Call<ResponseBody> postInformation(@PartMap Map<String, RequestBody> map);
 
     @POST("User/my_wallet.html")
-    Call<ResponseBody> postMyWallet(@Body TokenBody tokenBody);
+    Call<ResponseBody> postMyWallet(@Body MyTaskBody tokenBody);
 
     @POST("Work/task_info.html")
     Call<ResponseBody> posTaskInfo(@Body TaskInfoBody taskInfoBody);

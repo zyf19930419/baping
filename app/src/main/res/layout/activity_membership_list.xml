@@ -54,11 +54,15 @@
             android:textColor="@color/txt_black"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
+    <com.weibangbang.view.SuperSwipeRefreshLayout
+        android:id="@+id/super_refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         tools:listitem="@layout/item_ranking"
         tools:itemCount="5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
+    </com.weibangbang.view.SuperSwipeRefreshLayout>
 </LinearLayout>

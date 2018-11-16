@@ -1,11 +1,14 @@
 package com.weibangbang.aty.personal;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -15,7 +18,9 @@ import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.personal.MineWalletBean;
 import com.weibangbang.presenter.PersonalPresenter;
 import com.weibangbang.utils.DateUtils;
+import com.weibangbang.view.SuperSwipeRefreshLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +37,15 @@ public class MineWalletAty extends BaseActivity {
     private ListView mineWallet_list_lv; // ListView
     private PersonalPresenter mPersonalPresenter;
     private MyAdapter mMyAdapter;
+
+    private SuperSwipeRefreshLayout mSuperSwipeRefreshLayout;
+    private int p = 1; // 请求的分页
+    // Footer View
+    private ProgressBar footerProgressBar;
+    private TextView footerTextView;
+    private ImageView footerImageView;
+
+    private List<MineWalletBean.DataBean.DetailDayBean> mList=new ArrayList<>();
     @Override
     public int getLayoutId() {
         return R.layout.activity_mine_wallet;
@@ -48,28 +62,91 @@ public class MineWalletAty extends BaseActivity {
 
 //        mineWallet_withdraw_tv.setOnClickListener(this);
 //        mineWallet_date_tv.setOnClickListener(this);
+        mSuperSwipeRefreshLayout = findViewById(R.id.super_refreshLayout);
+        mSuperSwipeRefreshLayout.setEnabled(false);
+        mSuperSwipeRefreshLayout.setFooterView(createFooterView());
+        mSuperSwipeRefreshLayout.setHeaderViewBackgroundColor(Color.WHITE);
+        mSuperSwipeRefreshLayout.setTargetScrollWithLayout(true);
+        mSuperSwipeRefreshLayout.setOnPushLoadMoreListener(new SuperSwipeRefreshLayout.OnPushLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                footerTextView.setText("正在加载...");
+                footerImageView.setVisibility(View.GONE);
+                footerProgressBar.setVisibility(View.VISIBLE);
+                p++;
+                mPersonalPresenter.postMyWallet(Config.getToken(),p);
+            }
+
+            @Override
+            public void onPushDistance(int distance) {
+            }
+
+            @Override
+            public void onPushEnable(boolean enable) {
+                footerTextView.setText(enable ? "松开加载" : "上拉加载");
+                footerImageView.setVisibility(View.VISIBLE);
+                footerImageView.setRotation(enable ? 0 : 180);
+            }
+        });
+    }
+    /**
+     * 创建底部加载布局
+     *
+     * @return
+     */
+    private View createFooterView() {
+        View footerView = LayoutInflater.from(mSuperSwipeRefreshLayout.getContext()).inflate(R.layout.layout_footer, null);
+        footerProgressBar = footerView.findViewById(R.id.footer_pb_view);
+        footerImageView = footerView.findViewById(R.id.footer_image_view);
+        footerTextView = footerView.findViewById(R.id.footer_text_view);
+        footerProgressBar.setVisibility(View.GONE);
+        footerImageView.setVisibility(View.VISIBLE);
+        footerImageView.setImageResource(R.drawable.down_arrow);
+        footerTextView.setText("上拉加载更多...");
+        return footerView;
     }
 
+    private void refreshVisibleState() {
+        if (footerProgressBar.getVisibility()==View.VISIBLE) {
+            mSuperSwipeRefreshLayout.setLoadMore(false);
+            footerProgressBar.setVisibility(View.GONE);
+        }
+    }
     @Override
     public void initData() {
         mPersonalPresenter = new PersonalPresenter(this);
-        mPersonalPresenter.postMyWallet(Config.getToken());
+        mPersonalPresenter.postMyWallet(Config.getToken(),p);
     }
 
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
+        refreshVisibleState();
         if (requestUrl.endsWith("User/my_wallet.html")){
             MineWalletBean mineWalletBean = JSON.parseObject(jsonStr, MineWalletBean.class);
             MineWalletBean.DataBean data = mineWalletBean.getData();
             String user_balance = data.getBalance_find().getUser_balance();
             mineWallet_balance_tv.setText(user_balance);
             List<MineWalletBean.DataBean.DetailDayBean> detail_day = data.getDetail_day();
+            if (p==1){
+                mList.clear();
+            }
             if (null!=detail_day){
+                mList.addAll(detail_day);
+            }
+            if (null==mMyAdapter){
                 mMyAdapter=new MyAdapter(mContext,detail_day);
                 mineWallet_list_lv.setAdapter(mMyAdapter);
+            }else {
+                mMyAdapter.notifyDataSetChanged();
             }
         }
+    }
+
+    @Override
+    public void onFailure(String msg) {
+        super.onFailure(msg);
+        refreshVisibleState();
     }
 
     /**

@@ -1,9 +1,9 @@
 package com.weibangbang.model;
 
 import com.weibangbang.api.body.LobbyBody;
+import com.weibangbang.api.body.MyTaskBody;
 import com.weibangbang.api.body.TaskInfoBody;
 import com.weibangbang.api.body.TaskPrintscreenBody;
-import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.base.BaseView;
 
 /**
@@ -17,9 +17,10 @@ public class MemberModel extends BaseModel{
      *任务大厅接口
      * @param vip 1.普通任务2.高级任务 可以不传默认普通
      */
-    public void postlobby(String vip,BaseView baseView){
+    public void postlobby(String vip,int p,BaseView baseView){
         LobbyBody lobbyBody=new LobbyBody();
         lobbyBody.setVip(vip);
+        lobbyBody.setPage(String.valueOf(p));
         mCall = mApiService.postlobby(lobbyBody);
         request(baseView);
     }
@@ -77,20 +78,22 @@ public class MemberModel extends BaseModel{
     /**
      *我的任务-已领用接口
      */
-    public void postReceivie(String token,BaseView baseView){
-        TokenBody tokenBody=new TokenBody();
-        tokenBody.setToken(token);
-        mCall = mApiService.postReceivie(tokenBody);
+    public void postReceivie(String token,int p,BaseView baseView){
+        MyTaskBody taskBody=new MyTaskBody();
+        taskBody.setToken(token);
+        taskBody.setPage(String.valueOf(p));
+        mCall = mApiService.postReceivie(taskBody);
         request(baseView);
     }
 
     /**
      * 我的任务已完成接口
      */
-    public void postTaskAccomplish(String token,BaseView baseView){
-        TokenBody tokenBody=new TokenBody();
-        tokenBody.setToken(token);
-        mCall = mApiService.postTaskAccomplish(tokenBody);
+    public void postTaskAccomplish(String token,int p,BaseView baseView){
+        MyTaskBody taskBody=new MyTaskBody();
+        taskBody.setToken(token);
+        taskBody.setPage(String.valueOf(p));
+        mCall = mApiService.postTaskAccomplish(taskBody);
         request(baseView);
     }
 

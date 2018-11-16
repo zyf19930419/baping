@@ -79,17 +79,36 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
+                                android:id="@+id/money_tv1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                tools:text="一级会员：¥12.00"
+                                tools:text="我的悬赏：¥12.00"
                                 android:textSize="10sp"/>
                             <TextView
+                                android:id="@+id/money_tv2"
+                                android:layout_marginTop="5dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                tools:text="二级会员：¥24.00"
+                                tools:text="邀请人悬赏：¥24.00"
+                                android:textSize="10sp"/>
+                            <TextView
+                                android:id="@+id/money_tv3"
+                                android:layout_marginTop="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="二级邀请人悬赏：¥24.00"
                                 android:textSize="10sp"/>
                         </LinearLayout>
                     </LinearLayout>
+                    <TextView
+                        android:id="@+id/num_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        tools:text="任务数量：20/40"
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <TextView

@@ -29,7 +29,7 @@ import static com.mob.MobSDK.getContext;
  * 功能描述：
  */
 public class TaskDetailsAty extends BaseActivity {
-    private TextView commit_tv;
+    private TextView commit_tv,money_tv1,money_tv2,money_tv3,num_tv;
     private int mTask_id;
     private MemberPresenter mMemberPresenter;
 
@@ -48,6 +48,11 @@ public class TaskDetailsAty extends BaseActivity {
         commit_tv = findViewById(R.id.commit_tv);
         commit_tv.setText(R.string.querenlingqu);
         mTask_id = getIntent().getExtras().getInt("task_id");
+
+        money_tv1 = findViewById(R.id.money_tv1);
+        money_tv2 = findViewById(R.id.money_tv2);
+        money_tv3 = findViewById(R.id.money_tv3);
+        num_tv = findViewById(R.id.num_tv);
 
         title_tv = findViewById(R.id.title_tv);
         status_tv = findViewById(R.id.status_tv);
@@ -69,6 +74,10 @@ public class TaskDetailsAty extends BaseActivity {
             title_tv.setText(taskDetailsBean.getData().getTask_name());
             status_tv.setText(taskDetailsBean.getData().getTask_require());
             copy_tv.setText(taskDetailsBean.getData().getTask_content());
+            money_tv1.setText("我的悬赏：¥"+taskDetailsBean.getData().getTask_profit());
+            money_tv2.setText("邀请人悬赏：¥"+taskDetailsBean.getData().getUser_inviter());
+            money_tv3.setText("二级邀请人悬赏：¥"+taskDetailsBean.getData().getUser_inviter_2());
+            num_tv.setText("任务数量："+taskDetailsBean.getData().getTask_getnum()+"/"+taskDetailsBean.getData().getTask_number());
             final String img_url = ApiService.BASE_IMAGE + taskDetailsBean.getData().getTask_image();
             GlideApp.with(mContext).load(img_url).into(task_img);
             task_img.setOnLongClickListener(new View.OnLongClickListener() {

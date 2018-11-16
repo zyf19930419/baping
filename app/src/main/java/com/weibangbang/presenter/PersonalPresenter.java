@@ -41,23 +41,23 @@ public class PersonalPresenter extends BasePresenter{
     /**
      * 我的团队-我的一级会员接口
      */
-    public void postTeam11J(String token){
-        mModel.postTeam11J(token,mBaseView);
+    public void postTeam11J(String token,int p){
+        mModel.postTeam11J(token,p,mBaseView);
     }
 
 
     /**
      * 我的团队-我的二级会员接口
      */
-    public void postTeam22J(String token){
-        mModel.postTeam22J(token,mBaseView);
+    public void postTeam22J(String token,int p){
+        mModel.postTeam22J(token,p,mBaseView);
     }
 
     /**
      *我的钱包
      */
-    public void postMyWallet(String token){
-        mModel.postMyWallet(token,mBaseView);
+    public void postMyWallet(String token,int p){
+        mModel.postMyWallet(token,p,mBaseView);
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.weibangbang.model;
 
 import com.weibangbang.api.body.ChangePasswordBody;
+import com.weibangbang.api.body.MyTaskBody;
 import com.weibangbang.api.body.TokenBody;
 import com.weibangbang.api.body.WithDrawalBody;
 import com.weibangbang.base.BaseView;
@@ -69,30 +70,33 @@ public class PersonalModel extends BaseModel {
     /**
      * 我的团队-我的一级会员接口
      */
-    public void postTeam11J(String token, BaseView baseView) {
-        TokenBody tokenBody = new TokenBody();
-        tokenBody.setToken(token);
-        mCall = mApiService.postTeam11J(tokenBody);
+    public void postTeam11J(String token, int p,BaseView baseView) {
+        MyTaskBody taskBody = new MyTaskBody();
+        taskBody.setToken(token);
+        taskBody.setPage(String.valueOf(p));
+        mCall = mApiService.postTeam11J(taskBody);
         request(baseView);
     }
 
     /**
      * 我的团队-我的二级会员接口
      */
-    public void postTeam22J(String token, BaseView baseView) {
-        TokenBody tokenBody = new TokenBody();
-        tokenBody.setToken(token);
-        mCall = mApiService.postTeam22J(tokenBody);
+    public void postTeam22J(String token, int p,BaseView baseView) {
+        MyTaskBody taskBody = new MyTaskBody();
+        taskBody.setToken(token);
+        taskBody.setPage(String.valueOf(p));
+        mCall = mApiService.postTeam22J(taskBody);
         request(baseView);
     }
 
     /**
      * 我的钱包
      */
-    public void postMyWallet(String token, BaseView baseView) {
-        TokenBody tokenBody = new TokenBody();
-        tokenBody.setToken(token);
-        mCall = mApiService.postMyWallet(tokenBody);
+    public void postMyWallet(String token,int p, BaseView baseView) {
+        MyTaskBody taskBody = new MyTaskBody();
+        taskBody.setToken(token);
+        taskBody.setPage(String.valueOf(p));
+        mCall = mApiService.postMyWallet(taskBody);
         request(baseView);
     }
 

@@ -52,6 +52,11 @@ public class LobbyBean {
          * task_content : <p><img src="/ueditor/php/upload/image/20180924/1537769218131759.jpg" title="1537769218131759.jpg" alt="QQ图片20180908132158.jpg"/>任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001任务001</p>
          * task_creattime : 1537769228
          * task_level : 1
+         * "task_profit": "4.00",
+         "user_inviter": "1.00",
+         "user_inviter_2": "1.00",
+         "task_number": 1000,
+         "task_getnum": 0
          */
 
         private int task_id;
@@ -61,6 +66,51 @@ public class LobbyBean {
         private String task_content;
         private int task_creattime;
         private int task_level;
+        private String task_profit;
+        private String user_inviter;
+        private String user_inviter_2;
+        private String task_number;
+        private String task_getnum;
+
+        public String getTask_profit() {
+            return task_profit;
+        }
+
+        public void setTask_profit(String task_profit) {
+            this.task_profit = task_profit;
+        }
+
+        public String getUser_inviter() {
+            return user_inviter;
+        }
+
+        public void setUser_inviter(String user_inviter) {
+            this.user_inviter = user_inviter;
+        }
+
+        public String getUser_inviter_2() {
+            return user_inviter_2;
+        }
+
+        public void setUser_inviter_2(String user_inviter_2) {
+            this.user_inviter_2 = user_inviter_2;
+        }
+
+        public String getTask_number() {
+            return task_number;
+        }
+
+        public void setTask_number(String task_number) {
+            this.task_number = task_number;
+        }
+
+        public String getTask_getnum() {
+            return task_getnum;
+        }
+
+        public void setTask_getnum(String task_getnum) {
+            this.task_getnum = task_getnum;
+        }
 
         public int getTask_id() {
             return task_id;

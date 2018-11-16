@@ -71,8 +71,10 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
 
             holder.title_tv.setText(dataBean.getTask_name());
             holder.status_tv.setText(dataBean.getTask_require());
-//            holder.num_tv.setVisibility(View.VISIBLE);
-
+            holder.num_tv.setVisibility(View.VISIBLE);
+            holder.money_tv.setVisibility(View.VISIBLE);
+            holder.money_tv.setText("任务悬赏："+dataBean.getTask_profit()+"元");
+            holder.num_tv.setText("任务数量："+dataBean.getTask_getnum()+"/"+dataBean.getTask_number());
         }
 
         if ("我的任务".equals(mTitle)){
@@ -156,13 +158,14 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         private ImageView left_img;
-        private TextView title_tv,status_tv,num_tv,button_tv,date_tv;
+        private TextView title_tv,status_tv,num_tv,money_tv,button_tv,date_tv;
         public MyViewHolder(View itemView) {
             super(itemView);
             left_img=itemView.findViewById(R.id.left_img);
             title_tv=itemView.findViewById(R.id.title_tv);
             status_tv=itemView.findViewById(R.id.status_tv);
             num_tv=itemView.findViewById(R.id.num_tv);
+            money_tv=itemView.findViewById(R.id.money_tv);
             button_tv=itemView.findViewById(R.id.button_tv);
             date_tv=itemView.findViewById(R.id.date_tv);
         }

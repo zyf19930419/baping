@@ -44,6 +44,16 @@
             tools:text="落砂机奶茶落砂机奶茶落砂机奶茶落砂机奶茶"
             android:textSize="12sp" />
         <TextView
+            android:id="@+id/money_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:visibility="gone"
+            tools:text="任务悬赏：20元"
+            android:textSize="12sp" />
+        <TextView
             android:id="@+id/num_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

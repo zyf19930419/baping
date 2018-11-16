@@ -19,8 +19,8 @@ public class MemberPresenter extends BasePresenter{
     /**
      *任务大厅接口
      */
-    public void postlobby(String vip){
-        mModel.postlobby(vip,mBaseView);
+    public void postlobby(String vip,int p){
+        mModel.postlobby(vip,p,mBaseView);
     }
 
     /**
@@ -60,15 +60,15 @@ public class MemberPresenter extends BasePresenter{
     /**
      *我的任务-已领用接口
      */
-    public void postReceivie(String token){
-        mModel.postReceivie(token,mBaseView);
+    public void postReceivie(String token,int p){
+        mModel.postReceivie(token,p,mBaseView);
     }
 
     /**
      * 我的任务已完成接口
      */
-    public void postTaskAccomplish(String token){
-        mModel.postTaskAccomplish(token,mBaseView);
+    public void postTaskAccomplish(String token,int p){
+        mModel.postTaskAccomplish(token,p,mBaseView);
     }
 
     /**

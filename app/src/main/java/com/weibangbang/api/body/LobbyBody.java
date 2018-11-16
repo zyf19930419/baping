@@ -7,7 +7,15 @@ package com.weibangbang.api.body;
  */
 public class LobbyBody {
     private String vip;
+    private String page;
 
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
 
     public String getVip() {
         return vip;
