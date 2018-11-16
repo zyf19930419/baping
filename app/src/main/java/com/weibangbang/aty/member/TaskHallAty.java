@@ -118,7 +118,7 @@ public class TaskHallAty extends BaseActivity {
     @Override
     public void initData() {
         mMemberPresenter = new MemberPresenter(this);
-
+        requestData();
     }
 
     private void requestData() {
