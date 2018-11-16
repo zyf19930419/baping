@@ -35,9 +35,19 @@ public class TaskHallAdapter extends RecyclerView.Adapter<TaskHallAdapter.MyView
         this.taskHallData=taskHallData;
     }
 
-    public TaskHallAdapter(String title, List<MyTaskBean.DataBean> data,int type) {
+    public void setTaskHallData(List<LobbyBean.DataBean> taskHallData) {
+        this.taskHallData = taskHallData;
+        notifyDataSetChanged();
+    }
+
+    public TaskHallAdapter(String title, List<MyTaskBean.DataBean> data, int type) {
         mTitle = title;
         this.myTaskData=data;
+    }
+
+    public void setMyTaskData(List<MyTaskBean.DataBean> myTaskData) {
+        this.myTaskData = myTaskData;
+        notifyDataSetChanged();
     }
 
     public TaskHallAdapter(List<NoticeBean.DataBean> noticeData) {

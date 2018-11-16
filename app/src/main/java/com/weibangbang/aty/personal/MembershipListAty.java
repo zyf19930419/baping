@@ -1,6 +1,7 @@
 package com.weibangbang.aty.personal;
 
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.weibangbang.api.Config;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.personal.MemberShipBean;
 import com.weibangbang.presenter.PersonalPresenter;
+import com.weibangbang.utils.DisplayHelper;
 import com.weibangbang.view.SuperSwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -36,6 +38,10 @@ public class MembershipListAty extends BaseActivity{
 
     private SuperSwipeRefreshLayout mSuperSwipeRefreshLayout;
     private int p = 1; // 请求的分页
+    // Header View
+    private ProgressBar progressBar;
+    private TextView textView;
+    private ImageView imageView;
     // Footer View
     private ProgressBar footerProgressBar;
     private TextView footerTextView;
@@ -62,10 +68,36 @@ public class MembershipListAty extends BaseActivity{
             tip_tv.setText(R.string.membership_tips2);
         }
         mSuperSwipeRefreshLayout = findViewById(R.id.super_refreshLayout);
-        mSuperSwipeRefreshLayout.setEnabled(false);
+        mSuperSwipeRefreshLayout.setHeaderView(createHeaderView());
         mSuperSwipeRefreshLayout.setFooterView(createFooterView());
         mSuperSwipeRefreshLayout.setHeaderViewBackgroundColor(Color.WHITE);
         mSuperSwipeRefreshLayout.setTargetScrollWithLayout(true);
+        mSuperSwipeRefreshLayout.setOnPullRefreshListener(new SuperSwipeRefreshLayout.OnPullRefreshListener() {
+            @Override
+            public void onRefresh() {
+                textView.setText("正在刷新");
+                imageView.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+                p = 1;
+                if ("一".equals(mLevel)){
+                    mPersonalPresenter.postTeam11J(Config.getToken(),p);
+                }else if ("二".equals(mLevel)){
+                    mPersonalPresenter.postTeam22J(Config.getToken(),p);
+                }
+            }
+
+            @Override
+            public void onPullDistance(int distance) {
+
+            }
+
+            @Override
+            public void onPullEnable(boolean enable) {
+                textView.setText(enable ? "松开刷新" : "下拉刷新");
+                imageView.setVisibility(View.VISIBLE);
+                imageView.setRotation(enable ? 180 : 0);
+            }
+        });
         mSuperSwipeRefreshLayout.setOnPushLoadMoreListener(new SuperSwipeRefreshLayout.OnPushLoadMoreListener() {
             @Override
             public void onLoadMore() {
@@ -97,8 +129,34 @@ public class MembershipListAty extends BaseActivity{
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         mAdapter=new RankingAndMemberAdapter();
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
+                if (parent.getChildAdapterPosition(view) == (layoutManager.getItemCount() - 1)) {
+                    outRect.bottom = DisplayHelper.dp2px(mContext, 15);
+                }
+            }
+        });
     }
 
+    /**
+     * 创建头部加载布局
+     *
+     * @return
+     */
+    private View createHeaderView() {
+        View headerView = LayoutInflater.from(mSuperSwipeRefreshLayout.getContext()).inflate(R.layout.layout_head, null);
+        progressBar = headerView.findViewById(R.id.pb_view);
+        textView = headerView.findViewById(R.id.text_view);
+        textView.setText("下拉刷新");
+        imageView = headerView.findViewById(R.id.image_view);
+        imageView.setVisibility(View.VISIBLE);
+        imageView.setImageResource(R.drawable.down_arrow);
+        progressBar.setVisibility(View.GONE);
+        return headerView;
+    }
     /**
      * 创建底部加载布局
      *
@@ -117,6 +175,10 @@ public class MembershipListAty extends BaseActivity{
     }
 
     private void refreshVisibleState() {
+        if (progressBar.getVisibility()== View.VISIBLE){
+            mSuperSwipeRefreshLayout.setRefreshing(false);
+            progressBar.setVisibility(View.GONE);
+        }
         if (footerProgressBar.getVisibility()==View.VISIBLE) {
             mSuperSwipeRefreshLayout.setLoadMore(false);
             footerProgressBar.setVisibility(View.GONE);

@@ -40,6 +40,10 @@ public class MineWalletAty extends BaseActivity {
 
     private SuperSwipeRefreshLayout mSuperSwipeRefreshLayout;
     private int p = 1; // 请求的分页
+    // Header View
+    private ProgressBar progressBar;
+    private TextView textView;
+    private ImageView imageView;
     // Footer View
     private ProgressBar footerProgressBar;
     private TextView footerTextView;
@@ -63,10 +67,32 @@ public class MineWalletAty extends BaseActivity {
 //        mineWallet_withdraw_tv.setOnClickListener(this);
 //        mineWallet_date_tv.setOnClickListener(this);
         mSuperSwipeRefreshLayout = findViewById(R.id.super_refreshLayout);
-        mSuperSwipeRefreshLayout.setEnabled(false);
+        mSuperSwipeRefreshLayout.setHeaderView(createHeaderView());
         mSuperSwipeRefreshLayout.setFooterView(createFooterView());
         mSuperSwipeRefreshLayout.setHeaderViewBackgroundColor(Color.WHITE);
         mSuperSwipeRefreshLayout.setTargetScrollWithLayout(true);
+        mSuperSwipeRefreshLayout.setOnPullRefreshListener(new SuperSwipeRefreshLayout.OnPullRefreshListener() {
+            @Override
+            public void onRefresh() {
+                textView.setText("正在刷新");
+                imageView.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+                p = 1;
+                mPersonalPresenter.postMyWallet(Config.getToken(),p);
+            }
+
+            @Override
+            public void onPullDistance(int distance) {
+
+            }
+
+            @Override
+            public void onPullEnable(boolean enable) {
+                textView.setText(enable ? "松开刷新" : "下拉刷新");
+                imageView.setVisibility(View.VISIBLE);
+                imageView.setRotation(enable ? 180 : 0);
+            }
+        });
         mSuperSwipeRefreshLayout.setOnPushLoadMoreListener(new SuperSwipeRefreshLayout.OnPushLoadMoreListener() {
             @Override
             public void onLoadMore() {
@@ -90,6 +116,22 @@ public class MineWalletAty extends BaseActivity {
         });
     }
     /**
+     * 创建头部加载布局
+     *
+     * @return
+     */
+    private View createHeaderView() {
+        View headerView = LayoutInflater.from(mSuperSwipeRefreshLayout.getContext()).inflate(R.layout.layout_head, null);
+        progressBar = headerView.findViewById(R.id.pb_view);
+        textView = headerView.findViewById(R.id.text_view);
+        textView.setText("下拉刷新");
+        imageView = headerView.findViewById(R.id.image_view);
+        imageView.setVisibility(View.VISIBLE);
+        imageView.setImageResource(R.drawable.down_arrow);
+        progressBar.setVisibility(View.GONE);
+        return headerView;
+    }
+    /**
      * 创建底部加载布局
      *
      * @return
@@ -107,6 +149,10 @@ public class MineWalletAty extends BaseActivity {
     }
 
     private void refreshVisibleState() {
+        if (progressBar.getVisibility()== View.VISIBLE){
+            mSuperSwipeRefreshLayout.setRefreshing(false);
+            progressBar.setVisibility(View.GONE);
+        }
         if (footerProgressBar.getVisibility()==View.VISIBLE) {
             mSuperSwipeRefreshLayout.setLoadMore(false);
             footerProgressBar.setVisibility(View.GONE);
@@ -138,7 +184,7 @@ public class MineWalletAty extends BaseActivity {
                 mMyAdapter=new MyAdapter(mContext,detail_day);
                 mineWallet_list_lv.setAdapter(mMyAdapter);
             }else {
-                mMyAdapter.notifyDataSetChanged();
+                mMyAdapter.setData(mList);
             }
         }
     }
@@ -164,6 +210,10 @@ public class MineWalletAty extends BaseActivity {
             mContext=context;
         }
 
+        public void setData(List<MineWalletBean.DataBean.DetailDayBean> data){
+            this.detail_day=data;
+            notifyDataSetChanged();
+        }
         @Override
         public int getCount() {
             return detail_day.size()>0?detail_day.size():0;

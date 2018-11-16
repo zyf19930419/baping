@@ -1,6 +1,7 @@
 package com.weibangbang.aty.member;
 
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,7 @@ import com.weibangbang.adapter.TaskHallAdapter;
 import com.weibangbang.base.BaseActivity;
 import com.weibangbang.bean.member.LobbyBean;
 import com.weibangbang.presenter.MemberPresenter;
+import com.weibangbang.utils.DisplayHelper;
 import com.weibangbang.view.SuperSwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -35,6 +37,10 @@ public class TaskHallAty extends BaseActivity {
     private MemberPresenter mMemberPresenter;
     private SuperSwipeRefreshLayout mSuperSwipeRefreshLayout;
     private int p = 1; // 请求的分页
+    // Header View
+    private ProgressBar progressBar;
+    private TextView textView;
+    private ImageView imageView;
     // Footer View
     private ProgressBar footerProgressBar;
     private TextView footerTextView;
@@ -61,10 +67,32 @@ public class TaskHallAty extends BaseActivity {
         general_tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this, R.mipmap.icon_white_point), null, null, null);
 
         mSuperSwipeRefreshLayout = findViewById(R.id.super_refreshLayout);
-        mSuperSwipeRefreshLayout.setEnabled(false);
+        mSuperSwipeRefreshLayout.setHeaderView(createHeaderView());
         mSuperSwipeRefreshLayout.setFooterView(createFooterView());
         mSuperSwipeRefreshLayout.setHeaderViewBackgroundColor(Color.WHITE);
         mSuperSwipeRefreshLayout.setTargetScrollWithLayout(true);
+        mSuperSwipeRefreshLayout.setOnPullRefreshListener(new SuperSwipeRefreshLayout.OnPullRefreshListener() {
+            @Override
+            public void onRefresh() {
+                textView.setText("正在刷新");
+                imageView.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+                p = 1;
+                requestData();
+            }
+
+            @Override
+            public void onPullDistance(int distance) {
+
+            }
+
+            @Override
+            public void onPullEnable(boolean enable) {
+                textView.setText(enable ? "松开刷新" : "下拉刷新");
+                imageView.setVisibility(View.VISIBLE);
+                imageView.setRotation(enable ? 180 : 0);
+            }
+        });
         mSuperSwipeRefreshLayout.setOnPushLoadMoreListener(new SuperSwipeRefreshLayout.OnPushLoadMoreListener() {
             @Override
             public void onLoadMore() {
@@ -90,6 +118,32 @@ public class TaskHallAty extends BaseActivity {
         mRecyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
+                if (parent.getChildAdapterPosition(view) == (layoutManager.getItemCount() - 1)) {
+                    outRect.bottom = DisplayHelper.dp2px(mContext, 15);
+                }
+            }
+        });
+    }
+    /**
+     * 创建头部加载布局
+     *
+     * @return
+     */
+    private View createHeaderView() {
+        View headerView = LayoutInflater.from(mSuperSwipeRefreshLayout.getContext()).inflate(R.layout.layout_head, null);
+        progressBar = headerView.findViewById(R.id.pb_view);
+        textView = headerView.findViewById(R.id.text_view);
+        textView.setText("下拉刷新");
+        imageView = headerView.findViewById(R.id.image_view);
+        imageView.setVisibility(View.VISIBLE);
+        imageView.setImageResource(R.drawable.down_arrow);
+        progressBar.setVisibility(View.GONE);
+        return headerView;
     }
 
     /**
@@ -110,6 +164,10 @@ public class TaskHallAty extends BaseActivity {
     }
 
     private void refreshVisibleState() {
+        if (progressBar.getVisibility()== View.VISIBLE){
+            mSuperSwipeRefreshLayout.setRefreshing(false);
+            progressBar.setVisibility(View.GONE);
+        }
         if (footerProgressBar.getVisibility()==View.VISIBLE) {
             mSuperSwipeRefreshLayout.setLoadMore(false);
             footerProgressBar.setVisibility(View.GONE);
@@ -152,7 +210,7 @@ public class TaskHallAty extends BaseActivity {
                     }
                 });
             } else {
-                mTaskHallAdapter.notifyDataSetChanged();
+                mTaskHallAdapter.setTaskHallData(mList);
             }
         }
     }
