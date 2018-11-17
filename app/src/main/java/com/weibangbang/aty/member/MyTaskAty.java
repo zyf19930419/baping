@@ -217,6 +217,7 @@ public class MyTaskAty extends BaseActivity {
         state = 0;
         p=1;
         mTaskHallAdapter=null;
+        mMemberPresenter.postReceivie(Config.getToken(),p);
     }
 
     /**
@@ -230,6 +231,7 @@ public class MyTaskAty extends BaseActivity {
         state = 1;
         p=1;
         mTaskHallAdapter=null;
+        mMemberPresenter.postTaskAccomplish(Config.getToken(),p);
     }
 
     @Override
@@ -284,7 +286,7 @@ public class MyTaskAty extends BaseActivity {
                     }
                 });
             }else {
-                mTaskHallAdapter.notifyDataSetChanged();
+                mTaskHallAdapter.setMyTaskData(mList);
             }
             return;
         }
