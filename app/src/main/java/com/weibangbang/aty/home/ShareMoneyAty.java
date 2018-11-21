@@ -6,6 +6,7 @@ import android.content.ClipboardManager;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Environment;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -24,6 +25,8 @@ import com.weibangbang.base.BaseActivity;
 import com.weibangbang.presenter.HomePresenter;
 import com.weibangbang.utils.GlideApp;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 
 import cn.sharesdk.framework.Platform;
@@ -84,6 +87,7 @@ public class ShareMoneyAty extends BaseActivity {
     @Override
     public void onComplete(String requestUrl, String jsonStr) {
         super.onComplete(requestUrl, jsonStr);
+        saveFile(requestUrl+"\r\n"+jsonStr,"test.txt");
         if (requestUrl.endsWith("Index/share.html")) {
             JSONObject jsonObject = JSONObject.parseObject(jsonStr);
             if (jsonObject.containsKey("data")) {
@@ -95,6 +99,29 @@ public class ShareMoneyAty extends BaseActivity {
             }
 
         }
+    }
+
+    public void saveFile(String str, String fileName) {
+        // 创建String对象保存文件名路径
+        try {
+            // 创建指定路径的文件
+            File file = new File(Environment.getExternalStorageDirectory(), fileName);
+            // 如果文件不存在
+            if (file.exists()) {
+                // 创建新的空文件
+                file.delete();
+            }
+            file.createNewFile();
+            // 获取文件的输出流对象
+            FileOutputStream outStream = new FileOutputStream(file);
+            // 获取字符串对象的byte数组并写入文件流
+            outStream.write(str.getBytes());
+            // 最后关闭文件输出流
+            outStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -135,10 +162,6 @@ public class ShareMoneyAty extends BaseActivity {
         });
         // 启动分享GUI
         oks.show(this);
-    }
-
-    public void readFile(){
-
     }
 
     /**
